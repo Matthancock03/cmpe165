@@ -8,10 +8,11 @@
     "express-stormpath": "^2.0.4"
   },
   "engines": {
-      "node": "0.10.x"
-    },
+    "node": "0.10.x"
+  },
   "devDependencies": {},
   "scripts": {
+    "start": "node express_server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
