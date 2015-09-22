@@ -1,0 +1,24 @@
+{
+  "name": "cmpe165",
+  "version": "1.0.0",
+  "description": "Service based platform ",
+  "main": "express_server.js",
+  "dependencies": {
+    "express-stormpath": "^2.0.4",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matthancock03/cmpe165.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matthancock03/cmpe165/issues"
+  },
+  "homepage": "https://github.com/Matthancock03/cmpe165#readme"
+}
