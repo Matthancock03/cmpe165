@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app='Authentication'>
+  <head>
+    <meta charset="utf-8">
+    <title>Stagehand</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row clearfix">
+          <div class='col-xs-6'>
+            <img src="images/logo.png">
+          </div>
+            <div class="col-xs-6">
+            <h1 class="title">StageHand</br>
+                <small>Be the director of your life!</small></h1>
+            <!--Tab buttons and styling-->
+            <div  ng-controller="Auth as auth">
+            <h3>
+              <ul class="nav nav-tabs nav-justified" data-tabs="tabs" role="tablist">
+                <li class="active">
+                  <a href="#login" ng-click="auth.setTab(1)">Login</a>
+                </li>
+                <li>
+                  <a href="#signup" ng-click="auth.setTab(2)">Sign Up</a>
+                </li>
+              </ul>
+            </h3><!--End of tab button-->
+
+            <div class="tab-content">
+              <div>
+                <div role="tabpanel" class="tab-pane fade in" ng-class="{active: auth.panelNumber(1)}" id="login">
+                  <form class="form-login" role="form" action="/" method="post">
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                      </div>
+                      <input class="form-control" placeholder="Email Address" type="email" />
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                      </div>
+                      <input class="form-control" placeholder="Password" type="password" />
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="remember-me"/>
+                        Remember Me
+                      </label>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">
+                      <span class="glyphicon glyphicon-home"></span>
+                      Login
+                    </button>
+                  </form>
+                </div>
+            </div>
+            <div>
+                <div class="tab-pane fade" ng-class="{active: auth.panelNumber(1)}" role="tabpanel"  id="signup">
+                  <form class="form-signup" role="form">
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                      </div>
+                      <input class="form-control" placeholder="Email Address" type="email" />
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                      </div>
+                      <input class="form-control" placeholder="Password" type="password" />
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
+                      </div>
+                      <input class="form-control" placeholder="Verify Password" type="password" />
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="remember-me" />
+                        Remember Me
+                      </label>
+                    </div>
+                    <button class="btn btn-success btn-lg btn-block" type="submit">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                       Sign Up
+                    </button>
+                  </form>
+                </div>
+            </div>
+            </div>
+          </div>
+          </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>
