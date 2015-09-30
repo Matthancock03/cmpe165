@@ -3,6 +3,7 @@
 <h5>Running the project:</h5>
 To run the repo you must use the <b>node</b> command in the root of the project directory. 
 The command to do so is <b>'node express_server.js'</b>
+<br>Once the server is running you can open any browser and navigate to <b>'http://localhost:9000'</b>
 
 
 <h5>Dependencies</h5>
