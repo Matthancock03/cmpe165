@@ -6,19 +6,18 @@
   <title>Stagehand</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
-
 </head>
 
 <body>
   <div class="container-fluid full">
     <div class="row clearfix full">
       <div class='col-xs-6 mainDivs'>
-          <img class="center-block" src="images/logo.png">
+        <img class="center-block" src="images/logo.png">
       </div>
       <div class="col-xs-6 black mainDivs">
         <div class="loginPane center-block">
-          <h1 class="title">StageHand</br>
-            <small>Be the director of your life!</small>
+          <h1 class="title headerText">StageHand</br>
+            <small class="headerText">Be the director of your life!</small>
           </h1>
           <!--Tab buttons and styling-->
           <div ng-controller="Auth as auth">
@@ -32,69 +31,69 @@
                 </li>
               </ul>
             </h3>
-            <!--End of tab button-->
+          </div>
+          <!--End of tab button-->
 
+          <div>
             <div>
-              <div>
-                <div ng-show="auth.panelNumber(1)">
-                  <form class="form-login" role="form" action="/" method="post">
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-envelope"></span>
-                      </div>
-                      <input class="form-control" placeholder="Email Address" type="email" />
+              <form name="loginForm" ng-controller="Login as login" action="/home" method="post" ng-submit="login.submitLogin(login.email, login.password)">
+                <div ng-show="login.panelNumber(1)">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-envelope"></span>
                     </div>
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-lock"></span>
-                      </div>
-                      <input class="form-control" placeholder="Password" type="password" />
+                    <input class="form-control" ng-model="login.email" placeholder="Email Address" type="email" />
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-lock"></span>
                     </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="remember-me" /> Remember Me
-                      </label>
-                    </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">
-                      <span class="glyphicon glyphicon-home"></span>
-                      Login
-                    </button>
-                  </form>
+                    <input class="form-control" ng-model="login.password" placeholder="Password" type="password" />
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me" /> Remember Me
+                    </label>
+                  </div>
+                  <button class="btn btn-primary btn-lg btn-block" type="submit">
+                    <span class="glyphicon glyphicon-home"></span>
+                    Login
+                  </button>
                 </div>
-              </div>
-              <div>
-                <div ng-show="auth.panelNumber(2)">
-                  <form class="form-signup" role="form">
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-envelope"></span>
-                      </div>
-                      <input class="form-control" placeholder="Email Address" type="email" />
+              </form>
+            </div>
+            <div>
+              <form name="signUpForm" action="/home" method="post" ng-controller="Signup as signup" ng-submit="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication)">
+                <div ng-show="signup.panelNumber(2)">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-envelope"></span>
                     </div>
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-lock"></span>
-                      </div>
-                      <input class="form-control" placeholder="Password" type="password" />
+                    <input class="form-control" ng-model="signup.email" placeholder="Email Address" type="email" />
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-lock"></span>
                     </div>
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-lock"></span>
-                      </div>
-                      <input class="form-control" placeholder="Verify Password" type="password" />
+                    <input class="form-control" ng-model="signup.password" placeholder="Password" type="password" />
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-lock"></span>
                     </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="remember-me" /> Remember Me
-                      </label>
-                    </div>
-                    <button class="btn btn-success btn-lg btn-block" type="submit">
-                      <span class="glyphicon glyphicon-pencil"></span>
-                      Sign Up
-                    </button>
-                  </form>
+                    <input class="form-control" ng-model="signup.passwordVerfication" placeholder="Verify Password" type="password" />
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="remember-me" /> Remember Me
+                    </label>
+                  </div>
+                  <button class="btn btn-success btn-lg btn-block" type="submit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Sign Up
+                  </button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

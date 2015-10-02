@@ -9,6 +9,10 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
+app.post("/home", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/jobform.html');
+});
+
 app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
