@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html ng-app='Authentication'>
-  <head>
-    <meta charset="utf-8">
-    <title>Stagehand</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
 
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="row clearfix">
-          <div class='col-xs-6'>
-            <img src="images/logo.png">
-          </div>
-            <div class="col-xs-6" style="background-color:#000000; overflow:auto">
-            <h1 class="title">StageHand</br>
-                <small>Be the director of your life!</small></h1>
-            <!--Tab buttons and styling-->
-            <div ng-controller="Auth as auth">
+<head>
+  <meta charset="utf-8">
+  <title>Stagehand</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+  <div class="container-fluid full">
+    <div class="row clearfix full">
+      <div class='col-xs-6 mainDivs'>
+          <img class="center-block" src="images/logo.png">
+      </div>
+      <div class="col-xs-6 black mainDivs">
+        <div class="loginPane center-block">
+          <h1 class="title">StageHand</br>
+            <small>Be the director of your life!</small>
+          </h1>
+          <!--Tab buttons and styling-->
+          <div ng-controller="Auth as auth">
             <h3>
-              <ul class="nav nav-tabs nav-justified" data-tabs="tabs" role="tablist">
-                <li ng-class="{active : auth.panelNumber(1)}">
+              <ul class="nav nav-tabs nav-justified">
+                <li class="active">
                   <a href="#login" ng-click="auth.setTab(1)">Login</a>
                 </li>
-                <li ng-class="{active : auth.panelNumber(2)}">
+                <li>
                   <a href="#signup" ng-click="auth.setTab(2)">Sign Up</a>
                 </li>
               </ul>
-            </h3><!--End of tab button-->
+            </h3>
+            <!--End of tab button-->
 
-            <div class="tab-content">
+            <div>
               <div>
-                <div role="tabpanel" class="tab-pane fade in" ng-hide="auth.panelNumber(2)" id="login">
+                <div ng-show="auth.panelNumber(1)">
                   <form class="form-login" role="form" action="/" method="post">
                     <div class="input-group">
                       <div class="input-group-addon">
@@ -47,8 +52,7 @@
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" value="remember-me"/>
-                        Remember Me
+                        <input type="checkbox" value="remember-me" /> Remember Me
                       </label>
                     </div>
                     <button class="btn btn-primary btn-lg btn-block" type="submit">
@@ -57,9 +61,9 @@
                     </button>
                   </form>
                 </div>
-            </div>
-            <div>
-                <div class="tab-pane" ng-hide="auth.panelNumber(1)" role="tabpanel"  id="signup">
+              </div>
+              <div>
+                <div ng-show="auth.panelNumber(2)">
                   <form class="form-signup" role="form">
                     <div class="input-group">
                       <div class="input-group-addon">
@@ -81,22 +85,24 @@
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" value="remember-me" />
-                        Remember Me
+                        <input type="checkbox" value="remember-me" /> Remember Me
                       </label>
                     </div>
                     <button class="btn btn-success btn-lg btn-block" type="submit">
                       <span class="glyphicon glyphicon-pencil"></span>
-                       Sign Up
+                      Sign Up
                     </button>
                   </form>
                 </div>
-            </div>
+              </div>
             </div>
           </div>
-          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    <script src="login.js"></script>
-  </body>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="login.js"></script>
+</body>
+
 </html>
