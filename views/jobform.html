@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="JobForm">
+<head>
+    <meta charset="UTF-8">
+    <title>Who do you want to do what where?</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jobs.css">
+</head>
+<body>
+<div class="container-fluid full">
+    <form class="form-login ng-pristine ng-valid job-form" role="form" action="/" method="post">
+        <div class="input-group ">
+            <div class="input-group-addon">
+                Title:
+            </div>
+            <input class="form-control" placeholder="Who and What" type="text">
+        </div>
+        <div class="input-group">
+            <div class="input-group-addon">
+                Location:
+            </div>
+            <input class="form-control" placeholder="Where" type="text">
+        </div>
+        <div class="input-group">
+            <div class="input-group-addon">
+                Time:
+            </div>
+            <input class="form-control" placeholder="When" type="text">
+        </div>
+        <div class="input-group">
+            <div class="input-group-addon">
+                Wages:
+            </div>
+            <input class="form-control" placeholder="Why" type="text">
+        </div>
+        <div class="input-group">
+            <div class="input-group-addon">
+                Description:
+            </div>
+            <textarea class="form-control" placeholder="How" type="text"></textarea>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+
+            Submit
+        </button>
+    </form>
+</div>
+</body>
+</html>
