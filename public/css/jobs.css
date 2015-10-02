@@ -1,0 +1,8 @@
+.job-form > div > div {
+    width: 100px;
+    text-align: right;
+}
+.job-form > div{
+    width: 100%;
+    margin-bottom: 1px;
+}
