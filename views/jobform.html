@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="JobForm">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <title>Who do you want to do what where?</title>
@@ -14,37 +14,47 @@
             <div class="input-group-addon">
                 Title:
             </div>
-            <input class="form-control" placeholder="Who and What" type="text">
+            <input class="form-control" placeholder="Who and What" ng-model="job.title" type="text">
         </div>
         <div class="input-group">
             <div class="input-group-addon">
                 Location:
             </div>
-            <input class="form-control" placeholder="Where" type="text">
+            <input class="form-control" placeholder="Where" ng-model="userjob.location" type="text">
         </div>
         <div class="input-group">
             <div class="input-group-addon">
                 Time:
             </div>
-            <input class="form-control" placeholder="When" type="text">
+            <input class="form-control" placeholder="When" ng-model="userjob.time" type="text">
         </div>
         <div class="input-group">
             <div class="input-group-addon">
                 Wages:
             </div>
-            <input class="form-control" placeholder="Why" type="text">
+            <input class="form-control" placeholder="Why" ng-model="userjob.price" type="text">
         </div>
         <div class="input-group">
             <div class="input-group-addon">
                 Description:
             </div>
-            <textarea class="form-control" placeholder="How" type="text"></textarea>
+            <textarea class="form-control" placeholder="How" ng-model="userjob.description" type="text"></textarea>
         </div>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">
+        <div class="input-group">
+            <div class="input-group-addon">
+                Terms:
+            </div>
+            <input class="form-control" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" ng-click="submit(job)" type="submit">
 
             Submit
         </button>
     </form>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+
+<script src="jobcreate.js"></script>
+
 </body>
 </html>

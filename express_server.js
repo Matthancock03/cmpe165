@@ -17,4 +17,9 @@ app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 
+app.get("/create", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/jobform.html');
+})
+
+
 app.listen(process.env.PORT || 9000);

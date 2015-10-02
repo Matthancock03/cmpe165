@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/joblist.css">
+</head>
+<body>
+<div ng-app="myApp" ng-controller="joblist" style="padding-left:10px; padding-right:10px">
+<h1>Jobs near you</h1>
+<div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs">
+    <div class="col-xs-3">
+        <h4>{{job.title}}</h4>
+    </div>
+    <div class="col-xs-2">
+        <h5>{{job.wages | currency}}</h5>
+    </div>
+    <div class="col-xs-2">
+        <h5>{{job.location}}</h5>
+    </div>
+    <div class="col-xs-2">
+        <h5>{{job.time | date : 'MMMM d, h:mm a'}}</h5>
+    </div>
+    <div class="col-xs-3">
+        <button class="btn btn-success btn-lg btn-block" ng-click="toPage(job)" type="submit">
+            Learn More...
+        </button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="joblist.js"></script>
+</div>
+</div>
+</body>
+</html>
