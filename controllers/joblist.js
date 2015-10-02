@@ -17,6 +17,7 @@ function Job(title,location,time,wages,description,terms, id){
 var app = angular.module('myApp',[])
 
 app.controller('joblist', function($scope){
+    //Dummy data for now. Populate with actual elements from the database and everything should work swimmingly.
     $scope.jobs = [
         new Job("Flash mob", "380 E Arbor Avenue", 1443814482 + 1800, 10, "Do the hokey pokey", "flashmob,prank",0),
         new Job("Prank", "168 Brahms Avenue", 1443814482 + 7200, 20, "Ring the doorbell and then leave, three times in a row", "awkward,prank",1),

@@ -1,2 +1,6 @@
 .jobcontainer > div
-{padding-top: 2px;}
+{
+    padding-top: 4px;
+    padding-bottom: 4px;}
+.jobcontainer:nth-child(even)
+{background-color: #f4e5e9}
