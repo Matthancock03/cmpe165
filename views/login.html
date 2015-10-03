@@ -36,6 +36,7 @@
 
           <div>
             <div>
+              <!-- Begin Login Form -->
               <form name="loginForm" ng-controller="Login as login" action="/home" method="post" ng-submit="login.submitLogin(login.email, login.password)">
                 <div ng-show="login.panelNumber(1)">
                   <div class="input-group">
@@ -62,6 +63,9 @@
                 </div>
               </form>
             </div>
+            <!-- End Login Form -->
+
+            <!-- Begin SignUp Form -->
             <div>
               <form name="signUpForm" action="/home" method="post" ng-controller="Signup as signup" ng-submit="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication)">
                 <div ng-show="signup.panelNumber(2)">
@@ -95,6 +99,7 @@
                 </div>
               </form>
             </div>
+            <!-- End SignUp Form -->
           </div>
         </div>
       </div>

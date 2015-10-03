@@ -1,60 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Who do you want to do what where?</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/jobs.css">
+  <meta charset="UTF-8">
+  <title>Who do you want to do what where?</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/jobs.css">
 </head>
+
 <body>
-<div class="container-fluid full">
-    <form class="form-login ng-pristine ng-valid job-form" role="form" action="/" method="post">
-        <div class="input-group ">
+  <div class="container-fluid full">
+    <div class="row clearfix full">
+      <div class="col-xs-2 black full">
+      </div>
+      <div class="col-xs-10 full">
+        <form class="form-login ng-pristine ng-valid job-form center-block" role="form" action="/" method="post">
+          <div class="input-group ">
             <div class="input-group-addon">
-                Title:
+              Title:
             </div>
             <input class="form-control" placeholder="Who and What" ng-model="job.title" type="text">
-        </div>
-        <div class="input-group">
+          </div>
+          <div class="input-group">
             <div class="input-group-addon">
-                Location:
+              Location:
             </div>
             <input class="form-control" placeholder="Where" ng-model="userjob.location" type="text">
-        </div>
-        <div class="input-group">
+          </div>
+          <div class="input-group">
             <div class="input-group-addon">
-                Time:
+              Time:
             </div>
             <input class="form-control" placeholder="When" ng-model="userjob.time" type="text">
-        </div>
-        <div class="input-group">
+          </div>
+          <div class="input-group">
             <div class="input-group-addon">
-                Wages:
+              Wages:
             </div>
             <input class="form-control" placeholder="Why" ng-model="userjob.price" type="text">
-        </div>
-        <div class="input-group">
+          </div>
+          <div class="input-group">
             <div class="input-group-addon">
-                Description:
+              Description:
             </div>
             <textarea class="form-control" placeholder="How" ng-model="userjob.description" type="text"></textarea>
-        </div>
-        <div class="input-group">
+          </div>
+          <div class="input-group">
             <div class="input-group-addon">
-                Terms:
+              Terms:
             </div>
             <input class="form-control" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
-        </div>
-        <button class="btn btn-primary btn-lg btn-block" ng-click="submit(job)" type="submit">
+          </div>
+          <button class="btn btn-primary btn-lg btn-block" ng-click="submit(job)" type="submit">
 
             Submit
-        </button>
-    </form>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-
-<script src="jobcreate.js"></script>
-
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="jobcreate.js"></script>
 </body>
+
 </html>

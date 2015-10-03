@@ -6,3 +6,20 @@
     width: 100%;
     margin-bottom: 1px;
 }
+
+.job-form{
+  padding-top: 5%;
+  width: 75%;
+}
+html, body{
+height: 100%;
+}
+
+.black {
+background-color: black;
+height: 100%;
+}
+
+.full {
+  height: 100%;
+}
