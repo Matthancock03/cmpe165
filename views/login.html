@@ -37,7 +37,7 @@
           <div>
             <div>
               <!-- Begin Login Form -->
-              <form name="loginForm" ng-controller="Login as login" action="/home" method="post" ng-submit="login.submitLogin(login.email, login.password)">
+              <form name="loginForm" ng-controller="Login as login"  ng-submit="login.submitLogin(login.email, login.password)">
                 <div ng-show="login.panelNumber(1)">
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -67,7 +67,7 @@
 
             <!-- Begin SignUp Form -->
             <div>
-              <form name="signUpForm" action="/home" method="post" ng-controller="Signup as signup" ng-submit="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication)">
+              <form name="signUpForm" ng-controller="Signup as signup" ng-submit="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication)">
                 <div ng-show="signup.panelNumber(2)">
                   <div class="input-group">
                     <div class="input-group-addon">
