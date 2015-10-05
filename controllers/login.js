@@ -1,5 +1,10 @@
 (function(){
   var app = angular.module('Authentication',[])
+  app.config(['$httpProvider', function($httpProvider) {
+    delete $httpProvider.defaults.headers.common["X-Requested-With"],
+    delete $httpProvider.defaults.headers.common["Referer"]
+}]);
+
   var tab = 1;
   app.controller('Auth', function(){
 
@@ -27,7 +32,10 @@
       $http({
       method: 'GET',
       url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts?email=tk421@stormpath.com',
-      headers: {"Accept": "application/json"}
+      headers: {
+        "Accept": "application/json",
+        "Authorization" : "Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N"
+    }
       }).then(function successCallback(response) {
         for (property in response) {
           console.log(property + ':' + response[property]+'; ');
