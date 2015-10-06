@@ -14,7 +14,7 @@ app.post("/home", function(req,res){
 });
 
 app.get("/jobs", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
+  res.status(200).sendFile(__dirname + '/views/joblist.html');
 })
 
 app.get("/create", function(req,res){
