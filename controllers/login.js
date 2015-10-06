@@ -1,9 +1,9 @@
 (function(){
-  var app = angular.module('Authentication',[])
-  app.config(['$httpProvider', function($httpProvider) {
-    delete $httpProvider.defaults.headers.common["X-Requested-With"],
-    delete $httpProvider.defaults.headers.common["Referer"]
-}]);
+  var app = angular.module('Authentication',[]).config(function ($httpProvider) {
+
+        $httpProvider.defaults.headers.common['Authorization'] = 'Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N';
+        delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    });
 
   var tab = 1;
   app.controller('Auth', function(){
@@ -25,16 +25,22 @@
 
     this.submitLogin = function(email, password){
       console.log("Email: " + email + " Password: " + password);
-      /*$http.get("https://api.stormpath.com/v1/applications/1JcFMH3kdfpBj4SS0abfQi/accounts?email=tk421@stormpath.com", {
-      headers: {"Accept": "application/json"}
-      });*/
-
+      var url = 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts?email=' + email;
+      var response = $http.jsonp(url, {
+        method: 'GET',
+        callback: 'JSON_CALLBACK',
+        headers:{
+          "Accept" : "application/json",
+          "Authorization" : "Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N"
+        }
+        });
+      /*
       $http({
       method: 'GET',
       url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts?email=' + email,
       headers: {
-        "Accept": "application/json",
-        "Authorization" : "Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N"
+        "Accept" : "*",
+        "Authorization" : "Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N",
     }
       }).then(function successCallback(response) {
         for (property in response) {
@@ -42,7 +48,7 @@
         }
       }, function errorCallback(response) {
         console.log("Not working.\n\n");
-      });
+      });*/
     };
     this.panelNumber = function(panel){
       return tab === panel;
