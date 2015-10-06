@@ -24,13 +24,16 @@
       $http({
       method: 'POST',
       url: '/login',
+      headers:{
+        "Accept" : "application/json"
+      },
       data: {
         "username": email,
         "password": password
       }
       }).then(function successCallback(response) {
-        for (property in response) {
-          console.log(property + ':' + response[property]+'; ');
+        for (property in response.config) {
+          console.log(property + ':' + response.config[property]+'; ');
         }
       }, function errorCallback(response) {
         console.log("Not working.\n\n");
