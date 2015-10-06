@@ -31,7 +31,7 @@
 
       $http({
       method: 'GET',
-      url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts?email=tk421@stormpath.com',
+      url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts?email=' + email,
       headers: {
         "Accept": "application/json",
         "Authorization" : "Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N"
@@ -39,13 +39,9 @@
       }).then(function successCallback(response) {
         for (property in response) {
           console.log(property + ':' + response[property]+'; ');
-
         }
       }, function errorCallback(response) {
-        for (property in response) {
-          console.log(property + ':' + response[property]+'; ');
-
-        }
+        console.log("Not working.\n\n");
       });
     };
     this.panelNumber = function(panel){
@@ -57,23 +53,26 @@
     this.email = "";
     this.password = "";
     this.passwordVerfication = "";
+    this.firstName = "";
+    this.lastName = "";
 
-    this.submitSignup = function(email, password, passwordVerification){
-      console.log("Email: " + email + " Password: " + password + " Verification: " + passwordVerification);
+    this.submitSignup = function(email, password, passwordVerification, firstName, lastName){
+      console.log("Email: " + email + " Name: " + firstName + lastName +  " Password: " + password + " Verification: " + passwordVerification);
 
       $http({
       method: 'POST',
       url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts',
       headers: {"Accept": "application/json", "Content-Type" : "application/json"},
       data: {
-        "givenName": "Matt",
-        "surname": "Hancock",
-        "username": "Matth03",
-        "email": "matt-hancock@live.com",
-        "password":"wordup"}
+        "givenName": firstName,
+        "surname": lastName,
+        //"username": "Matth03",
+        "email": email,
+        "password": password}
       }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
+        for (property in response) {
+          console.log(property + ':' + response[property]+'; ');
+        }
       }, function errorCallback(response) {
       console.log("Not working.\n\n");
       });
