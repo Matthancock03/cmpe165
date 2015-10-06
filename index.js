@@ -11,6 +11,7 @@ app.use(stormpath.init(app, {
   apiKeySecret: process.env.STORMPATH_API_KEY_SECRET,
   secretKey:    process.env.STORMPATH_SECRET_KEY,
   application:  process.env.STORMPATH_URL,
+  
   website: {
       login: {
         enabled: true,
