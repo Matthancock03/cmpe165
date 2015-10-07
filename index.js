@@ -6,15 +6,24 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 
-app.use(stormpath.init(app, {
-  application: process.env.STORMPATH_URL,
-  redirectUrl: '/home',
+var stormpathMiddleware = stormpath.init(app, {
+  apiKeyFile: __dirname + '/apiKey.properties',
+  application: {
+    href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW'
+  },
+  secretKey: 'LKJSGOIWUHG{)_$@)_($U)IKNGFJWNGNIH@)H*GNGWKJNSLKJNFWPOFJWifnlskndfowinfgqonwf}',
+  STORMPATH_APPLICATION_HREF: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW',
+  expandCustomData: true,
+  enableForgotPassword: true,
   website: {
       login: {
         enabled: true,
+        nextUri: __dirname + '/views/jobform.html'
       }
-  }
-}));
+    }
+});
+
+app.use(stormpathMiddleware);
 
 
 app.get("/", function(req,res){
