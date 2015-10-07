@@ -7,11 +7,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 
 app.use(stormpath.init(app, {
-  apiKeyId:     process.env.STORMPATH_API_KEY_ID, //For Heroku integration
-  apiKeySecret: process.env.STORMPATH_API_KEY_SECRET,
-  secretKey:    process.env.STORMPATH_SECRET_KEY,
-  application:  process.env.STORMPATH_URL,
-  
   website: {
       login: {
         enabled: true,

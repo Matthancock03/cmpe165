@@ -36,7 +36,7 @@
           console.log(property + ':' + response.config[property]+'; ');
         }
       }, function errorCallback(response) {
-        console.log("Not working.\n\n");
+        console.log("Login error: " + response.error);
       });
     };
     this.panelNumber = function(panel){
@@ -57,6 +57,9 @@
       $http({
       method: 'POST',
       url: '/register',
+      headers: {
+        "Accept" : "application/json"
+      },
       data: {
         "givenName": firstName,
         "surname": lastName,
@@ -68,7 +71,7 @@
           console.log(property + ':' + response[property]+'; ');
         }
       }, function errorCallback(response) {
-      console.log("Not working.\n\n");
+        console.log("SignUp error: " + response.error);
       });
     };
 
