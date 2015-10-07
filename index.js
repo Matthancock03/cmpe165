@@ -7,10 +7,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 
 app.use(stormpath.init(app, {
+  application: process.env.STORMPATH_URL,
+  redirectUrl: '/home',
   website: {
       login: {
         enabled: true,
-        nextUri: __dirname + '/views/jobform.html'
       }
   }
 }));
