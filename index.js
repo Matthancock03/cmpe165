@@ -7,12 +7,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 
 var stormpathMiddleware = stormpath.init(app, {
-  apiKeyFile: __dirname + '/apiKey.properties',
   application: {
     href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW'
   },
-  secretKey: 'LKJSGOIWUHG{)_$@)_($U)IKNGFJWNGNIH@)H*GNGWKJNSLKJNFWPOFJWifnlskndfowinfgqonwf}',
-  STORMPATH_APPLICATION_HREF: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW',
   expandCustomData: true,
   enableForgotPassword: true,
   website: {
