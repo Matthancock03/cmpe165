@@ -17,6 +17,10 @@ app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 
+app.get("/jobDisplay", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/jobDisplay.html');
+})
+
 app.get("/create", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
