@@ -13,6 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 
 app.get("/", function(req,res){
+    console.log(req.headers.cookie);
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
@@ -20,7 +21,7 @@ app.post("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 });
 
-app.get("/jobs", function(req,res){
+app.get("/jobs", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 

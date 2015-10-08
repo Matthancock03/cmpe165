@@ -34,6 +34,9 @@
       }
       }).then(function successCallback(response) {
         window.location.assign("jobs");
+        for(property in response.headers){
+          console.log(response.headers[property]);
+        }
       }, function errorCallback(response) {
         console.log("Login error: " + response.error);
       });
