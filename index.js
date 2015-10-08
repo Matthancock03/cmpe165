@@ -1,8 +1,6 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
 var bodyParser = require('body-parser');
-var Job = require('job');
-car Comment = require('comment');
 
 var app = express();
 app.use = (bodyParser.json());
@@ -14,12 +12,12 @@ app.use(stormpath.init(app, {
   website: true
 }));
 
-
-
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
 
+var Job = require('job');
+var Comment = require('comment');
 
 app.get("/", function(req,res){
     console.log(req.headers.cookie);
