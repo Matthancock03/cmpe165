@@ -33,9 +33,9 @@ app.get("/jobform", function(req,res){
 })
 
 app.post("/createJob", function(req,res){
-  console.log('Post Received.');
-  console.log(req.body.userID);
-  console.log(req.body.body);
+  //console.log('Post Received.');
+  //console.log(req.body.userID);
+  //console.log(req.body.body);
   var job = new Job({
     userID: '01',
     title: "Finish this project!",
@@ -47,7 +47,7 @@ app.post("/createJob", function(req,res){
       console.log("Job did not save correctly.");
       return next(err)
     };
-    res.json(201, jost);
+    res.json(201, job);
   })
 });
 
