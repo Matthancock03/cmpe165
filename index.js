@@ -1,9 +1,10 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
 var bodyParser = require('body-parser');
-
+var Job = require(__dirname +'/models/job');
+var Comment = require(__dirname + '/models/comment');
 var app = express();
-app.use = (bodyParser.json());
+//app.use = (bodyParser.json());
 
 app.use(stormpath.init(app, {
   application: {

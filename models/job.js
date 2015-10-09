@@ -5,8 +5,7 @@ var Job = db.model('Job', {
   title: {type: String, required: true},
   wage: {type: String, required: true},
   description: {type: String, required: true},
-  creationDate: {type: Date, required: true, default: Date.now},
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+  creationDate: {type: Date, required: true, default: Date.now}
 })
 
 module.exports = Job
