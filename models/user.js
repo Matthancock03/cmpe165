@@ -1,8 +1,7 @@
 /**
  * Created by johnfranklin on 10/7/15.
  */
-var angoose = require("angoose"); /** if angoose is installed as module, then require('angoose')*/
-var db = angoose.getMongoose();
+var db = require("database");
 var User = db.Schema({
 
     firstname: {type: String, required: true},

@@ -1,5 +1,4 @@
-var angoose = require("angoose"); /** if angoose is installed as module, then require('angoose')*/
-var db = angoose.getMongoose();
+var db = require("database");
 var Job = db.Schema({
   userID: {type: String, required: true},
   title: {type: String, required: true},
