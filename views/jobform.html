@@ -7,20 +7,21 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/jobs.css">
+
 </head>
 
 <body>
-  <div class="container-fluid full">
+  <div class="container-fluid full" ng-app="myApp" ng-controller="jobcreate">
     <div class="row clearfix full">
       <div class="col-xs-2 black full">
       </div>
       <div class="col-xs-10 full">
-        <form class="form-login ng-pristine ng-valid job-form center-block" role="form" action="/" method="post">
+        <form class="form-login ng-pristine ng-valid job-form center-block" role="form">
           <div class="input-group ">
             <div class="input-group-addon">
               Title:
             </div>
-            <input class="form-control" placeholder="Who and What" ng-model="job.title" type="text">
+            <input class="form-control" placeholder="Who and What" ng-model="userjob.title" type="text">
           </div>
           <div class="input-group">
             <div class="input-group-addon">
@@ -32,13 +33,13 @@
             <div class="input-group-addon">
               Time:
             </div>
-            <input class="form-control" placeholder="When" ng-model="userjob.time" type="text">
+            <input class="form-control" placeholder="When" ng-model="userjob.time" type="datetime-local">
           </div>
           <div class="input-group">
             <div class="input-group-addon">
               Wages:
             </div>
-            <input class="form-control" placeholder="Why" ng-model="userjob.price" type="text">
+            <input class="form-control" placeholder="Why" ng-model="userjob.price" type="number">
           </div>
           <div class="input-group">
             <div class="input-group-addon">
@@ -52,7 +53,7 @@
             </div>
             <input class="form-control" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
           </div>
-          <button class="btn btn-primary btn-lg btn-block" ng-click="submit(job)" type="submit">
+          <button class="btn btn-primary btn-lg btn-block" ng-click="submit()" type="submit">
 
             Submit
           </button>
@@ -61,6 +62,9 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
   <script src="jobcreate.js"></script>
 </body>
 

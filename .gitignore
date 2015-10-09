@@ -2,11 +2,4 @@ npm-debug.log
 .DS_Store
 /*.env
 data
-<<<<<<< HEAD
-
-.DS_Store
-
-.DS_Store
-=======
 tempCode.txt
->>>>>>> master

@@ -23,23 +23,18 @@ app.get("/", function(req,res){
 });
 
 app.get("/jobs", stormpath.loginRequired, function(req,res){
-  res.status(200).sendFile(__dirname + '/views/joblist.html');
+  res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 
 app.get("/jobform", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
-
-app.post("/createJob", function(req,res){
+//Change the API requests to /api/:model/:id later.
+// Can be genericized, then we don't need to write any more of these methods!
+//Better yet, we can deny specific requests in some instances.
+app.post("/api/job", function(req,res){
   console.log('Post Received.');
-  console.log(req.body.userID);
-  console.log(req.body.body);
-  var job = new Job({
-    userID: '01',
-    title: "Finish this project!",
-    wage: "One million dollars",
-    description: "We really need to finish this project. As I don't believe that any of you, besides John, will ready this I'm going to go on record as saying that I am the greatest."
-  });
+  var job = new Job(req.body);
   job.save(function(err, job){
     if(err){
       console.log("Job did not save correctly.");
@@ -48,15 +43,28 @@ app.post("/createJob", function(req,res){
     res.json(201, job);
   })
 });
+app.put("/api/Job/:id", function(req,res){
+  Job.update({_id : req.param().id}, req.body, function(err, numAffected){
+    if(err){return next(err)}
+  });
 
-
-app.get("/getJob", function(req,res){
+  });
+app.delete("/api/Job/:id", function(req,res){
+  Job.remove({_id : req.params().id},function(err){
+    if(err){return next(err)};
+  });});
+app.get("/api/Job", function(req,res){
   Job.find(function(err, job){
     if(err){return next(err)};
     res.json(job);
   });
 });
-
+app.get("/api/Job/:id", function(req,res){
+  Job.findOne({_id : req.param().id}, function(err, job){
+    if(err){return next(err)};
+      res.json(job);
+  });
+a});
 
 app.on('stormpath.ready', function() {
   app.listen(process.env.PORT || 9000);
