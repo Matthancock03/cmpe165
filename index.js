@@ -23,7 +23,7 @@ app.get("/", function(req,res){
 });
 
 app.get("/jobs", stormpath.loginRequired, function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
+  res.status(200).sendFile(__dirname + '/views/joblist.html');
 })
 
 app.get("/jobform", function(req,res){
