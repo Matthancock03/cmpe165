@@ -17,9 +17,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
 
-var Job = require('job');
-var Comment = require('comment');
-
 app.get("/", function(req,res){
     console.log(req.headers.cookie);
   res.status(200).sendFile(__dirname + '/views/login.html');
@@ -34,9 +31,9 @@ app.get("/jobform", function(req,res){
 })
 
 app.post("/createJob", function(req,res){
-  //console.log('Post Received.');
-  //console.log(req.body.userID);
-  //console.log(req.body.body);
+  console.log('Post Received.');
+  console.log(req.body.userID);
+  console.log(req.body.body);
   var job = new Job({
     userID: '01',
     title: "Finish this project!",
@@ -54,10 +51,10 @@ app.post("/createJob", function(req,res){
 
 
 app.get("/getJob", function(req,res){
-  res.json([{
-  userID: '01',
-  name: 'Matt'
-  }]);
+  Job.find(function(err, job){
+    if(err){return next(err)};
+    res.json(job);
+  });
 });
 
 
