@@ -1,4 +1,5 @@
 (function(){
+
   var app = angular.module('Authentication',[])
 
   var tab = 1;
@@ -15,7 +16,7 @@
 
   });
 
-  app.controller('Login', function($http){
+  app.controller('Login', function($http, $location, $window){
     this.email = "";
     this.password = "";
 
@@ -32,13 +33,15 @@
         "password": password
       }
       }).then(function successCallback(response) {
-        for (property in response.config) {
-          console.log(property + ':' + response.config[property]+'; ');
+        window.location.assign("jobs");
+        for(property in response.headers){
+          console.log(response.headers[property]);
         }
       }, function errorCallback(response) {
-        console.log("Not working.\n\n");
+        console.log("Login error: " + response.error);
       });
     };
+
     this.panelNumber = function(panel){
       return tab === panel;
     };
@@ -57,6 +60,9 @@
       $http({
       method: 'POST',
       url: '/register',
+      headers: {
+        "Accept" : "application/json"
+      },
       data: {
         "givenName": firstName,
         "surname": lastName,
@@ -64,11 +70,9 @@
         "email": email,
         "password": password}
       }).then(function successCallback(response) {
-        for (property in response) {
-          console.log(property + ':' + response[property]+'; ');
-        }
+          $location.url("jobs");
       }, function errorCallback(response) {
-      console.log("Not working.\n\n");
+        console.log("SignUp error: " + response.error);
       });
     };
 
