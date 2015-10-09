@@ -22,8 +22,8 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.get("/jobs", stormpath.loginRequired, function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
+app.get("/jobList", stormpath.loginRequired, function(req,res){
+  res.status(200).sendFile(__dirname + '/views/joblist.html');
 })
 
 app.get("/jobform", function(req,res){
