@@ -23,10 +23,10 @@
           <div ng-controller="Auth as auth">
             <h3>
               <ul class="nav nav-tabs nav-justified">
-                <li class="active">
+                <li ng-class="{'active' : auth.panelNumber(1)}">
                   <a href="#login" ng-click="auth.setTab(1)">Login</a>
                 </li>
-                <li>
+                <li ng-class="{'active' : auth.panelNumber(2)}">
                   <a href="#signup" ng-click="auth.setTab(2)">Sign Up</a>
                 </li>
               </ul>
@@ -37,7 +37,7 @@
           <div>
             <div>
               <!-- Begin Login Form -->
-              <form name="loginForm" ng-controller="Login as login"  ng-submit="login.submitLogin(login.email, login.password)">
+              <form name="loginForm" ng-controller="Login as login">
                 <div ng-show="login.panelNumber(1)">
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -56,7 +56,7 @@
                       <input type="checkbox" value="remember-me" /> Remember Me
                     </label>
                   </div>
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">
+                  <button class="btn btn-primary btn-lg btn-block" ng-click="login.submitLogin(login.email, login.password)">
                     <span class="glyphicon glyphicon-home"></span>
                     Login
                   </button>
@@ -67,7 +67,7 @@
 
             <!-- Begin SignUp Form -->
             <div>
-              <form name="signUpForm" ng-controller="Signup as signup" ng-submit="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication, signup.firstName, signup.lastName)">
+              <form name="signUpForm" ng-controller="Signup as signup">
                 <div ng-show="signup.panelNumber(2)">
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -104,7 +104,7 @@
                       <input type="checkbox" value="remember-me" /> Remember Me
                     </label>
                   </div>
-                  <button class="btn btn-success btn-lg btn-block" type="submit">
+                  <button class="btn btn-success btn-lg btn-block" ng-click="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication, signup.firstName, signup.lastName)">
                     <span class="glyphicon glyphicon-pencil"></span>
                     Sign Up
                   </button>
@@ -118,6 +118,7 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
   <script src="login.js"></script>
 </body>
 

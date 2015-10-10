@@ -14,9 +14,16 @@ html, body {
 }
 
 .headerText{
-  color: #A31111;
+  color: #A51919;
 }
 
 .mainDivs{
   padding-top: 5%;
+}
+button.btn.btn-primary.btn-lg.btn-block {
+    background-color: #A51919;
+}
+
+ul.nav.nav-tabs.nav-justified li a {
+    color: #A51919;
 }

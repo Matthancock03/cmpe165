@@ -1,47 +1,34 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
+var bodyParser = require('body-parser');
+var Comment = require(__dirname + '/models/comment');
+var User = require(__dirname + '/models/user');
 
 var app = express();
-
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
+app.use(express.static(__dirname + '/models'));
 
-var stormpathMiddleware = stormpath.init(app, {
+app.use('/jobs', require(__dirname + '/routes/jobRoutes'));
+app.use('/users', require(__dirname + '/routes/userRoutes'));
+
+
+app.use(stormpath.init(app, {
   application: {
     href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW'
   },
-  expandCustomData: true,
-  enableForgotPassword: true,
-  website: {
-      login: {
-        enabled: true,
-        nextUri: __dirname + '/views/jobform.html'
-      }
-    }
-});
+  website: true
+}));
 
-app.use(stormpathMiddleware);
+
 
 
 app.get("/", function(req,res){
+    console.log(req.headers.cookie);
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.post("/home", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
-});
-
-app.get("/jobs", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
-})
-
-app.get("/create", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
-})
-
-// Listen for incoming requests and serve them.
 app.on('stormpath.ready', function() {
-  app.listen(process.env.PORT || 9000, function() {
-    console.log("Starting server...");
-  });
+  app.listen(process.env.PORT || 9000);
+  console.log("Starting server...");
 });
