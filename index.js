@@ -1,7 +1,6 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
 var bodyParser = require('body-parser');
-var Job = require(__dirname +'/models/job');
 var Comment = require(__dirname + '/models/comment');
 var User = require(__dirname + '/models/user');
 
