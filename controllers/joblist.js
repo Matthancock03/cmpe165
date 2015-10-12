@@ -22,6 +22,8 @@ angular.module('myApp').controller('joblist', function($scope, Job){
         new Job2("Wedding Proposal", "861 Trenton Avenue", 1443814482 + 14400, 40, "Lie on the ground In the form of the letters Marry Me", "awkward,wedding",2),
         new Job2("Flash Mob Wedding Proposal", "861 Trenton Avenue", 1443814482 + 14400, 100, "[insert elaborate script here]", "flashmob,wedding",3)
     ];
-    $scope.jobs = Job.$query();
+    $scope.jobs = Job.query(function() {
+        console.log($scope.jobs);
+    });
     console.log($scope.jobs);
 });

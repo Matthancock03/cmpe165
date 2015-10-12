@@ -3,6 +3,8 @@ var stormpath = require('express-stormpath');
 var bodyParser = require('body-parser');
 var Job = require(__dirname +'/models/job');
 var Comment = require(__dirname + '/models/comment');
+var User = require(__dirname + '/models/user');
+
 var app = express();
 //app.use = (bodyParser.json());
 
@@ -16,14 +18,13 @@ app.use(stormpath.init(app, {
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
-
 app.get("/", function(req,res){
     console.log(req.headers.cookie);
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
 app.get("/jobs", stormpath.loginRequired, function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
+  res.status(200).sendFile(__dirname + '/views/joblist.html');
 })
 
 app.get("/jobform", function(req,res){
@@ -32,7 +33,7 @@ app.get("/jobform", function(req,res){
 //Change the API requests to /api/:model/:id later.
 // Can be genericized, then we don't need to write any more of these methods!
 //Better yet, we can deny specific requests in some instances.
-app.post("/api/job", function(req,res){
+app.post("/api/Job", function(req,res){
   console.log('Post Received.');
   var job = new Job(req.body);
   job.save(function(err, job){
@@ -64,7 +65,7 @@ app.get("/api/Job/:id", function(req,res){
     if(err){return next(err)};
       res.json(job);
   });
-a});
+});
 
 app.on('stormpath.ready', function() {
   app.listen(process.env.PORT || 9000);

@@ -1,5 +1,5 @@
 
-var db = require("database");
+var db = require('../database');
 var Comment = db.Schema({
 
 })
