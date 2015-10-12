@@ -12,7 +12,7 @@ jobRouter.get("/jobform", function(req,res){
   res.status(200).sendFile(path.join(__dirname , '../views/jobform.html'));
 })
 
-jobRouter.post("/createJob", function(req,res){ // Saves new Job with parameters passed into url. 
+jobRouter.post("/createJob", function(req,res){ // Saves new Job with parameters passed into url.
   console.log('Post Received.');
   console.log(req.body.userID);
   console.log(req.body.body);
