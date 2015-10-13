@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Schema.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="Context.html">
+                Context.js
+              </a>
+            
+              
+              <a class="source" href="Model.html">
+                Model.js
+              </a>
+            
+              
+              <a class="source" href="Principal.html">
+                Principal.js
+              </a>
+            
+              
+              <a class="source" href="Remotable.html">
+                Remotable.js
+              </a>
+            
+              
+              <a class="source" href="Schema.html">
+                Schema.js
+              </a>
+            
+              
+              <a class="source" href="Service.html">
+                Service.js
+              </a>
+            
+              
+              <a class="source" href="angoose.html">
+                angoose.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>Schema.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+<span class="keyword">var</span> logger = require(<span class="string">"log4js"</span>).getLogger(<span class="string">"angoose"</span>);
+<span class="keyword">var</span> _ =require(<span class="string">"underscore"</span>);
+
+<span class="keyword">var</span> FunctionNamePattern = <span class="regexp">/^function\s+(remote|local|portable)/i</span>;
+
+<span class="keyword">var</span> parseDeclaredArguments = <span class="function"><span class="keyword">function</span><span class="params">(funcBody)</span>{</span>
+    <span class="keyword">if</span>(<span class="keyword">typeof</span> funcBody === <span class="string">'function'</span>) funcBody = funcBody.toString();
+    <span class="keyword">if</span>(funcBody &amp;&amp; <span class="keyword">typeof</span> funcBody === <span class="string">"string"</span>  &amp;&amp; funcBody.substr(<span class="number">0</span>,<span class="number">8</span>) == <span class="string">"function"</span>) {
+        <span class="keyword">var</span> startArgs = funcBody.indexOf(<span class="string">'('</span>) + <span class="number">1</span>;
+        <span class="keyword">var</span> endArgs = funcBody.indexOf(<span class="string">')'</span>);
+        <span class="keyword">return</span>  funcBody.substring(startArgs, endArgs)
+    }
+    <span class="keyword">return</span> <span class="string">""</span>;
+}
+
+<span class="keyword">var</span> constructProxyFunc=<span class="function"><span class="keyword">function</span><span class="params">(funcName, args, funcType)</span>{</span>
+    <span class="keyword">var</span> proxyBody =  <span class="string">"function "</span> + funcType +<span class="string">"("</span> + args+<span class="string">")"</span>;
+    proxyBody+= <span class="string">"{return this.angoose$(this,'"</span>+ funcName +<span class="string">"', arguments)}"</span>;
+    <span class="keyword">return</span> proxyBody; 
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">decorateMongooseSchema</span><span class="params">(model, schema)</span>{</span>
+    <span class="keyword">if</span>(getSchemaType(schema) != <span class="string">'mongoose'</span>) <span class="keyword">return</span>;
+    
+    <span class="keyword">var</span> instanceMethods = <span class="string">"save,remove,populate"</span>;
+    instanceMethods.split(<span class="string">","</span>).forEach(<span class="function"><span class="keyword">function</span><span class="params">(m)</span>{</span>
+        m = m.replace(<span class="regexp">/\s+/g</span>, <span class="string">''</span>);
+        <span class="keyword">if</span>(!schema.methods[m]) 
+            schema.methods[m]= <span class="function"><span class="keyword">function</span> <span class="title">remote</span><span class="params">()</span>{</span>};     
+    });
+    <span class="keyword">var</span> staticMethods = <span class="string">"populate,find,findOne,findById,findByIdAndRemove,findByIdAndUpdate,findOneAndRemove,findOneAndUpdate,update,remove,count"</span>;
+    staticMethods.split(<span class="string">","</span>).forEach(<span class="function"><span class="keyword">function</span><span class="params">(m)</span>{</span>
+        m = m.replace(<span class="regexp">/\s+/g</span>, <span class="string">''</span>);
+        schema.statics[m] || (schema.statics[m]= <span class="function"><span class="keyword">function</span> <span class="title">remote</span><span class="params">()</span>{</span>} );     
+    });
+    <span class="comment">/**@todo: remove the methods */</span>
+}
+<span class="keyword">var</span> getSchemaType = <span class="function"><span class="keyword">function</span><span class="params">(schema)</span>{</span>
+    <span class="keyword">if</span>(schema.paths)
+        <span class="keyword">return</span> <span class="string">'mongoose'</span>;
+    <span class="keyword">return</span> <span class="string">'service'</span>
+}
+
+
+<span class="keyword">var</span> getFunctionType = <span class="function"><span class="keyword">function</span><span class="params">(schemaObj, funcName, funcBody)</span>{</span>
+        <span class="comment">/** we only deal with delared methods */</span>
+        <span class="keyword">if</span>(!  schemaObj.methods[funcName] &amp;&amp; !  schemaObj.statics[funcName] ) <span class="keyword">return</span>;
+        <span class="keyword">var</span> ftype = <span class="string">'_'</span>;
+        <span class="keyword">if</span>(schemaObj.methods[funcName]) ftype+=<span class="string">'instance'</span>;
+        <span class="keyword">if</span>(schemaObj.statics[funcName]) ftype+=<span class="string">'static'</span>;
+        ftype+=<span class="string">"_"</span> + getFunctionAnnotation(funcBody);
+        <span class="keyword">return</span> ftype;
+}    
+
+<span class="keyword">var</span> stringify = <span class="function"><span class="keyword">function</span><span class="params">(modelName, model)</span>{</span>
+    <span class="keyword">var</span> funcs = {};
+    <span class="keyword">var</span> schemaObj =  model.schema || model.getSchema();
+    <span class="keyword">var</span> funcStringifier = <span class="function"><span class="keyword">function</span> <span class="params">(key, value)</span> {</span>
+        <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">'function'</span>) <span class="keyword">return</span> value;
+        <span class="keyword">var</span> body =  value.toString();
+        
+        <span class="keyword">var</span> funcType = getFunctionType(schemaObj, key, body);
+        <span class="keyword">if</span>(!funcType) <span class="keyword">return</span>; <span class="comment">//'not-available';</span>
+        logger.trace(<span class="string">"Stringify function"</span>,key, funcType);
+        <span class="keyword">if</span>(funcType.indexOf(<span class="string">"server"</span>)&gt;<span class="number">0</span>) <span class="keyword">return</span> <span class="string">'available-serverside-only'</span>;
+        
+        <span class="keyword">var</span> args = parseDeclaredArguments(body);
+        
+        <span class="keyword">if</span>(funcType.indexOf(<span class="string">"portable"</span>)&gt;<span class="number">0</span>){
+            <span class="comment">/** the function can be executed client side */</span>
+            body = body.replace(<span class="regexp">/function\s+portable/i</span>, <span class="string">"function "</span>+ funcType);
+        }
+        <span class="keyword">else</span>{
+            <span class="comment">/** stub the function */</span>
+            body = constructProxyFunc(key,args, funcType)
+        }
+        <span class="keyword">var</span> lookupKey = _.uniqueId(<span class="string">"FUNCTION-NUMBER-"</span>);
+        funcs[lookupKey] = body; 
+        <span class="keyword">return</span> lookupKey;
+    }
+    <span class="comment">/** add Monggose model methods */</span>
+    <span class="keyword">var</span> original = {methods: schemaObj.methods, statics: schemaObj.statics };
+    schemaObj.methods = _.clone( schemaObj.methods );
+    schemaObj.statics = _.clone( schemaObj.statics);
+    <span class="keyword">try</span>{
+        decorateMongooseSchema(model, schemaObj);
+        <span class="keyword">var</span> ret = JSON.stringify( schemaObj,  funcStringifier, <span class="string">"\t"</span>  );
+        <span class="keyword">for</span>(<span class="keyword">var</span> lookupKey <span class="keyword">in</span> funcs){
+            <span class="comment">/**  we do this so that the function body acturally appears as a function, instead of a string */</span>
+            ret = ret.replace( <span class="string">'"'</span>+  lookupKey + <span class="string">'"'</span>, funcs[lookupKey]);
+        }
+    }   
+    <span class="keyword">finally</span>{
+        schemaObj.methods = original.methods;
+        schemaObj.statics = original.statics;
+    } 
+    <span class="keyword">return</span> ret;
+}    
+
+<span class="function"><span class="keyword">function</span>  <span class="title">getFunctionAnnotation</span><span class="params">(funcBody)</span>{</span>
+    <span class="keyword">var</span> matcher = FunctionNamePattern.exec(funcBody);
+    <span class="keyword">return</span> matcher? matcher[<span class="number">1</span>]: <span class="string">'remote'</span>; <span class="comment">//default is remote</span>
+}
+
+<span class="function"><span class="keyword">function</span> <span class="title">getReference</span><span class="params">(pathSchema)</span>{</span>
+    <span class="keyword">var</span> opts = pathSchema.options;
+    
+    <span class="comment">/** Mongoose, array of ObjectIDs */</span>
+    <span class="keyword">if</span>( Array.isArray(opts.type) &amp;&amp; opts.type.length&gt;<span class="number">0</span>  &amp;&amp;  opts.type[<span class="number">0</span>] &amp;&amp; opts.type[<span class="number">0</span>].ref ) 
+        <span class="keyword">return</span> opts.type[<span class="number">0</span>].ref;
+    <span class="comment">/** Single ObjectID Reference*/</span>
+    <span class="keyword">if</span>(pathSchema.instance == <span class="string">'ObjectID'</span> &amp;&amp; opts.ref) <span class="keyword">return</span> opts.ref;
+    
+    
+    <span class="keyword">if</span>(pathSchema.options.ref &amp;&amp; pathSchema.instance == <span class="string">'CustomRef'</span>){
+        <span class="comment">/** deform custom ref*/</span>
+       <span class="keyword">return</span> pathSchema.options.ref;    
+    }
+    <span class="comment">/** deform rich reference, array */</span>
+    <span class="keyword">if</span>(Array.isArray(opts.type ) &amp;&amp; pathSchema.caster &amp;&amp; 
+            pathSchema.caster.instance == <span class="string">'CustomRef'</span> &amp;&amp; pathSchema.caster.options.ref ){ 
+        <span class="keyword">return</span> pathSchema.caster.options.ref;
+    }
+        
+    <span class="keyword">return</span> <span class="literal">null</span>;
+}
+
+module.exports = {
+    getFunctionAnnotation:getFunctionAnnotation,
+    stringify: stringify,
+    parseDeclaredArguments:parseDeclaredArguments,
+    getReference:getReference
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
