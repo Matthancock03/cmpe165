@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -21,19 +21,20 @@
             <div class="input-group-addon">
               Title:
             </div>
-            <input class="form-control" placeholder="Who and What" ng-model="userjob.title" type="text">
+            <input class="form-control" placeholder="Who and What" ng-model="userjob.title" type="text" required>
           </div>
           <div class="input-group">
             <div class="input-group-addon">
               Location:
             </div>
-            <input class="form-control" placeholder="Where" ng-model="userjob.location" type="text">
+            <input class="form-control" placeholder="Where" ng-model="userjob.location" type="text" required>
           </div>
           <div class="input-group">
             <div class="input-group-addon">
-              Time:
+              Time:<!-- Time isn't working with datetime-local, but really like UI of datetime-local. Need a fix. -->
+
             </div>
-            <input class="form-control" placeholder="When" ng-model="userjob.time" type="datetime-local">
+            <input class="form-control" placeholder="When" ng-model="userjob.time" type="datetime-local" required>
           </div>
           <div class="input-group">
             <div class="input-group-addon">
@@ -45,7 +46,7 @@
             <div class="input-group-addon">
               Description:
             </div>
-            <textarea class="form-control" placeholder="How" ng-model="userjob.description" type="text"></textarea>
+            <textarea class="form-control" placeholder="How" ng-model="userjob.description" type="text" required></textarea>
           </div>
           <div class="input-group">
             <div class="input-group-addon">
