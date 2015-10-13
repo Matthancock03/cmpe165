@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp" ng-controller="jobdisplay">
 <head>
   <meta charset="UTF-8">
-  <title>{{job.title}}</title>
+  <title>{{userjob.title}}</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/jobs.css">
@@ -14,9 +14,9 @@
       <div class="col-xs-2 black full">
       </div>
       <div class="col-xs-10 full">
-        <h2>{{job.name}}</h2>
+        <h2>{{userjob.title}}</h2>
         <ul>
-          <li>{{job.description}}</li>
+          <li>{{userjob.description}}</li>
         </ul>
       </div>
     </div>
@@ -25,6 +25,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
   <script src="myApp.js"></script>
+  <script src="jobdisplay.js"></script>
 </body>
 
 </html>
