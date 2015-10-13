@@ -73,6 +73,7 @@ app.post("/api/:_model", function(req,res){
   })
 });
 app.put("/api/:_model/:_id", function(req,res){
+  console.log("In Put!")
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
@@ -81,6 +82,7 @@ app.put("/api/:_model/:_id", function(req,res){
   }
   ret_model.update({_id : req.params._id}, req.body, function(err, numAffected){
     if(err){console.log(err)}
+    console.log("In Put callback!")
   });
 
 });
@@ -88,7 +90,7 @@ app.delete("/api/:_model/:_id", function(req,res){
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
-    res.json(201, {error : "Invalid Request"});
+    res.json(201, { error : "Invalid Request"});
     return;
   }
   ret_model.remove({_id : req.params._id},function(err){

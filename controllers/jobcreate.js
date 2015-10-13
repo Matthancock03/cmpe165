@@ -13,13 +13,13 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
     };
     if($location.search()._id != null) {
         console.log($location.search()._id);
-        $scope.master = $scope.userjob = Job.get({'_id' : $location.search()._id}, function(){
+        $scope.master = Job.get({'_id' : $location.search()._id}, function(){
+            $scope.master.time = new Date($scope.master.time);
             $scope.reset();
         });
         $scope.submit = function()
         {
-            $scope.userjob.$save(function() {
-
+            $scope.userjob.$update(function() {
                 window.location.href = "/jobdisplay?_id="+$scope.userjob._id;
             })
             console.log($scope.userjob);
@@ -27,24 +27,22 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
     }
     if($scope.master == null)
     {
-
+        var d = new Date().setSeconds(0,0);
         $scope.master = {
             userID: "???",//What are we doing for this?
             title: "",
             description: "",
             wages: 0,
-            time: null,
+            time: new Date(d),
             location: ""
         }
         $scope.reset();
         $scope.submit = function()
         {
-            console.log($scope.userjob);
-            $scope._id = Job.save($scope.userjob, function() {
-                if($scope._id != null)
-                    window.location.href = "/jobdisplay?_id="+$scope._id;
+            $scope.userjob = Job.save($scope.userjob, function() {
+                    window.location.href = "/jobdisplay?_id="+$scope.userjob._id;
             })
-
+            console.log($scope.userjob);
         }
     }
 

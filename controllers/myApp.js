@@ -8,10 +8,11 @@ var app = angular.module('myApp',['ngRoute', 'ngResource']).config(function($loc
 var generateResource = function(name)
 {
     app.factory(name, function($resource) {
-        return $resource('api/' + name +'/:_id', {
+        return $resource('api/' + name +'/:_id', { _id: '@_id' }, {
             update: {
                 method: 'PUT'
             }
+
         });
     });
 }
