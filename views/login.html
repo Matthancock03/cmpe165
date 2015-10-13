@@ -23,10 +23,17 @@
           <div ng-controller="Auth as auth">
             <h3>
               <ul class="nav nav-tabs nav-justified">
-                <li class="active">
+<<<<<<< HEAD
+                <li ng-class="{'active' : auth.panelNumber(1)}">
                   <a href="#login" ng-click="auth.setTab(1)">Login</a>
                 </li>
-                <li>
+                <li ng-class="{'active' : auth.panelNumber(2)}">
+=======
+                <li ng-class="{active : auth.panelNumber(1)}">
+                  <a href="#login" ng-click="auth.setTab(1)">Login</a>
+                </li>
+                <li ng-class="{active : auth.panelNumber(2)}">
+>>>>>>> matt
                   <a href="#signup" ng-click="auth.setTab(2)">Sign Up</a>
                 </li>
               </ul>
@@ -118,7 +125,6 @@
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
   <script src="login.js"></script>
 </body>
 

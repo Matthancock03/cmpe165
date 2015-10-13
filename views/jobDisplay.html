@@ -1,129 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-
+<html lang="en" ng-app="myApp" ng-controller="jobdisplay">
 <head>
   <meta charset="UTF-8">
-  <title>Who do you want to do what where?</title>
+  <title>{{userjob.title}}</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/jobs.css">
-  <style>
-  body {
-      background-color: linen;
-  }
-
-  h1 {
-      color: maroon;
-      margin-left: 40px;
-  }
-  </style>
-
-
-  <title>Table Properties</title>
-  		<style type="text/css">
-  			body {
-  				font-family: Arial, Verdana, sans-serif;
-  				color: #111111;}
-  			table {
-  				width: 600px;}
-  			th, td {
-  				padding: 7px 10px 10px 10px;}
-  			th {
-  				text-transform: uppercase;
-  				letter-spacing: 0.1em;
-  				font-size: 90%;
-  				border-bottom: 2px solid #111111;
-  				border-top: 1px solid #999;
-  				text-align: left;}
-  			tr.even {
-  				background-color: #efefef;}
-  			tr:hover {
-  				background-color: #c3e6e5;}
-  			.money {
-  				text-align: right;}
-  		</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
 
 <body>
-
-    <div class="container-fluid full">
-      <div class="row clearfix full">
-        <div class="col-xs-2 black full">
-        </div>
-        <div class="col-xs-10 full">
-  <h1>Jobs Display</h1>
-  		<table>
-  			<tr>
-  				<th>Job Id</th>
-  				<th>Job Description</th>
-  				<th class="money"> Date</th>
-  				<th class="money">Price</th>
-          <th class ="Price">Comments</th>
-  			</tr>
-  			<tr>
-  				<td>1</td>
-  				<td>Clown Service</td>
-  				<td class="money">October</td>
-  				<td class="money"></td>
-  			</tr>
-  			<tr class="even">
-  				<td>2</td>
-  				<td> DJ</td>
-  				<td class="money"></td>
-  				<td class="money">$250</td>
-  			</tr>
-  			<tr>
-  				<td>3</td>
-  				<td>Pranking</td>
-  				<td class="money">December</td>
-  				<td class="money">$150</td>
-  			</tr>
-  			<tr class="even">
-  				<td>4</td>
-  				<td>Film Service</td>
-  				<td class="money"></td>
-  				<td class="money">$250</td>
-  			</tr>
-  		</table>
-
-
-
-        <h2>Job Name</h2>
+  <div class="container-fluid full">
+    <div class="row clearfix full">
+      <div class="col-xs-2 black full">
+      </div>
+      <div class="col-xs-10 full">
+        <h2>{{userjob.title}}</h2>
         <ul>
-          <li>Job Description</li>
-          <li> Job Id</li>
-          <li> Creation date </li>
-          <li> Comments </li>
-          <li> Wage category </li>
+          <li>{{userjob.description}}</li>
         </ul>
-
-
       </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-
-
-
-
-
-
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
+  <script src="jobdisplay.js"></script>
 </body>
 
 </html>

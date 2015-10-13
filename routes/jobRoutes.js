@@ -1,7 +1,7 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
 var path = require('path'); // Express throws error when trying to use relative paths in router. Use path.join to give paths to files.
-
+var Job = require(path.join(__dirname , '../models/job'));
 var jobRouter = express.Router(); //Create router for jobs paths
 
 jobRouter.get("/jobList", stormpath.loginRequired, function(req,res){
@@ -12,7 +12,7 @@ jobRouter.get("/jobform", function(req,res){
   res.status(200).sendFile(path.join(__dirname , '../views/jobform.html'));
 })
 
-jobRouter.post("/createJob", function(req,res){ // Saves new Job with parameters passed into url. 
+jobRouter.post("/createJob", function(req,res){ // Saves new Job with parameters passed into url.
   console.log('Post Received.');
   console.log(req.body.userID);
   console.log(req.body.body);

@@ -1,6 +1,6 @@
-(function(){
 
   var app = angular.module('Authentication',[])
+
 
   var tab = 1;
   app.controller('Auth', function(){
@@ -80,5 +80,3 @@
       return tab === panel;
     };
   });
-
-  })();
