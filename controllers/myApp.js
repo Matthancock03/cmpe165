@@ -4,7 +4,33 @@ var app = angular.module('myApp',['ngRoute', 'ngResource']).config(function($loc
         requireBase: false
     });
 });
+//Liberated from stackExchange. Annoying problem that isn't the focus of this course.
+// http://stackoverflow.com/questions/23927695/angularjs-currency-formatting-in-input-box
+app.directive('currencyFormatter', ['$filter', function ($filter) {
 
+
+    formatter = function (num) {
+        return $filter('currency')(num);
+    };
+
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ngModel) {
+            ngModel.$parsers.push(function (str) {
+                return str ? Number(str) : '';
+            });
+            ngModel.$formatters.push(formatter);
+
+            element.bind('blur', function() {
+                element.val(formatter(ngModel.$modelValue))
+            });
+            element.bind('focus', function () {
+                element.val(ngModel.$modelValue);
+            });
+        }
+    };
+}]);
 var generateResource = function(name)
 {
     app.factory(name, function($resource) {

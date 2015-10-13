@@ -32,7 +32,6 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             userID: "???",//What are we doing for this?
             title: "",
             description: "",
-            wages: 0,
             time: new Date(d),
             location: ""
         }
