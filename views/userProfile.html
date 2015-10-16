@@ -21,8 +21,14 @@
       <ng-include src="'templates/sideBar.html'"  onload=""  autoscroll=""></ng-include>
     </div>
     <div class="col-xs-10 mainDivs" style="background-color: white;">
-      <h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1>
-      <h2>
+      <ul>
+        <li><h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1></li>
+        <li><strong>About Me:</strong></li>
+        <li><strong>Skills:</strong></li>
+        <li><strong>Reviews:</strong></li>
+      </ul>
+
+
     </div>
 
   </div>

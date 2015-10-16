@@ -45,7 +45,7 @@
     };
   });
 
-  angular.module('myApp').controller('Signup', function($http){
+  angular.module('myApp').controller('Signup', function($http, User){
     this.email = "";
     this.password = "";
     this.passwordVerfication = "";
@@ -67,7 +67,7 @@
         //"username": "Matth03",
         "email": email,
         "password": password}
-      }).then(function successCallback(response) {
+      }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
         var user = new User({
           firstName: firstName,
           lastName: lastName,
@@ -78,6 +78,7 @@
           if (err) throw err;
           console.log('User saved successfully!');
           });
+
 
           $location.url("home/?" + email);
       }, function errorCallback(response) {
