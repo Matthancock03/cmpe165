@@ -67,7 +67,7 @@
         //"username": "Matth03",
         "email": email,
         "password": password}
-      }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
+      }).then(function successCallback(response, User) { //On sucessful callback from Stormpath request create new User and save.
         var user = new User({
           firstName: firstName,
           lastName: lastName,
