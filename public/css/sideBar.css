@@ -1,0 +1,38 @@
+@font-face {
+    font-family: Lato;
+    src: url(http://fonts.googleapis.com/css?family=Georgia);
+    font-weight: bold;
+}
+
+.mainDivs{
+  padding-top: 5%;
+  height: 100%;
+}
+html, body{
+height: 100%;
+}
+.profileImage{
+  width: 85%;
+  margin-bottom: 5%;
+}
+.black {
+background-color: black;
+}
+
+h1{
+  text-align: center;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+
+.navList{
+  text-align: center;
+  color: white;
+  background-color: #5A5A5A;
+  font-size: 20px;
+  font-style: italic;
+  margin-top: 5px;
+  font-family: Lato;
+  padding-top: 3%;
+}

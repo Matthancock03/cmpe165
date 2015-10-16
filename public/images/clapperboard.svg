@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="480">
+ <defs>
+  <filter id="filter3434">
+   <feGaussianBlur id="feGaussianBlur3436" stdDeviation="2.297086"/>
+  </filter>
+  <filter id="filter3205">
+   <feGaussianBlur id="feGaussianBlur3207" stdDeviation="0.698115"/>
+  </filter>
+  <radialGradient id="radialGradient3532" gradientUnits="userSpaceOnUse" cy="458.79" cx="107.14" r="8.5714">
+   <stop id="stop3234" stop-color="#f8f8f8" offset="0"/>
+   <stop id="stop3236" stop-color="#454545" offset="1"/>
+  </radialGradient>
+  <radialGradient id="radialGradient2451" gradientUnits="userSpaceOnUse" cy="240.66" cx="358.82" gradientTransform="matrix(1.832 -.40741 .26112 1.1742 -686.27 124.18)" r="127.5">
+   <stop id="stop3189" stop-color="#fff" offset="0"/>
+   <stop id="stop3191" stop-color="#fff" stop-opacity="0" offset="1"/>
+  </radialGradient>
+ </defs>
+ <g id="svg_1">
+  <g stroke-linejoin="round" stroke-linecap="round">
+   <g stroke-width="4">
+    <path id="path3428" filter="url(#filter3434)" d="m41.702 145.32c-18.284 0-32.996 15.075-32.996 33.768v33.718c0 1.0645 0.013535 2.1317 0.10696 3.1705-0.095714 0.98569-0.10696 1.9593-0.10696 2.9692v226.62c0 17.843 15.265 32.208 34.226 32.208h367.93c18.961 0 34.226-14.365 34.226-32.208v-226.62c0-17.843-15.265-32.208-34.226-32.208h-336.16v-7.6495c0-18.693-14.712-33.768-32.996-33.768z"/>
+    <path id="rect2396" d="m38.28 138.79c-18.284 0-32.996 15.224-32.996 34.102v34.051c0 1.0751 0.013536 2.1528 0.10696 3.2018-0.095713 0.99544-0.10696 1.9786-0.10696 2.9986v228.86c0 18.02 15.265 32.527 34.226 32.527h367.93c18.961 0 34.226-14.507 34.226-32.527v-228.86c0-18.02-15.265-32.527-34.226-32.527h-336.16v-7.7251c0-18.878-14.712-34.102-32.996-34.102z"/>
+    <path id="path3185" opacity=".223" fill="url(#radialGradient2451)" d="m38.28 138.79c-18.284 0-32.996 15.224-32.996 34.102v34.051c0 1.0751 0.013536 2.1528 0.10696 3.2018-0.095713 0.99544-0.10696 1.9786-0.10696 2.9986v228.86c0 18.02 15.265 32.527 34.226 32.527h367.93c18.961 0 34.226-14.507 34.226-32.527v-228.86c0-18.02-15.265-32.527-34.226-32.527h-336.16v-7.7251c0-18.878-14.712-34.102-32.996-34.102z"/>
+    <rect id="rect3195" transform="matrix(1.7065 0 0 1.5307 -507.64 -37.016)" height="24.286" filter="url(#filter3205)" width="254.96" y="142.19" x="301.65" fill="#717171"/>
+    <g id="g3209">
+     <rect id="rect3170" y="179.47" width="436.31" height="36.012" x="5.2945"/>
+     <g fill="#fff">
+      <rect id="rect3174" transform="matrix(1.7113 0 -.92774 1.3666 -.000017119 .0000042875)" height="26.351" width="33.175" y="131.32" x="292.5"/>
+      <rect id="rect3176" transform="matrix(1.7113 0 -.92774 1.3666 -.000017119 .0000042875)" height="26.351" width="33.175" y="131.32" x="233.57"/>
+      <rect id="rect3178" transform="matrix(1.7113 0 -.92774 1.3666 -.000017119 .0000042875)" height="26.351" width="33.175" y="131.32" x="173.22"/>
+      <rect id="rect3180" transform="matrix(1.7113 0 -.92774 1.3666 -.000017119 .0000042875)" height="26.351" width="33.175" y="131.32" x="113.93"/>
+     </g>
+    </g>
+    <rect id="rect3228" transform="matrix(1.6112 -.53444 .53077 1.4452 -563.7 107.85)" height="24.286" filter="url(#filter3205)" width="254.96" y="140.55" x="303.57" fill="#717171"/>
+    <g id="g3216">
+     <rect id="rect3218" transform="matrix(1.5936 -.59284 -.62381 -1.5144 -372.71 598.95)" height="22.143" width="254.96" y="154.61" x="303.82"/>
+     <g fill="#fff">
+      <rect id="rect3220" transform="matrix(1.5936 -.59284 -1.3881 -.95118 -372.71 598.95)" height="26.351" width="33.175" y="184" x="621.78"/>
+      <rect id="rect3222" transform="matrix(1.5936 -.59284 -1.3881 -.95118 -372.71 598.95)" height="26.351" width="33.175" y="184" x="562.85"/>
+      <rect id="rect3224" transform="matrix(1.5936 -.59284 -1.3881 -.95118 -372.71 598.95)" height="26.351" width="33.175" y="184" x="502.5"/>
+      <rect id="rect3226" transform="matrix(1.5936 -.59284 -1.3881 -.95118 -372.71 598.95)" height="26.351" width="33.175" y="184" x="443.21"/>
+     </g>
+    </g>
+   </g>
+   <path id="path3230" fill="url(#radialGradient3532)" d="m43.765 158.27a5.8062 5.5179 0 1 1 -11.612 0"/>
+  </g>
+ </g>
+</svg>

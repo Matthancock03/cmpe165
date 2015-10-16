@@ -6,16 +6,23 @@
   <title>Who do you want to do what where?</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="css/sideBar.css">
   <link rel="stylesheet" href="../css/jobs.css">
 </head>
 
 <body>
   <div class="container-fluid full" ng-app="myApp" ng-controller="jobcreate">
     <div class="row clearfix full">
-      <div class="col-xs-2 black full">
+
+      <div class="col-xs-2 mainDivs black">
+        <ng-include src="'templates/sideBar.html'" onload="" autoscroll=""></ng-include>
       </div>
-      <div class="col-xs-10 full">
+
+      <div class="col-xs-10 full" style="margin-top: 5%;">
+        <span>
+          <img src="images/clapperboard.svg" alt="clapperboard" class="clapper center-block" />
+          <h1>Set the Stage!</h1>
+        </span>
         <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
           <div class="input-group ">
             <div class="input-group-addon">
@@ -31,7 +38,8 @@
           </div>
           <div class="input-group">
             <div class="input-group-addon">
-              Time:<!-- Time isn't working with datetime-local, but really like UI of datetime-local. Need a fix. -->
+              Time:
+              <!-- Time isn't working with datetime-local, but really like UI of datetime-local. Need a fix. -->
 
             </div>
             <input class="form-control" placeholder="When" ng-model="userjob.time" type="datetime-local" required>
@@ -54,10 +62,14 @@
             </div>
             <input class="form-control" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
           </div>
-          <button class="btn btn-primary btn-lg btn-block"  type="submit">
-
-            Submit
-          </button>
+          <div class="">
+            <button class="btn btn-danger btn-lg btnDiv" ng-click="">
+              Cancel
+            </button>
+            <button class="btn btn-success btn-lg btnDiv" type="submit">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>

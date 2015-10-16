@@ -1,3 +1,3 @@
-angular.module('myApp').controller('UserController', function($scope, $location, Job){
-
+angular.module('myApp').controller('UserController', function($location, User){
+      
 });

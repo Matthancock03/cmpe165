@@ -12,6 +12,7 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
+app.use(express.static(__dirname + '/views'));
 
 /**
  *  Initializes stormpath middleware. To run locally you will need to export the the api key and secret.
@@ -53,8 +54,8 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.post("/home", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobform.html');
+app.get("/home", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
 
 app.get("/jobs", function(req,res){

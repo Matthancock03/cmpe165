@@ -5,12 +5,16 @@
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/joblist.css">
+    <link rel="stylesheet" href="css/sideBar.css">
 </head>
 <body>
 <div ng-app="myApp" ng-controller="joblist" style="padding-left:10px; padding-right:10px">
 <h1>Jobs near you</h1>
 <div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs">
-    <div class="col-xs-3">
+  <div class="col-xs-2 mainDivs black">
+    <ng-include src="'templates/sideBar.html'"  onload=""  autoscroll=""></ng-include>
+  </div>
+    <div class="col-xs-2">
         <h4>{{job.title}}</h4>
     </div>
     <div class="col-xs-2">
@@ -22,7 +26,7 @@
     <div class="col-xs-2">
         <h5>{{job.time | date : 'MMMM d, h:mm a'}}</h5>
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-2">
         <button class="btn btn-success btn-lg btn-block" ng-click="toPage(job._id)" type="submit">
             Learn More...
         </button>
