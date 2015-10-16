@@ -1,9 +1,7 @@
 
-  var app = angular.module('Authentication',[])
-
-
   var tab = 1;
-  app.controller('Auth', function(){
+
+  angular.module('myApp').controller('Auth', function(){
 
     this.setTab = function(table){
       tab = table;
@@ -16,7 +14,7 @@
 
   });
 
-  app.controller('Login', function($http, $location, $window){
+  angular.module('myApp').controller('Login', function($http, $location, $window){
     this.email = "";
     this.password = "";
 
@@ -33,7 +31,7 @@
         "password": password
       }
       }).then(function successCallback(response) {
-        window.location.assign("jobs");
+        window.location.assign("home/?" + email);
         for(property in response.headers){
           console.log(response.headers[property]);
         }
@@ -47,7 +45,7 @@
     };
   });
 
-  app.controller('Signup', function($http){
+  angular.module('myApp').controller('Signup', function($http){
     this.email = "";
     this.password = "";
     this.passwordVerfication = "";
@@ -70,7 +68,18 @@
         "email": email,
         "password": password}
       }).then(function successCallback(response) {
-          $location.url("jobs");
+        var user = new User({
+          firstName: firstName,
+          lastName: lastName,
+          email: email
+        });
+
+        user.save(function(err) {
+          if (err) throw err;
+          console.log('User saved successfully!');
+          });
+
+          $location.url("home/?" + email);
       }, function errorCallback(response) {
         console.log("SignUp error: " + response.error);
       });

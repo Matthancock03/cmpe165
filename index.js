@@ -54,7 +54,7 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.get("/home", function(req,res){
+app.get("/home/:_id", function(req,res){
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
 
@@ -81,16 +81,28 @@ app.post("/api/:_model", function(req,res){
     res.json(201, {error : "Invalid Request: No Model"});
     return;
   }
-  var job = new ret_model(req.body);
-  console.log(job);
-  job.save(function(err, job){
-    if(err){
-      console.log(err);
-      console.log(job);
-      console.log("Job did not save correctly.");
-    };
-    res.json(201, job);
-  })
+  if(ret_model == 'Job'){
+    var job = new ret_model(req.body);
+    console.log(job);
+    job.save(function(err, job){
+      if(err){
+        console.log(err);
+        console.log(job);
+        console.log("Job did not save correctly.");
+      };
+      res.json(201, job);
+    })
+  }
+  if(ret_model == 'User'){
+    var user = new ret_model(req.body);
+    console.log(user);
+    user.save(function(err, user){
+      res.json(201, user);
+    });
+  }
+  if(ret_model == 'Comment'){
+
+  }
 });
 
 app.put("/api/:_model/:_id", function(req,res){
