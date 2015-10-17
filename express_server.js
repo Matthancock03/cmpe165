@@ -7,9 +7,7 @@ app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
-var Job = require(__dirname +'/models/job');
-var Comment = require(__dirname + '/models/comment');
-var User = require(__dirname + '/models/user');
+
 app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
@@ -29,47 +27,104 @@ app.get("/jobDisplay", function(req,res){
 app.get("/create", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
-app.post("/api/Job", function(req,res){
+//When you add a model, require it, then return it when the model name matches the actual model name
+//Make sure to put the same model name in MyApp or it won't work!
+var Job = require(__dirname +'/models/job');
+var Comment = require(__dirname + '/models/comment');
+var User = require(__dirname + '/models/user');
+
+var retrieveModel = function(modelName, body)
+{
+  if(modelName == "Job") {
+    return Job
+  }
+  if(modelName == "User") {
+    return User
+  }
+  if(modelName == "Comment") {
+    return Comment
+  }
+  else//invalid db request.
+  {
+    return null;
+  }
+
+}
+
+app.post("/api/:_model", function(req,res){
   console.log('Post Received.');
   //console.log(req);
   console.log(req.body);
-
-  var job = new Job(req.body);
+  console.log(req.params._model);
+  var ret_model = retrieveModel(req.params._model);
+  if(ret_model == null)
+  {
+    res.json(201, {error : "Invalid Request: No Model"});
+    return;
+  }
+  var job = new ret_model(req.body);
   console.log(job);
   job.save(function(err, job){
     if(err){
       console.log(err);
       console.log(job);
       console.log("Job did not save correctly.");
-      return next(err)
     };
-    res.json(201, job._id);
+    res.json(201, job);
   })
 });
-app.put("/api/Job/:id", function(req,res){
-  Job.update({_id : req.param().id}, req.body, function(err, numAffected){
-    if(err){return next(err)}
+app.put("/api/:_model/:_id", function(req,res){
+  console.log("In Put!")
+  var ret_model = retrieveModel(req.params._model);
+  if(ret_model == null)
+  {
+    res.json(201, {error : "Invalid Request"});
+    return;
+  }
+  ret_model.update({_id : req.params._id}, req.body, function(err, numAffected){
+    if(err){console.log(err)}
+    console.log("In Put callback!")
   });
 
 });
-app.delete("/api/Job/:id", function(req,res){
-  Job.remove({_id : req.params().id},function(err){
-    if(err){return next(err)};
+app.delete("/api/:_model/:_id", function(req,res){
+  var ret_model = retrieveModel(req.params._model);
+  if(ret_model == null)
+  {
+    res.json(201, { error : "Invalid Request"});
+    return;
+  }
+  ret_model.remove({_id : req.params._id},function(err){
+    if(err){console.log(err)};
   });});
 
-app.get("/api/Job", function(req,res){
-  Job.find(function(err, job){
+app.get("/api/:_model", function(req,res){
+  console.log(req.params._model);
+  var ret_model = retrieveModel(req.params._model);
+  if(ret_model == null)
+  {
+    res.json(201, {error : "Invalid Request"});
+    return;
+  }
+  ret_model.find(function(err, job){
     if(err){
       console.log(err);
-      return next(err)};
+      };
     console.log(job);
     res.json(job);
   });
 });
-app.get("/api/Job/:_id", function(req,res){
-  console.log(req.param().id);
-  Job.findOne({_id : req.param()._id}, function(err, job){
-    if(err){return next(err)};
+
+app.get("/api/:_model/:_id", function(req,res){
+  console.log(req.params._id);
+  var ret_model = retrieveModel(req.params._model);
+  if(ret_model == null)
+  {
+    res.json(201, {error : "Invalid Request"});
+    return;
+  }
+  ret_model.findOne({_id : req.params._id}, function(err, job){
+    if(err){console.log(err)};
     console.log(job);
     res.json(job);
   });
