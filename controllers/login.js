@@ -52,8 +52,12 @@
     this.firstName = "";
     this.lastName = "";
 
+    User.find({}, function(err, users){
+      console.log(users);
+    });
     this.submitSignup = function(email, password, passwordVerification, firstName, lastName){
       console.log("Email: " + email + " Name: " + firstName + lastName +  " Password: " + password + " Verification: " + passwordVerification);
+
 
       $http({
       method: 'POST',
@@ -67,19 +71,7 @@
         //"username": "Matth03",
         "email": email,
         "password": password}
-      }).then(function successCallback(response, User) { //On sucessful callback from Stormpath request create new User and save.
-        var user = new User({
-          firstName: firstName,
-          lastName: lastName,
-          email: email
-        });
-
-        user.save(function(err) {
-          if (err) throw err;
-          console.log('User saved successfully!');
-          });
-
-
+      }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
           $location.url("home/?" + email);
       }, function errorCallback(response) {
         console.log("SignUp error: " + response.error);
