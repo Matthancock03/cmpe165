@@ -73,7 +73,10 @@ app.get("/create", function(req,res){
 app.post("/api/:_model", function(req,res){
   console.log('Post Received.');
   //console.log(req);
-  console.log(req.body);
+
+  for(property in req.body){
+    console.log(property + ": " + req.body[property]);
+  }
   console.log("Model " + req.params._model);
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
@@ -93,23 +96,23 @@ app.post("/api/:_model", function(req,res){
       res.json(201, job);
     })
   }
-  if(ret_model == 'User'){
+  else if(req.params._model == 'User'){
     var user = new ret_model(req.body);
     console.log("New User" + user);
     user.save(function(err, user){
       if(err){
-        console.log(err);
+        //console.log(err);
         console.log(user);
         console.log("User did not save correctly.");
       };
       res.json(201, user);
     });
   }
-  if(ret_model == 'Comment'){
+  else if(ret_model == 'Comment'){
 
   }else{
     console.log("WTF");
-    res.json(201, {error : "Shennanigans!"});
+    res.json(404, {error : "Shennanigans!"});
   }
 });
 
