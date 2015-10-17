@@ -1,48 +1,52 @@
 /**
  * Created by johnfranklin on 10/1/15.
  */
-(function(){
-    var app = angular.module('myApp',[])
-    app.controller('jobform', function($scope){
-        $scope.getNextJobId = function()
-        {
-            return 1000;
-            //will poll database for new id in future
-        }
-        function Job(title,location,time,wages,description,terms, id){
-            if ( this instanceof Job ) {
 
-                this.title = title;
-                this.location = location;//what are we going to do for this? Needs to be set up so that
-                // system can gauge distance from the event.
-                this.time = time;//what are we going to do for this? needs to be in db format.
-                this.wages = wages;
-                this.description = description;
-                this.terms = terms.split(" ").join("").split(",");
-                this.id = id;
-            } else {
-                return new Job(title, location, time, wages, description, terms);
-            }
-        }
-        $scope.submit = function(s)
+//var app = angular.module('myApp',['ngRoute', 'angoose.client']);
+angular.module('myApp').controller('jobcreate', function($scope, $location, Job){
+    console.log("This is running!");
+    console.log($location);
+    console.log($location.search()._id);
+    $scope.reset = function() {
+        $scope.userjob = angular.copy($scope.master);
+        console.log($scope.userjob);
+    };
+    if($location.search()._id != null) {
+        console.log($location.search()._id);
+        $scope.master = Job.get({'_id' : $location.search()._id}, function(){
+            $scope.master.time = new Date($scope.master.time);
+            $scope.reset();
+        });
+        $scope.submit = function()
         {
-            if(s instanceof Job)
-            {
-                //if id is defined in the db
-                    //update the db for that id
-                //else add the Job to the DB
-            }
+            $scope.userjob.$update(function() {
+                window.location.href = "/jobdisplay?_id="+$scope.userjob._id;
+            })
+            console.log($scope.userjob);
         }
-        //later define this from database or make blank if no such item in database.
-        // define by id in the url to make refresh safe?
-        $scope.master = new Job("Is it working?", "", "", "", "", "",0)
-        $scope.reset = function() {
-            $scope.userjob = angular.copy($scope.master);
-        };
+    }
+    if($scope.master == null)
+    {
+        var d = new Date().setSeconds(0,0);
+        $scope.master = {
+            userID: "???",//What are we doing for this?
+            title: "",
+            description: "",
+            time: new Date(d),
+            location: ""
+        }
         $scope.reset();
+        $scope.submit = function()
+        {
+            $scope.userjob = Job.save($scope.userjob, function() {
+                    window.location.href = "/jobdisplay?_id="+$scope.userjob._id;
+            })
+            console.log($scope.userjob);
+        }
+    }
 
-        app.toModel();
 
 
-    });
-})();
+
+
+});

@@ -20,8 +20,8 @@ html, body {
 .mainDivs{
   padding-top: 5%;
 }
-button.btn.btn-primary.btn-lg.btn-block {
-    background-color: #A51919;
+#signInButton{
+    background-color: #A51919 !important;
 }
 
 ul.nav.nav-tabs.nav-justified li a {

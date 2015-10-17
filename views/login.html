@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='Authentication'>
+<html ng-app='myApp'>
 
 <head>
   <meta charset="utf-8">
@@ -23,10 +23,12 @@
           <div ng-controller="Auth as auth">
             <h3>
               <ul class="nav nav-tabs nav-justified">
-                <li ng-class="{'active' : auth.panelNumber(1)}">
+
+                <li ng-class="{active : auth.panelNumber(1)}">
                   <a href="#login" ng-click="auth.setTab(1)">Login</a>
                 </li>
-                <li ng-class="{'active' : auth.panelNumber(2)}">
+                <li ng-class="{active : auth.panelNumber(2)}">
+
                   <a href="#signup" ng-click="auth.setTab(2)">Sign Up</a>
                 </li>
               </ul>
@@ -56,9 +58,8 @@
                       <input type="checkbox" value="remember-me" /> Remember Me
                     </label>
                   </div>
-                  <button class="btn btn-primary btn-lg btn-block" ng-click="login.submitLogin(login.email, login.password)">
-                    <span class="glyphicon glyphicon-home"></span>
-                    Login
+                  <button class="btn btn-lg btn-block" id="signInButton" ng-click="login.submitLogin(login.email, login.password)">
+                    <span class="glyphicon glyphicon-home" style="color: white;"> Login</span>
                   </button>
                 </div>
               </form>
@@ -73,25 +74,25 @@
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-envelope"></span>
                     </div>
-                    <input class="form-control" ng-model="signup.email" placeholder="Email Address" type="email" />
+                    <input class="form-control" ng-model="signup.user.email" placeholder="Email Address" type="email" />
                   </div>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-lock"></span>
                     </div>
-                    <input class="form-control" ng-model="signup.firstName" placeholder="First Name" type="text" />
+                    <input class="form-control" ng-model="signup.user.firstName" placeholder="First Name" type="text" />
                   </div>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-lock"></span>
                     </div>
-                    <input class="form-control" ng-model="signup.lastName" placeholder="Last Name" type="text" />
+                    <input class="form-control" ng-model="signup.user.lastName" placeholder="Last Name" type="text" />
                   </div>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-lock"></span>
                     </div>
-                    <input class="form-control" ng-model="signup.password" placeholder="Password" type="password" />
+                    <input class="form-control" ng-model="signup.user.password" placeholder="Password" type="password" />
                   </div>
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -104,7 +105,7 @@
                       <input type="checkbox" value="remember-me" /> Remember Me
                     </label>
                   </div>
-                  <button class="btn btn-success btn-lg btn-block" ng-click="signup.submitSignup(signup.email, signup.password, signup.passwordVerfication, signup.firstName, signup.lastName)">
+                  <button class="btn btn-success btn-lg btn-block" ng-click="signup.submitSignup(signup.user, signup.passwordVerfication)">
                     <span class="glyphicon glyphicon-pencil"></span>
                     Sign Up
                   </button>
@@ -117,8 +118,11 @@
       </div>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
   <script src="login.js"></script>
 </body>
 

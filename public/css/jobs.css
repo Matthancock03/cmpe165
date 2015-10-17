@@ -1,3 +1,9 @@
+@font-face {
+    font-family: Lato;
+    src: url(http://fonts.googleapis.com/css?family=Georgia);
+    font-weight: bold;
+}
+
 .job-form > div > div {
     width: 100px;
     text-align: right;
@@ -5,6 +11,10 @@
 .job-form > div{
     width: 100%;
     margin-bottom: 1px;
+}
+.clapper{
+  width: 100px;
+  height: auto;
 }
 
 .job-form{
@@ -22,4 +32,16 @@ height: 100%;
 
 .full {
   height: 100%;
+}
+.btnDiv{
+  display: inline-block !important;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 48% !important;
+}
+h1{
+  font-size: 50px;
+  text-align: center;
+  font-family: Lato;
+  color: #a31111;
 }

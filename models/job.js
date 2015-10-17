@@ -1,11 +1,14 @@
-var db = require('../database')
+var db = require('../database');
 
-var Job = db.model('Job', {
+module.exports = db.model("Job", {
   userID: {type: String, required: true},
   title: {type: String, required: true},
-  wage: {type: String, required: true},
-  description: {type: String, required: true},
-  creationDate: {type: Date, required: true, default: Date.now}
-})
-
-module.exports = Job
+  description: {type: String, required: false},
+  tags: {type: [String]},
+  creationDate: {type: Date, required: false, default: Date.now()},
+  wages: {type: Number, required: true},
+  time: {type: Date, required: true},
+  location: {type: String, required: true}
+  //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
+  //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+});

@@ -1,9 +1,7 @@
-(function(){
-
-  var app = angular.module('Authentication',[])
 
   var tab = 1;
-  app.controller('Auth', function(){
+
+  angular.module('myApp').controller('Auth', function(){
 
     this.setTab = function(table){
       tab = table;
@@ -16,7 +14,7 @@
 
   });
 
-  app.controller('Login', function($http, $location, $window){
+  angular.module('myApp').controller('Login', function($http, $location, $window){
     this.email = "";
     this.password = "";
 
@@ -33,7 +31,7 @@
         "password": password
       }
       }).then(function successCallback(response) {
-        window.location.assign("jobs");
+        window.location.assign("home/?" + email);
         for(property in response.headers){
           console.log(response.headers[property]);
         }
@@ -47,15 +45,16 @@
     };
   });
 
-  app.controller('Signup', function($http){
-    this.email = "";
-    this.password = "";
-    this.passwordVerfication = "";
-    this.firstName = "";
-    this.lastName = "";
+  angular.module('myApp').controller('Signup', function($http, $location, User){
+    this.user = new User();
+    this.passwordVerfication = "Rachael69";
 
-    this.submitSignup = function(email, password, passwordVerification, firstName, lastName){
-      console.log("Email: " + email + " Name: " + firstName + lastName +  " Password: " + password + " Verification: " + passwordVerification);
+
+    this.submitSignup = function(user, passwordVerification){
+      console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName +  " Password: " + user.password + " Verification: " + passwordVerification);
+      user.$save(function(){
+        console.log("User saved");
+      });
 
       $http({
       method: 'POST',
@@ -64,13 +63,15 @@
         "Accept" : "application/json"
       },
       data: {
-        "givenName": firstName,
-        "surname": lastName,
+        "givenName": user.firstName,
+        "surname":   user.lastName,
         //"username": "Matth03",
-        "email": email,
-        "password": password}
-      }).then(function successCallback(response) {
-          $location.url("jobs");
+        "email": user.email,
+        "password": user.password}
+      }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
+          console.log("Stormpath sucessful");
+
+          //$location.url("home/?" + email);
       }, function errorCallback(response) {
         console.log("SignUp error: " + response.error);
       });
@@ -80,5 +81,3 @@
       return tab === panel;
     };
   });
-
-  })();
