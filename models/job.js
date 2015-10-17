@@ -4,6 +4,7 @@ module.exports = db.model("Job", {
   userID: {type: String, required: true},
   title: {type: String, required: true},
   description: {type: String, required: false},
+  tags: {type: [String]},
   creationDate: {type: Date, required: false, default: Date.now()},
   wages: {type: Number, required: true},
   time: {type: Date, required: true},

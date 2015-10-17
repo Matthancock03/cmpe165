@@ -54,7 +54,7 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.get("/home/:_id", function(req,res){
+app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
 
@@ -74,7 +74,7 @@ app.post("/api/:_model", function(req,res){
   console.log('Post Received.');
   //console.log(req);
   console.log(req.body);
-  console.log(req.params._model);
+  console.log("Model " + req.params._model);
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
@@ -95,13 +95,21 @@ app.post("/api/:_model", function(req,res){
   }
   if(ret_model == 'User'){
     var user = new ret_model(req.body);
-    console.log(user);
+    console.log("New User" + user);
     user.save(function(err, user){
+      if(err){
+        console.log(err);
+        console.log(user);
+        console.log("User did not save correctly.");
+      };
       res.json(201, user);
     });
   }
   if(ret_model == 'Comment'){
 
+  }else{
+    console.log("WTF");
+    res.json(201, {error : "Shennanigans!"});
   }
 });
 

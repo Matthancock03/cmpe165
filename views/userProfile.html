@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="UserController as user">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Stagehand</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sideBar.css">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/sideBar.css" rel="stylesheet">
   </head>
   <body class='black'>
     <div class="container-fluid" style="height: 100%;">
 
-    <div class="col-xs-2 mainDivs black">
-      <ng-include src="'templates/sideBar.html'"  onload=""  autoscroll=""></ng-include>
+      <div class="col-xs-2 mainDivs black barDiv">
+        <ng-include autoscroll="" onload="" src="'templates/sideBar.html'"></ng-include>
+      </div>
+      <div class="col-xs-10 mainDivs" style="background-color: white;">
+        <div class="row">
+          <div class="col-xs-2"></div>
+          <div class="col-xs-8">
+            <h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <strong>About Me:</strong><br>
+                {{user.about}}
+              </li>
+              <li class="list-group-item">
+                <strong>Skills:</strong>
+                <ul>
+                  <li ng-repeat="skill in user.skills">
+                    {{skill}}
+                  </li>
+                </ul>
+              </li>
+              <li class="list-group-item">
+                <strong>Reviews:</strong>
+
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-2"></div>
+        </div>
+      </div>
+
     </div>
-    <div class="col-xs-10 mainDivs" style="background-color: white;">
-      <ul>
-        <li><h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1></li>
-        <li><strong>About Me:</strong></li>
-        <li><strong>Skills:</strong></li>
-        <li><strong>Reviews:</strong></li>
-      </ul>
-
-
-    </div>
-
-  </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
