@@ -7,7 +7,8 @@ module.exports = db.model("Job", {
   creationDate: {type: Date, required: false, default: Date.now()},
   wages: {type: Number, required: true},
   time: {type: Date, required: true},
-  location: {type: String, required: true}
+  location: {type: String, required: true},
+  signerId: {type: String, required: false}
   //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
   //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 });

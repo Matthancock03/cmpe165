@@ -17,12 +17,17 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             $scope.master.time = new Date($scope.master.time);
             $scope.reset();
         });
-        $scope.submit = function()
-        {
-            $scope.userjob.$update(function() {
-                window.location.href = "/jobdisplay?_id="+$scope.userjob._id;
-            })
-            console.log($scope.userjob);
+        $scope.submit = function() {
+            if ($scope.userjob.signature == null) {
+                $scope.userjob.$update()
+                window.location.href = "/jobdisplay?_id=" + $scope.userjob._id;
+            }
+            else
+            {
+                alert("Contract has been signed");
+            }
+
+
         }
     }
     if($scope.master == null)

@@ -1,7 +1,6 @@
 var db = require('../database')
 
 var User = db.model('User', {
-  userID: {type: String, required: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   email: {type: String, required: true},
