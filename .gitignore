@@ -3,3 +3,5 @@ npm-debug.log
 /*.env
 data
 tempCode.txt
+
+.idea/workspace.xml
