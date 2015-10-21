@@ -9,7 +9,7 @@ module.exports = db.model("Job", {
   wages: {type: Number, required: true},
   time: {type: Date, required: true},
   location: {type: String, required: true},
-  contractSigned: {type: Boolean, default: false}
+  contractSigned: {type: Boolean, default: false},
   signerId: {type: String, required: false}
   //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
   //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
