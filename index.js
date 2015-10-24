@@ -55,7 +55,7 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.get("/home", stormpath.loginRequired, function(req,res){
+app.get("/profile/:email", stormpath.loginRequired, function(req,res){
   console.log("Current user email is: " + req.user.email);
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
@@ -121,6 +121,7 @@ app.delete("/api/:_model/:_id", function(req,res){
   });});
 
 app.get("/api/:_model", function(req,res){
+  console.log("Email: " + req.query);
   console.log(req.params._model);
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
@@ -128,7 +129,7 @@ app.get("/api/:_model", function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.find(function(err, job){
+  ret_model.find(req.query, function(err, job){
     if(err){
       console.log(err);
       };
@@ -138,7 +139,9 @@ app.get("/api/:_model", function(req,res){
 });
 
 app.get("/api/:_model/:_id", function(req,res){
-  console.log(req.params._id);
+  console.log("Id: " + req.params._id);
+  console.log("Email: " + req.params.email);
+
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
@@ -146,6 +149,21 @@ app.get("/api/:_model/:_id", function(req,res){
     return;
   }
   ret_model.findOne({_id : req.params._id}, function(err, job){
+    if(err){console.log(err)};
+    console.log(job);
+    res.json(job);
+  });
+});
+
+app.get("/api/:_model/:_type/:_value", function(req,res){
+  console.log("Id: " + req.params._id);
+  var ret_model = retrieveModel(req.params._model);
+  if(ret_model == null)
+  {
+    res.json(201, {error : "Invalid Request"});
+    return;
+  }
+  ret_model.findOne({email : req.params._id}, function(err, job){
     if(err){console.log(err)};
     console.log(job);
     res.json(job);

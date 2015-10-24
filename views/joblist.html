@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="css/sideBar.css">
 </head>
 <body>
-<div ng-app="myApp" ng-controller="joblist" style="padding-left:10px; padding-right:10px">
+  <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+<div  ng-controller="joblist" style="padding-left:10px; padding-right:10px">
 <h1>Jobs near you</h1>
 <div class="col-xs-2 mainDivs black">
-  <ng-include src="'templates/sideBar.html'"  onload=""  autoscroll=""></ng-include>
 </div>
 <div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs">
     <div class="col-xs-2">
