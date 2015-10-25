@@ -31,7 +31,7 @@
         "password": password
       }
       }).then(function successCallback(response) {
-        window.location.assign("home/?" + email);
+        window.location.assign("home");
         for(property in response.headers){
           console.log(response.headers[property]);
         }
@@ -73,8 +73,7 @@
         "password": user.password}
       }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
           console.log("Stormpath sucessful");
-
-          //$location.url("home/?" + email);
+          window.location.assign("home");
       }, function errorCallback(response) {
         console.log("SignUp error: " + response.error);
       });

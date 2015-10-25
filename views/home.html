@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="Home">
+  <head>
+    <title>Stagehand</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+  </head>
+  <body>
+    <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+
+    <img alt="CurtainBanner" class="bannerImage" src="images/stage.jpg"/>
+
+    <div class="container-fluid" style="height: 100%;">
+      <div class="row">
+        <div class="col-xs-12">
+          <p id="homeHeader">
+            Find the characters for your production
+          </p>
+
+          <div class="center-block" id="searchDiv">
+            <p id="searchHeader">
+              Search for a performer near you!
+            </p>
+            <div class="inputBoxes center-block">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-map-marker"></span>
+              </div>
+              <input class="form-control" style="text-align: center;" placeholder="Enter Your City" type="text">
+            </div>
+          </div>
+            <div class="inputBoxes center-block">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-bullhorn"></span>
+              </div>
+              <input class="form-control" style="text-align: center;" placeholder="What Type of Performer?" type="text">
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+      <script src="myApp.js"></script>
+      <script src="home.js"></script>
+    </body>
+  </html>
