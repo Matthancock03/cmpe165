@@ -34,7 +34,6 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
     {
         var d = new Date().setSeconds(0,0);
         $scope.master = {
-            userID: "???",//What are we doing for this?
             title: "",
             description: "",
             time: new Date(d),

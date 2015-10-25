@@ -1,7 +1,7 @@
 var db = require('../database')
 
 var User = db.model('User', {
-  //userID: {type: String, required: true},
+  ownerId:{type: String, required: false},//will be the same as _id; important to allow modifications of the user table without rewriting functions
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   email: {type: String, required: true, unique: true},

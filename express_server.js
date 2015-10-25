@@ -42,6 +42,16 @@ app.get("/create", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 
+//When you add a model, require it, then return it when the model name matches the actual model name
+//Make sure to put the same model name in MyApp or it won't work!
+// You can add models to access Authorization tokens, but please don't include them in the retrieveModel section.
+// it will cause no end of grief as the generalized model we have running here will break down
+// because it's a type of model we don't want them to access.
+var Job = require(__dirname +'/models/job');
+var Comment = require(__dirname + '/models/comment');
+var User = require(__dirname + '/models/user');
+var Application = require(__dirname + '/models/application');
+
 var retrieveModel = function(modelName, body)
 {
   if(modelName == "Job") {
@@ -52,6 +62,9 @@ var retrieveModel = function(modelName, body)
   }
   if(modelName == "Comment") {
     return Comment
+  }
+  if(modelName == "Application") {
+    return Application
   }
   else//invalid db request.
   {

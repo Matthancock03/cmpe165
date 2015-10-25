@@ -44,6 +44,6 @@ var generateResource = function(name)
 }
 //When you make a model, add it to the modelNameList and to the function call in the server run javascript
 //(express_server.js for now, could change in the future)
-var modelNameList = ["Job", "User", "Comment"]
+var modelNameList = ["Job", "User", "Comment", "Application"]
 for(var i = 0; i < modelNameList.length; i++)
     generateResource(modelNameList[i]);

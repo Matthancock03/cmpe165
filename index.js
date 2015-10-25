@@ -68,12 +68,12 @@ app.get("/jobDisplay", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobDisplay.html');
 })
 
-app.get("/create", function(req,res){
+app.get("/create",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 
 
-app.post("/api/:_model", function(req,res){
+app.post("/api/:_model",stormpath.loginRequired, function(req,res){
   console.log('Post Received.');
   //console.log(req);
   console.log(req.body);
@@ -84,6 +84,7 @@ app.post("/api/:_model", function(req,res){
     res.json(201, {error : "Invalid Request: No Model"});
     return;
   }
+  req.body.ownerId = req.user.email;
   var job = new ret_model(req.body);
   console.log(job);
   job.save(function(err, job){
@@ -95,30 +96,55 @@ app.post("/api/:_model", function(req,res){
     res.json(201, job);
   })
 });
-app.put("/api/:_model/:_id", function(req,res){
+app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   console.log("In Put!")
   var ret_model = retrieveModel(req.params._model);
+  console.log(req.user.email);
   if(ret_model == null)
   {
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.update({_id : req.params._id}, req.body, function(err, numAffected){
+  ret_model.update(writePermissions({_id : req.params._id},req.user.email), req.body, function(err, numAffected){
     if(err){console.log(err)}
     console.log("In Put callback!")
   });
 
 });
-app.delete("/api/:_model/:_id", function(req,res){
+/**
+ * returns a query that will return all visible elements. execute later in your methods.
+ * @param model
+ * @param ownerId
+ */
+var viewPermissions = function(objOfQuery, ownerId)
+{
+  objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
+  return objOfQuery
+}
+var writePermissions = function(objOfQuery, ownerId)
+{
+  objOfQuery.ownerId = ownerId;
+  return objOfQuery;
+}
+/**
+ * returns a query that will return all owned elements. execute later
+ * @param model
+ * @param ownerId
+ */
+
+app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
+
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
-    res.json(201, { error : "Invalid Request"});
+    res.json(500, { error : "Invalid Request"});
     return;
   }
-  ret_model.remove({_id : req.params._id},function(err){
+
+  ret_model.remove(writePermissions({_id : req.params._id},req.user.email),function(err){
     if(err){console.log(err)};
-  });});
+  })
+  });
 
 app.get("/api/:_model", function(req,res){
   console.log("Email: " + req.query);
@@ -129,12 +155,14 @@ app.get("/api/:_model", function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.find(req.query, function(err, job){
+
+  ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
+
     if(err){
       console.log(err);
       };
-    console.log(job);
-    res.json(job);
+    console.log(element);
+    res.json(element);
   });
 });
 
@@ -148,10 +176,10 @@ app.get("/api/:_model/:_id", function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.findOne({_id : req.params._id}, function(err, job){
+  ret_model.findOne(viewPermissions({_id : req.params._id},req.user.email), function(err, element){
     if(err){console.log(err)};
-    console.log(job);
-    res.json(job);
+    console.log(element);
+    res.json(element);
   });
 });
 
