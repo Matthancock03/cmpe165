@@ -55,7 +55,7 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-app.get("/profile/:email", stormpath.loginRequired, function(req,res){
+app.get("/profile", stormpath.loginRequired, function(req,res){
   console.log("Current user email is: " + req.user.email);
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
