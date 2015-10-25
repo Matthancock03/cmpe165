@@ -38,7 +38,7 @@ app.get("/create", function(req,res){
 var Job = require(__dirname +'/models/job');
 var Comment = require(__dirname + '/models/comment');
 var User = require(__dirname + '/models/user');
-
+var Application = require(__dirname + '/models/application');
 var retrieveModel = function(modelName, body)
 {
   if(modelName == "Job") {
@@ -49,6 +49,9 @@ var retrieveModel = function(modelName, body)
   }
   if(modelName == "Comment") {
     return Comment
+  }
+  if(modelName == "Application") {
+    return Application
   }
   else//invalid db request.
   {

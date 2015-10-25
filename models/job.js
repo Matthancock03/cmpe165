@@ -1,7 +1,8 @@
 var db = require('../database');
 
 module.exports = db.model("Job", {
-  userID: {type: String, required: true},
+  ownerId:{type: String, required:false},
+  ownerIdOld:{type: String, required:false},
   title: {type: String, required: true},
   description: {type: String, required: false},
   tags: {type: [String]},
@@ -9,8 +10,11 @@ module.exports = db.model("Job", {
   wages: {type: Number, required: true},
   time: {type: Date, required: true},
   location: {type: String, required: true},
-  contractSigned: {type: Boolean, default: false},
-  signerId: {type: String, required: false}
+
+  signerId: {type: String, required: false},
+
+  //Hm. best way to do it? Application model instead of an array. users create them and see them, employer sees them.
+  //need new model
   //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
   //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 });
