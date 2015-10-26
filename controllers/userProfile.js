@@ -3,11 +3,15 @@ angular.module('myApp').controller('UserController', function($location, $http, 
       $scope.user = {};
       $scope.isUser = ($location.search().isUser == 'true')? true : false ;
       User.query({email: $location.search().email}, function(users, user){
-      $scope.user = users[0];
+
+      if(users.length == 1)// only one element
+            $scope.user = users[0];
+      else{}
+            console.log(users);
+      console.log(users.length);
       });
 
       $scope.editProfile = function(){
         window.location.assign("update");
       };
-
 });

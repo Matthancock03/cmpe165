@@ -10,7 +10,6 @@ module.exports = db.model("Job", {
   wages: {type: Number, required: true},
   time: {type: Date, required: true},
   location: {type: String, required: true},
-
   signerId: {type: String, required: false},
 
   //Hm. best way to do it? Application model instead of an array. users create them and see them, employer sees them.

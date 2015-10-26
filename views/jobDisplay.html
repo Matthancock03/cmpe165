@@ -47,7 +47,9 @@
   </head>
 
   <body>
-    <div class="container-fluid full">
+  <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+
+  <div class="container-fluid full">
       <div class="row clearfix full">
         <div class="col-xs-2 mainDivs black">
           <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
@@ -65,7 +67,8 @@
 
       </div>
     </div>
-
+    <script src="stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.min.js"></script>
+    <script src="stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.tpls.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
