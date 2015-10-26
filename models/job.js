@@ -2,7 +2,7 @@ var db = require('../database');
 
 module.exports = db.model("Job", {
   ownerId:{type: String, required:false},
-  modifiable:{type: boolean, default: true},
+  modifiable:{type: Boolean, default: true},
   title: {type: String, required: true},
   description: {type: String, required: false},
   tags: {type: [String]},
