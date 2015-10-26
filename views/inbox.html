@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>StageHand</title>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/inbox.css" rel="stylesheet">
+  </head>
+
+  <body ng-controller="Inbox">
+    <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+    <div class="container">
+      <div class="row clearfix mainDiv">
+        <div class="col-xs-12 column">
+          <div class="page-header">
+            <h1>
+              Messages
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-xs-3 column">
+
+          <div class="btn-group btn-group-md">
+            <br/><br/><br/>
+            <br/>
+            <div>
+              <a href="#">
+                <button class="btn btn-default" type="button">
+                  <em class="glyphicon glyphicon-align-left"></em>Inbox</button>
+              </a>
+              <div>
+                <br/>
+                <a href="#">
+                  <button class="btn btn-default" type="button">
+                    <em class="glyphicon glyphicon-align-left"></em>Sent</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 column">
+
+          <table class="table table-condensed" style="background-color: #FFFFFF;">
+            <thead>
+              <tr>
+                <th>
+                  #
+                </th>
+                <th>
+                  Message
+                </th>
+                <th>
+                  From
+                </th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Status
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <div ng-repeat="for message in messages">
+                <tr>
+                  <td>
+                    {{index}}
+                  </td>
+                  <td>
+                    <a data-target="#@index" data-toggle="collapse">{{message.messageTitle}}</a>
+                  </td>
+                  <td>
+                    {{message.senderName}}
+                  </td>
+                  <td>
+                    {{message.tstamp}}
+                  </td>
+                  <td></td>
+                </tr>
+              </div>
+              <tr class="collapse" id="@index">
+                <td>#</td>
+                <td colspan="4">{{message.messageBody}}</td>
+                <td>
+                  <a href="#">
+                    <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button">
+                      <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                  </a>
+                  <a href="#">
+                    <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <!-- Large modal -->
+
+          <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="form-group" style="width: 50%; margin: 0 auto;">
+                  <div style="width: 75%; margin: 0 auto;">
+                    <h2 class="form-signin-heading">Message</h2>
+                    <input class="form-control" id="messageTitle" name="messageTitle" placeholder="Message Title" type="text" value=""/>
+                    <input class="form-control" id="messageBody" name="messageBody" placeholder="Message" type="text" value=""/>
+                    <input class="form-control" id="id" name="id" placeholder="User Id" style="display: none;" type="text" value=""/>
+                    <button class="btn btn-primary btn-lg btn-block" style="width: 50%;" type="submit">Send Message</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End modal -->
+
+        </div>
+        <div class="col-xs-3 column"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
+  <script src="inbox.js"></script>
+
+
+</body>
+
+</html>

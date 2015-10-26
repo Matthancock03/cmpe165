@@ -73,18 +73,22 @@ app.get("/profile", function(req,res){
 
 app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/joblist.html');
-})
+});
 
 app.get("/update", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/updateProfile.html');
-})
+});
 
 app.get("/jobDisplay", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobDisplay.html');
-})
+});
 
 app.get("/create",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
+});
+
+app.get("/inbox", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
 
 
