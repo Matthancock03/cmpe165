@@ -140,16 +140,18 @@ app.post("/api/:_model", function(req,res){//Really want to include login req he
     res.json(201, job);
   })
 });
+
 app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   console.log("In Put!")
   var ret_model = retrieveModel(req.params._model);
-  console.log(req.user.email);
+  console.log(req.body);
   if(ret_model == null)
   {
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.update(writePermissions({_id : req.params._id},req.user.email), req.body, function(err, numAffected){
+  ret_model.update(writePermissions({_id : req.params._id}, req.user.email), req.body, function(err, numAffected){
+    console.log(numAffected)
     if(err){console.log(err)}
     console.log("In Put callback!")
   });
