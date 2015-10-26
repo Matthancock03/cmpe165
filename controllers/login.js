@@ -51,6 +51,7 @@
 
 
     this.submitSignup = function(user, passwordVerification){
+      user.ownerId = user.email;
       console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName +  " Password: " + user.password + " Verification: " + passwordVerification);
       user.$save(function(){
         console.log("User saved :");

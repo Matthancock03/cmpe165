@@ -5,7 +5,10 @@ angular.module('myApp').controller('UserController', function($location, $scope,
       $scope.skills = ['Being a Boss', 'Doing My Thing', 'Getting Paper'];
       $scope.user = {};
       User.query({email: $location.search().email}, function(users, user){
-      $scope.user = users[0];
+      if(users.length == 1)// only one element
+            $scope.user = users[0];
+      else{}
+            console.log(users);
       console.log(users.length);
       });
 });
