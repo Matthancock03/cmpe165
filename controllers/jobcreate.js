@@ -29,6 +29,11 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
 
 
         }
+        $scope.delete = function()
+        {
+
+        }
+
     }
     if($scope.master == null)
     {

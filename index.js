@@ -22,6 +22,7 @@ app.use(express.static(__dirname + '/bower_components'));
 /**
  *  Initializes stormpath middleware. To run locally you will need to export the the api key and secret.
  */
+
 app.use(stormpath.init(app, {
   application: {
     href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW'
