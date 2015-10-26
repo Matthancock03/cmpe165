@@ -75,7 +75,7 @@ app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/joblist.html');
 })
 
-app.get("/update", function(req,res){
+app.get("/update", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/updateProfile.html');
 })
 
