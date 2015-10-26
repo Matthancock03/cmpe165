@@ -103,7 +103,7 @@ app.get("/update", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/updateProfile.html');
 });
 
-app.get("/jobDisplay", function(req,res){
+app.get("/jobDisplay",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobDisplayNew.html');
 });
 
@@ -173,6 +173,7 @@ var viewPermissions = function(objOfQuery, ownerId)
 var writePermissions = function(objOfQuery, ownerId)
 {
   objOfQuery.ownerId = ownerId;
+  objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
   return objOfQuery;
 }
 var stripe = require("stripe")(
@@ -194,7 +195,12 @@ app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
     if(err){console.log(err)};
   })
   });
-
+app.get("/currentUser", function(req,res){
+  if(req.user == undefined){
+    res.status(200).send({loggedIn: false});
+  }
+  res.status(200).send(req.user);
+});
 app.get("/api/:_model", function(req,res){
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
@@ -214,12 +220,12 @@ app.get("/api/:_model", function(req,res){
 });
 app.post("/payments", stormpath.loginRequired, function(req, res) {
 
-  var stripeToken = req.body.id;
-  var applicationId = req.body.appId;
-  var a
-  var b
+
   Application.findOne({_id : applicationId}, function (err1, application) {
     User.findOne({ownerId: application.ownerId}, function (err2, user) {
+      if(user.customerId == null)
+        return;
+
       Job.findOne({_id: application.jobId}, function (err3, job) {
         if(job.ownerId != req.user.email)
           return;//
@@ -276,13 +282,12 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
       user.save();
     })
     // For demo's sake, output in response:
-    res.send({ 'Your Token': accessToken });
+    res.send({ 'Your Token': obj.accessToken });
 
   });
 });
 app.get("/api/:_model/:_id", function(req,res){
   console.log("Id: " + req.params._id);
-  console.log("Email: " + req.params.email);
 
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
