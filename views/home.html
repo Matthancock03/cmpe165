@@ -24,21 +24,36 @@
               Search for a performer near you!
             </p>
             <div class="inputBoxes center-block">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <span class="glyphicon glyphicon-map-marker"></span>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-map-marker"></span>
+                </div>
+                <input class="form-control" placeholder="Enter Your City" style="text-align: center;" type="text">
               </div>
-              <input class="form-control" style="text-align: center;" placeholder="Enter Your City" type="text">
             </div>
-          </div>
             <div class="inputBoxes center-block">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <span class="glyphicon glyphicon-bullhorn"></span>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <span class="glyphicon glyphicon-bullhorn"></span>
+                </div>
+                <input class="form-control" placeholder="What Type of Performer?" style="text-align: center;" type="text">
               </div>
-              <input class="form-control" style="text-align: center;" placeholder="What Type of Performer?" type="text">
             </div>
           </div>
+          <div ng-show="loggedIn">
+
+            <p id="homeHeader">
+              Or...
+            </p>
+            <div class="center-block" id="createDiv">
+              <p id="searchHeader">
+                Create a job and let them come to you!
+              </p>
+              <button class="btn btn-success btn-lg center-block createButton" type="button">
+                Create Job!
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

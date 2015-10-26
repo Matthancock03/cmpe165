@@ -66,10 +66,10 @@
         "Accept" : "application/json"
       },
       data: {
-        "givenName": user.firstName,
-        "surname":   user.lastName,
+        "givenName": user.firstName.toLowerCase(),
+        "surname":   user.lastName.toLowerCase(),
         //"username": "Matth03",
-        "email": user.email,
+        "email": user.email.toLowerCase(),
         "password": user.password}
       }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
           console.log("Stormpath sucessful");

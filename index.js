@@ -55,17 +55,28 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
+app.get("/currentUser", function(req,res){
+  if(req.user == undefined){
+    res.status(200).send({loggedIn: false});
+  }
+  res.status(200).send(req.user);
+  });
+
 app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
 
-app.get("/profile", stormpath.loginRequired, function(req,res){
+app.get("/profile", function(req,res){
   //console.log("Current user email is: " + req.user.email);
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
 
 app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/joblist.html');
+})
+
+app.get("/update", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/updateProfile.html');
 })
 
 app.get("/jobDisplay", function(req,res){
@@ -151,8 +162,6 @@ app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   });
 
 app.get("/api/:_model", function(req,res){
-  console.log("Email: " + req.query);
-  console.log(req.params._model);
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
@@ -165,7 +174,7 @@ app.get("/api/:_model", function(req,res){
     if(err){
       console.log(err);
       };
-    console.log(element);
+
     res.json(element);
   });
 });
