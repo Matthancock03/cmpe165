@@ -22,19 +22,26 @@ app.use(express.static(__dirname + '/bower_components'));
 /**
  *  Initializes stormpath middleware. To run locally you will need to export the the api key and secret.
  */
+
 app.use(stormpath.init(app, {
+  client: {
+    apiKey: {
+      file: process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'] + '~removed'
+    }
+  },
   application: {
-    href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW'
+    href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW',
+  },
+  web: {
+    register: {
+      enabled: true,
+      uri: '/register',
+      nextUri: '/home',  // don't send them here
+    }
   },
   website: true,
-  web:{
-    register: {
-      autoLogin: true,
-      nextUri: '/stripeSetup'
-    }
-  }
+  api: true
 }));
-
 
 /**
  *  Used to parse incoming url and determine appropriate model.
