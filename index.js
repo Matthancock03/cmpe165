@@ -69,7 +69,7 @@ app.get("/jobs", function(req,res){
 })
 
 app.get("/jobDisplay", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/jobDisplay.html');
+  res.status(200).sendFile(__dirname + '/views/jobDisplayNew.html');
 })
 
 app.get("/create",stormpath.loginRequired, function(req,res){
@@ -130,11 +130,26 @@ var writePermissions = function(objOfQuery, ownerId)
   objOfQuery.ownerId = ownerId;
   return objOfQuery;
 }
-/**
- * returns a query that will return all owned elements. execute later
- * @param model
- * @param ownerId
- */
+var stripe = require("stripe")(
+    "sk_test_1q9nLen2GaP2Q6Z2o5jpzM97"
+);
+var partialDeposit = function(job, application)
+{
+  job.ownerId // From
+  application.ownerId// To
+  job.wages/2 * 100 // amount of pennies in the job
+  stripe.charges.create({
+    amount: job.wages/2 * 100,
+    currency: "usd",
+    source: "see user for job.ownerId", // obtained with Stripe.js
+    destination: "see user for application.ownerid",
+    description: "Charge for test@example.com"
+  }, function(err, charge) {
+    // asynchronously called
+  });
+  //Pull from db?
+  //Use stripe, send from one account to the other
+}
 
 app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
 
@@ -187,20 +202,6 @@ app.get("/api/:_model/:_id", function(req,res){
   });
 });
 
-app.get("/api/:_model/:_type/:_value", function(req,res){
-  console.log("Id: " + req.params._id);
-  var ret_model = retrieveModel(req.params._model);
-  if(ret_model == null)
-  {
-    res.json(201, {error : "Invalid Request"});
-    return;
-  }
-  ret_model.findOne({email : req.params._id}, function(err, job){
-    if(err){console.log(err)};
-    console.log(job);
-    res.json(job);
-  });
-});
 
 app.on('stormpath.ready', function() {
   app.listen(process.env.PORT || 9000);
