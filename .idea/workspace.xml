@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="033775e7-7e60-4579-921c-2635e0feb681" name="Default" comment="...">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Contract.js" afterPath="$PROJECT_DIR$/models/Contract.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cmpe165.iml" afterPath="$PROJECT_DIR$/.idea/cmpe165.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/job.js" afterPath="$PROJECT_DIR$/models/job.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/jobDisplay.html" afterPath="$PROJECT_DIR$/views/jobDisplay.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/jobdisplay.js" afterPath="$PROJECT_DIR$/controllers/jobdisplay.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/login.js" afterPath="$PROJECT_DIR$/controllers/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/myApp.js" afterPath="$PROJECT_DIR$/controllers/myApp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/templates/navBar.html" afterPath="$PROJECT_DIR$/views/templates/navBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/user.js" afterPath="$PROJECT_DIR$/models/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/userProfile.html" afterPath="$PROJECT_DIR$/views/userProfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/userProfile.js" afterPath="$PROJECT_DIR$/controllers/userProfile.js" />
+    <list default="true" id="033775e7-7e60-4579-921c-2635e0feb681" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cmpe165.iws" />
@@ -156,6 +142,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="John-Franklin &lt;johnfranklin42@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -499,7 +490,13 @@
       <option name="project" value="LOCAL" />
       <updated>1445832931216</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="More updates. Still in testing, but need stuff from the master branch.">
+      <created>1445878028679</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1445878028679</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -510,9 +507,9 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.4962617" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20441176" sideWeight="0.5448598" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20441176" sideWeight="0.5485981" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20441176" sideWeight="0.45514017" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20441176" sideWeight="0.45140186" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24953271" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -561,7 +558,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="..." />
     <MESSAGE value="set up the beginnings of payment support; need more time to test. Also started up ability to apply for jobs, ability to see jobs once they are applied for. Next, contracts? ugh, this roundabout project." />
-    <option name="LAST_COMMIT_MESSAGE" value="set up the beginnings of payment support; need more time to test. Also started up ability to apply for jobs, ability to see jobs once they are applied for. Next, contracts? ugh, this roundabout project." />
+    <MESSAGE value="More updates. Still in testing, but need stuff from the master branch." />
+    <option name="LAST_COMMIT_MESSAGE" value="More updates. Still in testing, but need stuff from the master branch." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
