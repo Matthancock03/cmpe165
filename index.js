@@ -19,14 +19,16 @@ app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/bower_components'));
+app.set('view engine', 'jade');
 /**
  *  Initializes stormpath middleware. To run locally you will need to export the the api key and secret.
  */
 
 app.use(stormpath.init(app, {
   client: {
-    apiKey: {
-      file: process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'] + '~removed'
+    apiKey:{
+      id: '1EYOLOT5PJNUA9B6FZ9G2Z7FE',//Needs to be removed before deployment
+      secret: "8n9nK0dy58U22PKUZFPrliUPtyN6nm2g4HaUPv27J/M" //Needs to be removed before deployment
     }
   },
   application: {
@@ -35,10 +37,15 @@ app.use(stormpath.init(app, {
   web: {
     register: {
       enabled: true,
-      uri: '/register',
+      view: __dirname + '/views/jade/log.jade',
       nextUri: '/home',  // don't send them here
+    },
+    login: {
+      view: __dirname + '/views/jade/log.jade', //path.join(__dirname,'views','login.ejs') // Route used in documentation
+      nextUri: '/home',
     }
   },
+  baseUrl: "/",
   website: true,
   api: true
 }));
@@ -76,8 +83,13 @@ var retrieveModel = function(modelName, body)
  *   Routes
  */
 app.get("/", function(req,res){
+  if(req.user.email != undefined){
+    res.status(200).sendFile(__dirname + '/views/home.html');
+  }else{
   res.status(200).sendFile(__dirname + '/views/login.html');
+}
 });
+
 
 app.get("/currentUser", function(req,res){
   if(req.user == undefined){
