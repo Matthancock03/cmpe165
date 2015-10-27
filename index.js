@@ -83,11 +83,11 @@ var retrieveModel = function(modelName, body)
  *   Routes
  */
 app.get("/", function(req,res){
-  if(req.user.email != undefined){
+  if(req.user != undefined){
     res.status(200).sendFile(__dirname + '/views/home.html');
   }else{
   res.status(200).sendFile(__dirname + '/views/login.html');
-}
+  }
 });
 
 
