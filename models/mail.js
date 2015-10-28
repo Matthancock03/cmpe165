@@ -7,7 +7,7 @@ module.exports = db.model("Mail", {
     body:{type: String},
     title:{type: String},
     senderId:{type: String},//need this to allow response.
-    links:{type:[String]}
+    links:{type:[String]},
     read:{type: Boolean, default:false},
     creationDate: {type: Date, required: false, default: Date.now()}
     //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
