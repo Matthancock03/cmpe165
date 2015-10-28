@@ -16,21 +16,35 @@ app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/bower_components'));
+app.set('view engine', 'jade');
 /**
  *  Initializes stormpath middleware. To run locally you will need to export the the api key and secret.
  */
 
 app.use(stormpath.init(app, {
-  application: {
-    href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW'
-  },
-  website: true,
-  web:{
-    register: {
-      autoLogin: true,
-      nextUri: '/stripeSetup'
+  client: {
+    apiKey:{
+      id: '1EYOLOT5PJNUA9B6FZ9G2Z7FE',//Needs to be removed before deployment
+      secret: "8n9nK0dy58U22PKUZFPrliUPtyN6nm2g4HaUPv27J/M" //Needs to be removed before deployment
     }
-  }
+  },
+  application: {
+    href: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW',
+  },
+  web: {
+    register: {
+      enabled: true,
+      view: __dirname + '/views/jade/log.jade',
+      nextUri: '/home',  // don't send them here
+    },
+    login: {
+      view: __dirname + '/views/jade/log.jade', //path.join(__dirname,'views','login.ejs') // Route used in documentation
+      nextUri: '/home',
+    }
+  },
+  baseUrl: "/",
+  website: true,
+  api: true
 }));
 
 //When you add a model, require it here as the name of model; make it a property of dbmodels.
@@ -42,10 +56,7 @@ dbmodels.Comment = require(__dirname + '/models/comment');
 dbmodels.User = require(__dirname + '/models/user');
 dbmodels.Application = require(__dirname + '/models/application');
 dbmodels.Contract = require(__dirname + '/models/Contract');
-/**
- *  Used to parse incoming url and determine appropriate model.
- *  Would be nice to just pull from model directory or an array in the future.
- */
+dbmodels.Mail = require(__dirname + '/models/mail');
 var retrieveModel = function(modelName, body)
 {
   for(property in dbmodels){//for each model
@@ -71,7 +82,9 @@ app.get("/profile", stormpath.loginRequired, function(req,res){
   //console.log("Current user email is: " + req.user.email);
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
-
+app.get("/update", stormpath.loginRequired, function(req,res){
+  res.status(200).sendFile(__dirname + '/views/updateProfile.html');
+});
 app.get("/jobs", function(req,res){
   res.status(200).sendFile(__dirname + '/views/joblist.html');
 })
@@ -83,7 +96,16 @@ app.get("/jobDisplay",stormpath.loginRequired, function(req,res){
 app.get("/create",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
-
+app.get("/", function(req,res){
+  if(req.user != undefined){
+    res.status(200).sendFile(__dirname + '/views/home.html');
+  }else{
+    res.status(200).sendFile(__dirname + '/views/login.html');
+  }
+});
+app.get("/inbox", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/inbox.html');
+})
 
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');

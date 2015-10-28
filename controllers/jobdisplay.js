@@ -1,4 +1,4 @@
-angular.module('myApp').controller('jobdisplay', function($scope, $location, $http, Job, Application, User) {
+angular.module('myApp').controller('jobdisplay', function($scope, $location, $http, Job, Application, User, Mail) {
     $scope.applied = false;
     if($location.search()._id != null) {
         console.log($location.search()._id);
@@ -43,14 +43,15 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
             //Need to know if you are the applicant
         }
         $scope.applications.sort(function(a,b){return a.ownerId.localeCompare(b.ownerId)});
-        User.query({}, function(users, err){
+        User.query({}, function(users, err){//change to search with in?
             var k = 0;
-            users.sort(function(a,b){a.email.localeCompare(b.email)})
+            users.sort(function(a,b){a.email.localeCompare(b.email)})//nlogn
             for(var i = 0; i < users.length && k < $scope.applications.length;){
-                if($scope.applications[k].ownerId != users[i].email) {
+                if($scope.applications[k].ownerId != users[i].email) {//nlogn
                     i++;
                 }
                 else {
+                    applications[k].sent = userjob.applicantIdsToSign.binaryIndexOf(applications[k].ownerId) >= 0//item found O(nlogn)total runtime for n occurances.
                     $scope.applications[k].name = users[i].firstName + " " + users[i].lastName;;
                     k++;
                 }//Both sorted, so like filtering in values with mergesort(?)
@@ -59,18 +60,55 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
             }
         });
 
-        //Any better way to do this? This works, but it's not very efficient for cloud use because
-        // each query occurs individually and it searches the entire db because it uses query meaning n * a operations on server end
-        // Maybe take entire user table and sort and cross reference? Not like users couldn't do it anyways
-        //Got it! populate with mongoose. will do later.
-        //Won't work easily. no easy way to populate
-
 
     });
-    $scope.acceptApplication = function(){
-        //For now, this is going to instantly deposit payment. We don't have a way to get users to respond to contracts easily due to lack of an inbox.
+    function binaryIndexOf(searchElement) {
+        'use strict';
+
+        var minIndex = 0;
+        var maxIndex = this.length - 1;
+        var currentIndex;
+        var currentElement;
+        var resultIndex;
+
+        while (minIndex <= maxIndex) {
+            resultIndex = currentIndex = (minIndex + maxIndex) / 2 | 0;
+            currentElement = this[currentIndex];
+
+            if (currentElement < searchElement) {
+                minIndex = currentIndex + 1;
+            }
+            else if (currentElement > searchElement) {
+                maxIndex = currentIndex - 1;
+            }
+            else {
+                return currentIndex;
+            }
+        }
+
+        return ~maxIndex;
+    }
+
+    Array.prototype.binaryIndexOf = binaryIndexOf;
+    $scope.acceptApplication = function(app){
         //Complete either way.
-        window.location.href = "/create?_id="+$scope.userjob._id
+        index = userjob.applicantIdsToSign.binaryIndexOf(app.ownerId)
+        if(index < 0) {
+            //userjob.applicantIdsToSign.splice(-index, 0, app.ownerId)//O(n); avoiding n^2 for any one operation is for the best.
+            userjob.applicantIdsToSign.push(app.ownerId);//doing this for now because not sure about negative index
+            userjob.applicantIdsToSign.sort();
+
+            userjob.update();
+            var m = new Mail();
+            m.ownerId = app.ownerId;
+            m.senderId = userjob.ownerId;
+            m.body = "Here's a link to your application!"
+            m.links = ["/Contract?_id="+userjob._id];
+            app.sent=true;
+        }
+        else{
+            alert("How did you get here?");
+        }
     }
 
     //Need to know if you are the applicant or the owner
