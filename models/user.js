@@ -4,9 +4,9 @@ var User = db.model('User', {
   email: {type: String, required: true, unique: true},
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
-  customerId: {type: String, required: true},
-  ownerId: {type: String},//will be the same as _id; important to allow modifications of the user table without rewriting functions
-  //This will be email here. id = email
+  customerId: {type: String},
+  ownerId: {type: String},
+  //This will be email here. ids are made by emails.
   img: { data: Buffer, contentType: String},
   about: {type: String},
   skills: {type: [String]},

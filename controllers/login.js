@@ -47,7 +47,6 @@
 
   angular.module('myApp').controller('Signup', function($http, $location, User){
     this.user = new User();
-    this.passwordVerfication = "Rachael69";
 
 
     this.submitSignup = function(user, passwordVerification){

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- An early version of the application part of a job display
+    that was going to be used with NG-include. Made things too messy,
+    so it was inserted directly into jobDisplay instead.
+    -->
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row panel panel-default" ng-repeat="app in applications">
+    <div class="col-md-2"><h2>{{app.name}}</h2></div>
+    <div class="col-md-10"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
+</div>
+</body>
+</html>

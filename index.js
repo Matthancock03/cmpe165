@@ -4,11 +4,8 @@ var bodyParser = require('body-parser');
 
 //When you add a model, require it, then return it when the model name matches the actual model name
 //Make sure to put the same model name in MyApp or it won't work!
-var Job = require(__dirname +'/models/job');
-var Comment = require(__dirname + '/models/comment');
-var User = require(__dirname + '/models/user');
-var Application = require(__dirname + '/models/application');
-var Contract = require(__dirname + '/models/Contract');
+
+
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -36,33 +33,26 @@ app.use(stormpath.init(app, {
   }
 }));
 
+//When you add a model, require it here as the name of model; make it a property of dbmodels.
+//Make sure to put the same model name in MyApp including capitalization. or it won't work!
 
+var dbmodels = {};
+dbmodels.Job = require(__dirname +'/models/job');
+dbmodels.Comment = require(__dirname + '/models/comment');
+dbmodels.User = require(__dirname + '/models/user');
+dbmodels.Application = require(__dirname + '/models/application');
+dbmodels.Contract = require(__dirname + '/models/Contract');
 /**
  *  Used to parse incoming url and determine appropriate model.
  *  Would be nice to just pull from model directory or an array in the future.
  */
 var retrieveModel = function(modelName, body)
 {
-  if(modelName == "Job") {
-    return Job
+  for(property in dbmodels){//for each model
+    if(modelName == property)//if model's name from parameter is the same as the name of the model
+      return dbmodels[property];//return the model
   }
-  else if(modelName == "User") {
-    return User
-  }
-  else if(modelName == "Comment") {
-    return Comment
-  }
-  else if(modelName == "Application") {
-    return Application
-  }
-  else if(modelName == "Contract") {
-    return Contract
-  }
-  else//invalid db request.
-  {
-    return null;
-  }
-
+  return null // model not found
 }
 
 
