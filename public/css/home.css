@@ -5,7 +5,7 @@ height: 100%;
 .bannerImage{
 width: 100%;
 height: 300px;
-margin-top: -20px;
+margin-top: 35px;
 }
 
 .redText{
@@ -15,6 +15,16 @@ margin-top: -20px;
 #searchDiv{
   width: 50%;
   height: 150px;
+  background-color: rgba(10, 10, 10, 0.72);
+  border-radius: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 15px, 15px, 15px, 15px;
+}
+
+#createDiv{
+  width: 50%;
+  height: 100px;
   background-color: rgba(10, 10, 10, 0.72);
   border-radius: 25px;
   margin-top: 25px;
@@ -41,7 +51,9 @@ font-weight: bold;
 font-style: italic;
 font-size: 50px;
 }
-
+#createButton{
+  width: 50%;
+}
 .inputBoxes{
   margin-top: 5px;
   width: 85%;

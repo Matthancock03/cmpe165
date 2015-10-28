@@ -5,13 +5,13 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <link href="css/profile.css" rel="stylesheet">
   </head>
-  <body class='black'>
+  <body>
     <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
 
-    <div class="container-fluid" style="height: 100%;">
+    <div class="container-fluid mainDiv" style="height: 100%;">
 
       <div class="col-xs-2"></div>
       <div class="col-xs-8">
@@ -19,13 +19,14 @@
         <ul class="list-group">
           <li class="list-group-item">
             <strong>About Me:</strong><br>
-            {{about}}
+            {{user.about}}
           </li>
           <li class="list-group-item">
             <strong>Skills:</strong>
             <ul>
-              <li ng-repeat="skill in skills">
-                {{skill}}
+            <!--  <li ng-repeat="skill in user.skills"> -->
+              <li>
+                {{user.skills}}
               </li>
             </ul>
           </li>
@@ -34,6 +35,11 @@
 
           </li>
         </ul>
+        <div ng-show="isUser">
+          <button type="button" ng-click="editProfile()" class="btn btn-success">
+            Edit Profile
+          </button>
+        </div>
       </div>
       <div class="col-xs-2"></div>
     </div>

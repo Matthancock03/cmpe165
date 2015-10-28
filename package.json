@@ -8,10 +8,11 @@
     "domready": "^1.0.8",
     "express": "^4.13.3",
     "express-stormpath": "^2.0.4",
+    "jade": "^1.11.0",
     "mongoose": "^4.1.8",
-    "stripe": "*",
     "querystring": "*",
-    "request": "*"
+    "request": "*",
+    "stripe": "*"
   },
   "engines": {
     "node": "0.10.x"

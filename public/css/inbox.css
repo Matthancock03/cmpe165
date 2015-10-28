@@ -1,0 +1,27 @@
+html, body{
+height: 100%;
+}
+
+.black {
+background-color: black;
+height: 100%;
+}
+
+.full {
+  height: 100%;
+}
+.mainDiv{
+  margin-top: 50px;
+}
+.btnDiv{
+  display: inline-block !important;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 48% !important;
+}
+h1{
+  font-size: 50px;
+  text-align: center;
+  font-family: Lato;
+  color: #a31111;
+}
