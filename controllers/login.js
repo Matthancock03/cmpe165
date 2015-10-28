@@ -66,8 +66,8 @@
         "email": user.email.toLowerCase(),
         "password": user.password}
       }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
-          console.log("Stormpath sucessful");
-        console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName +  " Password: " + user.password + " Verification: " + passwordVerification);
+        console.log("Stormpath sucessful");
+        //console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName +  " Password: " + user.password + " Verification: " + passwordVerification);
         user.$save(function(){
           console.log("User saved :");
           for(property in user){

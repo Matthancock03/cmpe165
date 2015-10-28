@@ -13,10 +13,10 @@ var isFunction = function (fn) {
 var arePropertyDescriptorsSupported = function () {
 	var obj = {};
 	try {
-		Object.defineProperty(obj, 'x', { value: obj, enumerable: false });
-        /* eslint-disable no-unused-vars */
+		Object.defineProperty(obj, 'x', { enumerable: false, value: obj });
+        /* eslint-disable no-unused-vars, no-restricted-syntax */
         for (var _ in obj) { return false; }
-        /* eslint-enable no-unused-vars */
+        /* eslint-enable no-unused-vars, no-restricted-syntax */
 		return obj.x === obj;
 	} catch (e) { /* this is IE 8. */
 		return false;
@@ -32,8 +32,8 @@ var defineProperty = function (object, name, value, predicate) {
 		Object.defineProperty(object, name, {
 			configurable: true,
 			enumerable: false,
-			writable: true,
-			value: value
+			value: value,
+			writable: true
 		});
 	} else {
 		object[name] = value;
