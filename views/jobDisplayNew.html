@@ -22,9 +22,9 @@
 
 <body>
 
-<div class="container-fluid full">
+<div class="container-fluid full" >
     <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
-    <div class="row clearfix full">
+    <div class="row clearfix full" style="margin-top:20px">
 
 
             <h1 class="test/css">Job Detail</h1>
@@ -57,8 +57,8 @@
                 <div class="col-md-2"><h2>{{app.name}}</h2></div>
                 <div class="col-md-8"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
                 <div class="col-md-2">
-                <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-click="acceptApplication(app)" type="submit">
-                    Accept Application
+                <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-disabled="app.sent" ng-click="acceptApplication(app)" type="submit">
+                    Send Contract
                 </button>
                 </div>
             </div>

@@ -11,8 +11,9 @@ module.exports = db.model("Job", {
   time: {type: Date, required: true},
   location: {type: String, required: true},
   signerId: {type: String, required: false},
-  paymentNumber: {type: Number, required: false, default: 0}
-
+  paymentNumber: {type: Number, required: false, default: 0},
+  applicantIdsToSign:{type: [String], default: []}//To sign, do a layered search because Job owners can't modify applications.
+  // will place actual signing in application model that the employee can modify.
   //Hm. best way to do it? Application model instead of an array. users create them and see them, employer sees them.
   //need new model
   //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}

@@ -4,11 +4,8 @@ var bodyParser = require('body-parser');
 
 //When you add a model, require it, then return it when the model name matches the actual model name
 //Make sure to put the same model name in MyApp or it won't work!
-var Job = require(__dirname +'/models/job');
-var Comment = require(__dirname + '/models/comment');
-var User = require(__dirname + '/models/user');
-var Application = require(__dirname + '/models/application');
-var Contract = require(__dirname + '/models/Contract');
+
+
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -50,32 +47,23 @@ app.use(stormpath.init(app, {
   api: true
 }));
 
-/**
- *  Used to parse incoming url and determine appropriate model.
- *  Would be nice to just pull from model directory or an array in the future.
- */
+//When you add a model, require it here as the name of model; make it a property of dbmodels.
+//Make sure to put the same model name in MyApp including capitalization. or it won't work!
+
+var dbmodels = {};
+dbmodels.Job = require(__dirname +'/models/job');
+dbmodels.Comment = require(__dirname + '/models/comment');
+dbmodels.User = require(__dirname + '/models/user');
+dbmodels.Application = require(__dirname + '/models/application');
+dbmodels.Contract = require(__dirname + '/models/Contract');
+dbmodels.Mail = require(__dirname + '/models/mail');
 var retrieveModel = function(modelName, body)
 {
-  if(modelName == "Job") {
-    return Job
+  for(property in dbmodels){//for each model
+    if(modelName == property)//if model's name from parameter is the same as the name of the model
+      return dbmodels[property];//return the model
   }
-  else if(modelName == "User") {
-    return User
-  }
-  else if(modelName == "Comment") {
-    return Comment
-  }
-  else if(modelName == "Application") {
-    return Application
-  }
-  else if(modelName == "Contract") {
-    return Contract
-  }
-  else//invalid db request.
-  {
-    return null;
-  }
-
+  return null // model not found
 }
 
 
@@ -83,13 +71,10 @@ var retrieveModel = function(modelName, body)
  *   Routes
  */
 app.get("/", function(req,res){
-  if(req.user != undefined){
-    res.status(200).sendFile(__dirname + '/views/home.html');
-  }else{
   res.status(200).sendFile(__dirname + '/views/login.html');
-  }
 });
 
+<<<<<<< HEAD
 
 app.get("/currentUser", function(req,res){
   if(req.user == undefined){
@@ -99,35 +84,45 @@ app.get("/currentUser", function(req,res){
   }
   });
 
+=======
+>>>>>>> John's-additions
 app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
 
-app.get("/profile", function(req,res){
+app.get("/profile", stormpath.loginRequired, function(req,res){
   //console.log("Current user email is: " + req.user.email);
   res.status(200).sendFile(__dirname + '/views/userProfile.html');
 });
-
-app.get("/jobs", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/joblist.html');
-});
-
 app.get("/update", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/updateProfile.html');
 });
+app.get("/jobs", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/joblist.html');
+})
 
 app.get("/jobDisplay",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobDisplayNew.html');
-});
+})
 
 app.get("/create", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
+})
+app.get("/", function(req,res){
+  if(req.user != undefined){
+    res.status(200).sendFile(__dirname + '/views/home.html');
+  }else{
+    res.status(200).sendFile(__dirname + '/views/login.html');
+  }
 });
+<<<<<<< HEAD
 
 app.get("/inbox", stormpath.loginRequired, function(req,res){
+=======
+app.get("/inbox", function(req,res){
+>>>>>>> John's-additions
   res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
-
 
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');
@@ -153,18 +148,16 @@ app.post("/api/:_model", function(req,res){//Really want to include login req he
     res.json(201, job);
   })
 });
-
 app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   console.log("In Put!")
   var ret_model = retrieveModel(req.params._model);
-  console.log(req.body);
+  console.log(req.user.email);
   if(ret_model == null)
   {
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.update(writePermissions({_id : req.params._id}, req.user.email), req.body, function(err, numAffected){
-    console.log(numAffected)
+  ret_model.update(writePermissions({_id : req.params._id},req.user.email), req.body, function(err, numAffected){
     if(err){console.log(err)}
     console.log("In Put callback!")
   });
@@ -214,6 +207,8 @@ app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   });
 
 app.get("/api/:_model", function(req,res){
+  console.log("Email: " + req.query);
+  console.log(req.params._model);
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
@@ -226,7 +221,7 @@ app.get("/api/:_model", function(req,res){
     if(err){
       console.log(err);
       };
-
+    console.log(element);
     res.json(element);
   });
 });

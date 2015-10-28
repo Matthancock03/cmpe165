@@ -1,11 +1,5 @@
 angular.module('myApp').controller('Home', function($location, $http, $scope, User){
-  $http({
-  method: 'GET',
-  url: '/currentUser',
-  headers:{
-    "Accept" : "application/json"
-  }
-  }).then(function successCallback(response) {
+  $http.get('/currentUser').then(function successCallback(response) {
     console.log("Current User call sucessful!");
     console.log("Email: " + response.data.email);
     if(response.data.email == undefined){
