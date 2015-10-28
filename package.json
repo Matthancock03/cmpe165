@@ -6,6 +6,9 @@
   "dependencies": {
     "body-parser": "^1.14.0",
     "domready": "^1.0.8",
+    "ejs": "^2.3.4",
+    "email-templates": "^2.0.1",
+    "nodemailer":"^1.8.0",
     "express": "^4.13.3",
     "express-stormpath": "^2.0.4",
     "jade": "^1.11.0",
