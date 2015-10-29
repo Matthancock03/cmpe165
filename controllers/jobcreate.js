@@ -13,6 +13,7 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
     };
     if($location.search()._id != null) {
         console.log($location.search()._id);
+
         $scope.master = Job.get({'_id' : $location.search()._id}, function(){
             $scope.master.time = new Date($scope.master.time);
             $scope.reset();
@@ -49,6 +50,13 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             console.log($scope.userjob);
         }
     }
+
+
+     if($location.search()._id != null) {
+        $scope.master.remove();
+
+     }
+
 
 
 
