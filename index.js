@@ -74,8 +74,6 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-<<<<<<< HEAD
-
 app.get("/currentUser", function(req,res){
   if(req.user == undefined){
     res.status(200).send({loggedIn: false});
@@ -84,8 +82,7 @@ app.get("/currentUser", function(req,res){
   }
   });
 
-=======
->>>>>>> John's-additions
+
 app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
@@ -115,12 +112,8 @@ app.get("/", function(req,res){
     res.status(200).sendFile(__dirname + '/views/login.html');
   }
 });
-<<<<<<< HEAD
 
 app.get("/inbox", stormpath.loginRequired, function(req,res){
-=======
-app.get("/inbox", function(req,res){
->>>>>>> John's-additions
   res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
 
@@ -225,9 +218,8 @@ app.get("/api/:_model", function(req,res){
     res.json(element);
   });
 });
+
 app.post("/payments", stormpath.loginRequired, function(req, res) {
-
-
   Application.findOne({_id : applicationId}, function (err1, application) {
     User.findOne({ownerId: application.ownerId}, function (err2, user) {
       if(user.customerId == null)
@@ -267,9 +259,7 @@ app.get('/authorize', stormpath.loginRequired, function(req, res) {
 });
 
 app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
-
   var code = req.query.code;
-
   // Make /oauth/token endpoint POST request
   request.post({
     url: TOKEN_URI,

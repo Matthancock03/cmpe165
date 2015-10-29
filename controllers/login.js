@@ -51,29 +51,7 @@
     console.log()
     this.submitSignup = function(user, passwordVerification){
       user.ownerId = user.email;
-<<<<<<< HEAD
-
-      $http({
-      method: 'POST',
-      url: '/register',
-      headers: {
-        "Accept" : "application/json"
-      },
-      data: {
-        "givenName": user.firstName.toLowerCase(),
-        "surname":   user.lastName.toLowerCase(),
-        //"username": "Matth03",
-        "email": user.email.toLowerCase(),
-        "password": user.password}
-      }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
-        console.log("Stormpath sucessful");
-        //console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName +  " Password: " + user.password + " Verification: " + passwordVerification);
-        user.$save(function(){
-          console.log("User saved :");
-          for(property in user){
-            console.log(property + " " + user[property]);
-          }//Ooh. this'll be useful later. I can make the connection of models to the REST API really simple with this.
-=======
+      
       console.log()
       if(user.password == passwordVerification) {
         $http({
@@ -101,7 +79,6 @@
           window.location = "home";
         }, function errorCallback(response) {
           alert(response.data.error);
->>>>>>> John's-additions
         });
       }
       else
