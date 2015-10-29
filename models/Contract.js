@@ -1,6 +1,7 @@
 /**
  * Created by johnfranklin on 10/16/15.
  */
+var db = require('../database');
 module.exports = db.model("Contract", {
     jobID: {type: String, required: true},
     TOAgreement: {type: String, required: true},
