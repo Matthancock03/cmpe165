@@ -74,7 +74,7 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 app.get("/currentUser", function(req,res){
   if(req.user == undefined){
@@ -84,8 +84,8 @@ app.get("/currentUser", function(req,res){
   }
   });
 
-=======
->>>>>>> John's-additions
+//=======
+//>>>>>>> John's-additions
 app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
@@ -115,12 +115,12 @@ app.get("/", function(req,res){
     res.status(200).sendFile(__dirname + '/views/login.html');
   }
 });
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 app.get("/inbox", stormpath.loginRequired, function(req,res){
-=======
+//=======
 app.get("/inbox", function(req,res){
->>>>>>> John's-additions
+//>>>>>>> John's-additions
   res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
 
@@ -314,4 +314,4 @@ app.get("/api/:_model/:_id", function(req,res){
 app.on('stormpath.ready', function() {
   app.listen(process.env.PORT || 9000);
   console.log("Starting server...");
-});
+});})
