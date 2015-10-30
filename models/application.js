@@ -3,7 +3,7 @@
  */
 var db = require('../database');
 //A class to allow users to create additions to Jobs without giving them permission to modify. neater this way.
-module.exports = db.model("Application", {jobId:{type: String, required:true},
+var q = new db.Schema({jobId:{type: String, required:true},
     viewableIds:{type: [String], required:true},
     creationDate: {type: Date, required: false, default: Date.now()},
     //Use this array in any model when you need to limit people who can view things.
@@ -11,3 +11,5 @@ module.exports = db.model("Application", {jobId:{type: String, required:true},
     // if undefined, system will assume anyone can view.
     ownerId:{type: String, required:false}//This tag will provide modification limitation; defined on server end.
 })
+
+module.exports = db.model("Application", q)

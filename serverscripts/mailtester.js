@@ -4,7 +4,7 @@
 /**
  * tester for manbir's mail method with mock data.
  */
-driver = require("./manbirsmail");
+driver = require("./sendMail");
 email1 = {};
 email1._id = "???"
 email1.ownerId = "johnfranklin42@gmail.com";//The email to send to. NOT THE EMAIL OF THE SENDER!

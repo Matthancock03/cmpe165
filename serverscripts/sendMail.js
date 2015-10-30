@@ -19,11 +19,6 @@ q.manbirMail = function(email) {
 
 
     //console.log('%s has been saved', email._id);
-    email.body;//the body of the email.
-    email.title;//the title
-    email.ownerId;//The email to send to. NOT THE EMAIL OF THE SENDER!
-    email.senderId;//email sent from. the id of the sender technically.
-    email.links;//the links of the email. included because angularJS will probably sanitize the information which will remove links or at least the ability for links to function.
     //hm. problem. what if they use a local link?
     //won't go to the same place that it would from the website.
     //Manbir's code here. use whatever nodeMail stuff you need here; even if you can't get it working, the document store will still give us enough to work with on our end in the meantime.
@@ -49,7 +44,7 @@ q.manbirMail = function(email) {
     var mailOptions = {
         from: 'stagehandinfo <stagehandinfo@gmail.com>', // sender address has to be same as authentication email
         to: email.ownerId, // list of receivers
-        subject: email.title, // Subject line
+        subject: "'" + email.title + "' from" + email.senderId, // Subject line
         text: email.body + "\n" + plaintext, // plaintext body
     };
 
