@@ -6,7 +6,7 @@ var User = db.model('User', {
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   customerId: {type: String},
-  ownerId: {type: String},//will be the same as _id; important to allow modifications of the user table without rewriting functions
+  ownerId: {type: String},//will be the same as email; important to allow modifications of the user table without rewriting functions
   //This will be email here. id = email
   img: { data: Buffer, contentType: String},
   about: {type: String},

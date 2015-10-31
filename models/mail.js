@@ -2,7 +2,7 @@
  * Created by johnfranklin on 10/16/15.
  */
 var db = require('../database');
-var test = require("../manbirsmail")
+var test = require("../serverscripts/sendMail")
 var schema = new db.Schema({
     ownerId:{type: String, required:true},//=recipient, not maker. need to do it this way so users can mark as read.
     body:{type: String},

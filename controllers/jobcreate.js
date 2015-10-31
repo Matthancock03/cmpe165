@@ -64,8 +64,4 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
         }
     }
 
-
-     if($location.search()._id != null) {
-        $scope.master.remove();
-     }
 });
