@@ -49,7 +49,7 @@ app.use(stormpath.init(app, {
 
 //When you add a model, require it here as the name of model; make it a property of dbmodels.
 //Make sure to put the same model name in MyApp including capitalization. or it won't work!
-
+db = require(__dirname +'/database');
 var dbmodels = {};
 dbmodels.Job = require(__dirname +'/models/job');
 dbmodels.Comment = require(__dirname + '/models/comment');
@@ -211,7 +211,10 @@ app.get("/api/:_model", function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
-
+  if(req.query._id != null)
+    if(req.query._id.$in != null)
+      for(var i = 0; i < req.query._id.$in.length; i++)
+        req.query._id.$in[i] = new db.Schema.ObjectId(req.query._id.$in[i]);
   ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
 
     if(err){
