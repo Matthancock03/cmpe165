@@ -4,6 +4,7 @@ var app = angular.module('myApp',['ngRoute', 'ngResource']).config(function($loc
         requireBase: false
     });
 });
+
 //Liberated from stackExchange. Annoying problem that isn't the focus of this course.
 // http://stackoverflow.com/questions/23927695/angularjs-currency-formatting-in-input-box
 app.directive('currencyFormatter', ['$filter', function ($filter) {

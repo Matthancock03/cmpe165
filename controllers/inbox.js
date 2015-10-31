@@ -19,5 +19,5 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, U
     console.log("Current User error: " + response.error);
   });
 
-  
+
 });

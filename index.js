@@ -34,12 +34,13 @@ app.use(stormpath.init(app, {
   web: {
     register: {
       enabled: true,
+      autoLogin: true,
       view: __dirname + '/views/jade/log.jade',
-      nextUri: '/home',  // don't send them here
+      nextUri: '/',
     },
     login: {
       view: __dirname + '/views/jade/log.jade', //path.join(__dirname,'views','login.ejs') // Route used in documentation
-      nextUri: '/home',
+      nextUri: '/',
     }
   },
   baseUrl: "/",
@@ -57,6 +58,7 @@ dbmodels.User = require(__dirname + '/models/user');
 dbmodels.Application = require(__dirname + '/models/application');
 dbmodels.Contract = require(__dirname + '/models/Contract');
 dbmodels.Mail = require(__dirname + '/models/mail');
+
 var retrieveModel = function(modelName, body)
 {
   for(property in dbmodels){//for each model
@@ -70,20 +72,22 @@ var retrieveModel = function(modelName, body)
 /**
  *   Routes
  */
-app.get("/", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/login.html');
-});
 
 app.get("/currentUser", function(req,res){
   if(req.user == undefined){
     res.status(200).send({loggedIn: false});
   }else{
-    res.status(200).send(req.user);
+    dbmodels.User.findOne(viewPermissions({_id : req.user.email},req.user.email), function(err, user){
+      if(err){console.log(err)};
+      console.log("User: " + user);
+      res.status(200).send(user);
+    });
+    //res.status(200).send(req.user);
   }
   });
 
 
-app.get("/home", function(req,res){
+app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
 
@@ -105,7 +109,7 @@ app.get("/jobDisplay",stormpath.loginRequired, function(req,res){
 app.get("/create", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
-app.get("/", function(req,res){
+app.get("/login", function(req,res){
   if(req.user != undefined){
     res.status(200).sendFile(__dirname + '/views/home.html');
   }else{
@@ -223,12 +227,10 @@ app.get("/api/:_model", function(req,res){
 });
 
 app.post("/payments", stormpath.loginRequired, function(req, res) {
-  Application.findOne({_id : applicationId}, function (err1, application) {
-    User.findOne({ownerId: application.ownerId}, function (err2, user) {
 
-    dbmodels.Application.findOne({_id : req.query.applicationId}, function (err1, application) {
+
+  dbmodels.Application.findOne({_id : req.query.applicationId}, function (err1, application) {
     dbmodels.User.findOne({ownerId: application.ownerId}, function (err2, user) {
-
       if(user.customerId == null)
         return;
 
@@ -250,6 +252,7 @@ app.post("/payments", stormpath.loginRequired, function(req, res) {
     });// To
   });
 });
+
 var TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 var AUTHORIZE_URI = 'https://connect.stripe.com/oauth/authorize';
 
