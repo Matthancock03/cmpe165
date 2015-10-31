@@ -211,7 +211,7 @@ app.get("/api/:_model", function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
-
+  job = new ret_model(req.body);
   ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
 
     if(err){
@@ -225,10 +225,14 @@ app.get("/api/:_model", function(req,res){
 app.post("/payments", stormpath.loginRequired, function(req, res) {
   Application.findOne({_id : applicationId}, function (err1, application) {
     User.findOne({ownerId: application.ownerId}, function (err2, user) {
+
+    dbmodels.Application.findOne({_id : req.query.applicationId}, function (err1, application) {
+    dbmodels.User.findOne({ownerId: application.ownerId}, function (err2, user) {
+
       if(user.customerId == null)
         return;
 
-      Job.findOne({_id: application.jobId}, function (err3, job) {
+      dbmodels.Job.findOne({_id: application.jobId}, function (err3, job) {
         if(job.ownerId != req.user.email)
           return;//
         stripe.charges.create({
@@ -239,8 +243,9 @@ app.post("/payments", stormpath.loginRequired, function(req, res) {
           description: job.description
         }, {stripe_account: user.customerId}, function (err, charge) {
           // asynchronously called
-          job.paymentnumber++;
+
         });
+        job.paymentnumber++;
       });
     });// To
   });
@@ -270,14 +275,17 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
       grant_type: 'authorization_code',
       client_id: 'ca_7ELzHCsxpLq49g5HbpDtxFHCi3jJGfFk',
       code: code,
-      client_secret: 'pk_test_8DDyr5McQXrTdEa4mviz3Fq6'
+      client_secret: 'sk_test_1q9nLen2GaP2Q6Z2o5jpzM97'
     }
   }, function(err, r, body) {
 
     var obj = JSON.parse(body)
-
+    console.log(req.user.email);
+    console.log(body);
+    //console.log(body);
     // Do something with your accessToken
-    User.findOne({email: req.user.email}, function(err, user){
+    dbmodels.User.findOne({email: req.user.email}, function(err, user){
+      console.log(user);
       user.customerId = obj.stripe_user_id;
       user.save();
     })

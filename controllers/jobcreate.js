@@ -63,9 +63,12 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             window.location.href = "/home";
         }
     }
+<<<<<<< HEAD
 
 
      if($location.search()._id != null) {
         $scope.master.remove();
      }
+=======
+>>>>>>> John's-additions
 });
