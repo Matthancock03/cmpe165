@@ -255,6 +255,8 @@ app.post("/payments", stormpath.loginRequired, function(req, res) {
     });// To
   });
 });
+});
+});
 var TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 var AUTHORIZE_URI = 'https://connect.stripe.com/oauth/authorize';
 
