@@ -53,7 +53,10 @@
     this.submitSignup = function(user, passwordVerification){
       console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName +  " Password: " + user.password + " Verification: " + passwordVerification);
       user.$save(function(){
-        console.log("User saved");
+        console.log("User saved :");
+        for(property in user){
+          console.log(property + " " + user[property]);
+        }
       });
 
       $http({

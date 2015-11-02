@@ -10,10 +10,10 @@
 <body>
 <div ng-app="myApp" ng-controller="joblist" style="padding-left:10px; padding-right:10px">
 <h1>Jobs near you</h1>
+<div class="col-xs-2 mainDivs black">
+  <ng-include src="'templates/sideBar.html'"  onload=""  autoscroll=""></ng-include>
+</div>
 <div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs">
-  <div class="col-xs-2 mainDivs black">
-    <ng-include src="'templates/sideBar.html'"  onload=""  autoscroll=""></ng-include>
-  </div>
     <div class="col-xs-2">
         <h4>{{job.title}}</h4>
     </div>
@@ -32,8 +32,8 @@
         </button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
     <script src="myApp.js"></script>
     <script src="joblist.js"></script>
 </div>
