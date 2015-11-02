@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- NAVBAR
     =================== -->
     <div class="navbar-wrapper">
@@ -145,3 +146,86 @@
       </footer>
 
     </div><!-- /.container -->
+=======
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="jobdisplay">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{userjob.title}}</title>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/jobs.css" rel="stylesheet">
+
+    <title>Table Properties</title>
+    <style type="text/css">
+      h1 {
+        color: maroon;
+        text-align: center;
+      }
+      body {
+        background-color: linen;
+        font-family: Arial, Verdana, sans-serif;
+        color: #111;
+      }
+      table {
+        width: 600px;
+      }
+      th,
+      td {
+        padding: 7px 10px 10px;
+      }
+      th {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 90%;
+        border-bottom: 2px solid #111;
+        border-top: 1px solid #999;
+        text-align: left;
+      }
+      tr.even {
+        background-color: #efefef;
+      }
+      tr:hover {
+        background-color: #c3e6e5;
+      }
+      .money {
+        text-align: right;
+      }
+    </style>
+
+  </head>
+
+  <body>
+  <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+
+  <div class="container-fluid full">
+      <div class="row clearfix full">
+        <div class="col-xs-2 mainDivs black">
+          <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+        </div>
+        <div class="col-xs-10 full">
+          <h2>{{userjob.title}}</h2>
+          <ul>
+            <li>{{userjob.description}}</li>
+          </ul>
+
+          <button class="btn btn-success btn-lg btn-block" ng-click="apply()" type="submit">
+            Apply
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.min.js"></script>
+    <script src="stormpath-sdk-angularjs/dist/stormpath-sdk-angularjs.tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+    <script src="myApp.js"></script>
+    <script src="jobdisplay.js"></script>
+  </body>
+
+</html>
+>>>>>>> 12f722e9be26ed33e9a2e009771baf51ff35efc0

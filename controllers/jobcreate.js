@@ -4,6 +4,7 @@
 
 //var app = angular.module('myApp',['ngRoute', 'angoose.client']);
 angular.module('myApp').controller('jobcreate', function($scope, $location, Job){
+
     console.log("This is running!");
     console.log($location);
     console.log($location.search()._id);
@@ -12,7 +13,9 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
         console.log($scope.userjob);
     };
     if($location.search()._id != null) {
+        $scope.cancelText = "Delete Job";
         console.log($location.search()._id);
+
         $scope.master = Job.get({'_id' : $location.search()._id}, function(){
             $scope.master.time = new Date($scope.master.time);
             $scope.reset();
@@ -20,6 +23,7 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
         $scope.submit = function() {
             if ($scope.userjob.signature == null) {
                 $scope.userjob.$update()
+                console.log("In submit?")
                 window.location.href = "/jobdisplay?_id=" + $scope.userjob._id;
             }
             else
@@ -29,12 +33,18 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
 
 
         }
+        $scope.delete = function()
+        {
+            $scope.userjob.$delete();
+            window.location.href = "/home";
+        }
+
     }
     if($scope.master == null)
     {
+        $scope.cancelText = "Cancel";
         var d = new Date().setSeconds(0,0);
         $scope.master = {
-            userID: "???",//What are we doing for this?
             title: "",
             description: "",
             time: new Date(d),
@@ -48,10 +58,10 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             })
             console.log($scope.userjob);
         }
+        $scope.delete = function()
+        {
+            window.location.href = "/home";
+        }
     }
-
-
-
-
 
 });

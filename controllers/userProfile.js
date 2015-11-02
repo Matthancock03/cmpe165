@@ -1,11 +1,17 @@
-angular.module('myApp').controller('UserController', function($location, User){
-      this.userProfile;
-      this.firstName = "Matt";
-      this.lastName = "Hancock";
-      this.about = "Pretty much a boss at life. I can do whatever it is that you need."
-      this.skills = ['Being a Boss', 'Doing My Thing', 'Getting Paper'];
+angular.module('myApp').controller('UserController', function($location, $http, $scope, User){
 
-      var user = User.get({_id: 'matthancock03@gmail.com'}, function(){
-          console.log(user.firstName);
+      $scope.user = {};
+      $scope.isUser = ($location.search().isUser == 'true')? true : false ;
+      User.query({email: $location.search().email}, function(users, user){
+
+      if(users.length == 1)// only one element
+            $scope.user = users[0];
+      else{}
+            console.log(users);
+      console.log(users.length);
       });
+
+      $scope.editProfile = function(){
+        window.location.assign("update");
+      };
 });

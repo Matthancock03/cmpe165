@@ -1,7 +1,8 @@
 var db = require('../database');
-
-module.exports = db.model("Job", {
-  userID: {type: String, required: true},
+var q = require('../serverscripts/postToMailModel')
+schema = new db.Schema({
+  ownerId:{type: String, required:false},
+  modifiable:{type: Boolean, default: true},
   title: {type: String, required: true},
   description: {type: String, required: false},
   tags: {type: [String]},
@@ -9,8 +10,15 @@ module.exports = db.model("Job", {
   wages: {type: Number, required: true},
   time: {type: Date, required: true},
   location: {type: String, required: true},
-  contractSigned: {type: Boolean, default: false},
-  signerId: {type: String, required: false}
-  //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
-  //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
-});
+  signerId: {type: String, required: false},
+  paymentNumber: {type: Number, required: false, default: 0},
+  applicantIdsToSign:{type: [String], default: []}
+    //To sign, do a layered search because Job owners can't modify applications.
+    // will place actual signing in application model that the employee can modify.
+    //Hm. best way to do it? Application model instead of an array. users create them and see them, employer sees them.
+    //need new model
+    //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
+    //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    });
+schema.post("update", q.jobUpdateMail);
+module.exports = db.model("Job", schema);

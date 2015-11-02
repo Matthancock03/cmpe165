@@ -7,9 +7,9 @@ angular.module('myApp').controller('joblist', function($scope, Job){
     $scope.jobs = Job.query(function() {
         console.log($scope.jobs);
     });
-    $scope.toDisplay = function(_id)
+    $scope.toDisplay = function(job)
     {
-        window.location.href = "/jobdisplay?_id="+_id;
+        window.location.href = "/jobdisplay?_id="+job._id;
     }
 
     console.log($scope.jobs);
