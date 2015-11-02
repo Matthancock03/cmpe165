@@ -49,7 +49,7 @@ app.use(stormpath.init(app, {
 
 //When you add a model, require it here as the name of model; make it a property of dbmodels.
 //Make sure to put the same model name in MyApp including capitalization. or it won't work!
-
+db = require(__dirname +'/database');
 var dbmodels = {};
 dbmodels.Job = require(__dirname +'/models/job');
 dbmodels.Comment = require(__dirname + '/models/comment');
@@ -74,7 +74,6 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
-//<<<<<<< HEAD
 
 app.get("/currentUser", function(req,res){
   if(req.user == undefined){
@@ -84,8 +83,7 @@ app.get("/currentUser", function(req,res){
   }
   });
 
-//=======
-//>>>>>>> John's-additions
+
 app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
@@ -115,13 +113,15 @@ app.get("/", function(req,res){
     res.status(200).sendFile(__dirname + '/views/login.html');
   }
 });
-//<<<<<<< HEAD
 
 app.get("/inbox", stormpath.loginRequired, function(req,res){
-//=======
 app.get("/inbox", function(req,res){
-//>>>>>>> John's-additions
+
+app.get("/inbox", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/inbox.html');
+})
+app.get("/apphistory", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/applicationHistory.html');
 })
 
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
@@ -216,6 +216,11 @@ app.get("/api/:_model", function(req,res){
     return;
   }
 
+  if(req.query._id != null)
+    if(req.query._id.$in != null)
+      for(var i = 0; i < req.query._id.$in.length; i++)
+        req.query._id.$in[i] = new db.Schema.ObjectId(req.query._id.$in[i]);
+
   ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
 
     if(err){
@@ -225,15 +230,18 @@ app.get("/api/:_model", function(req,res){
     res.json(element);
   });
 });
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.post("/payments", stormpath.loginRequired, function(req, res) {
-
-
   Application.findOne({_id : applicationId}, function (err1, application) {
     User.findOne({ownerId: application.ownerId}, function (err2, user) {
+
+    dbmodels.Application.findOne({_id : req.query.applicationId}, function (err1, application) {
+    dbmodels.User.findOne({ownerId: application.ownerId}, function (err2, user) {
+
       if(user.customerId == null)
         return;
 
-      Job.findOne({_id: application.jobId}, function (err3, job) {
+      dbmodels.Job.findOne({_id: application.jobId}, function (err3, job) {
         if(job.ownerId != req.user.email)
           return;//
         stripe.charges.create({
@@ -244,8 +252,9 @@ app.post("/payments", stormpath.loginRequired, function(req, res) {
           description: job.description
         }, {stripe_account: user.customerId}, function (err, charge) {
           // asynchronously called
-          job.paymentnumber++;
+
         });
+        job.paymentnumber++;
       });
     });// To
   });
@@ -267,9 +276,7 @@ app.get('/authorize', stormpath.loginRequired, function(req, res) {
 });
 
 app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
-
   var code = req.query.code;
-
   // Make /oauth/token endpoint POST request
   request.post({
     url: TOKEN_URI,
@@ -277,14 +284,17 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
       grant_type: 'authorization_code',
       client_id: 'ca_7ELzHCsxpLq49g5HbpDtxFHCi3jJGfFk',
       code: code,
-      client_secret: 'pk_test_8DDyr5McQXrTdEa4mviz3Fq6'
+      client_secret: 'sk_test_1q9nLen2GaP2Q6Z2o5jpzM97'
     }
   }, function(err, r, body) {
 
     var obj = JSON.parse(body)
-
+    console.log(req.user.email);
+    console.log(body);
+    //console.log(body);
     // Do something with your accessToken
-    User.findOne({email: req.user.email}, function(err, user){
+    dbmodels.User.findOne({email: req.user.email}, function(err, user){
+      console.log(user);
       user.customerId = obj.stripe_user_id;
       user.save();
     })
@@ -314,4 +324,5 @@ app.get("/api/:_model/:_id", function(req,res){
 app.on('stormpath.ready', function() {
   app.listen(process.env.PORT || 9000);
   console.log("Starting server...");
-});})
+});})})})})
+  //})})

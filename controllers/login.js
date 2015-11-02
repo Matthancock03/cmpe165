@@ -51,6 +51,7 @@
     console.log()
     this.submitSignup = function(user, passwordVerification){
       user.ownerId = user.email;
+<<<<<<< HEAD
 //<<<<<<< HEAD
 
       $http({
@@ -74,6 +75,9 @@
             console.log(property + " " + user[property]);
           }//Ooh. this'll be useful later. I can make the connection of models to the REST API really simple with this.
 //=======
+=======
+      
+>>>>>>> master
       console.log()
       if(user.password == passwordVerification) {
         $http({
@@ -101,7 +105,10 @@
           window.location = "home";
         }, function errorCallback(response) {
           alert(response.data.error);
+<<<<<<< HEAD
 ///>>>>>>> John's-additions
+=======
+>>>>>>> master
         });
       }
       else
