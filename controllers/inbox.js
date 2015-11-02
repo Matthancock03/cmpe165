@@ -17,8 +17,17 @@ $http.get('/currentUser').then(function successCallback(response) {
     //console.log(this.user);
   });
 
+this.email = "";
+if($scope.user != undefined){
+  this.email = $scope.user.email;
+}
+
+console.log(this.email);
+
   Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
       $scope.inMessages = messages;
-      console.log(messages[0]);
+      $scope.mail = messages[0];
+      console.log($scope.user);
+      console.log($scope.mail);
   });
 });
