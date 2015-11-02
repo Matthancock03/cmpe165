@@ -43,7 +43,6 @@
           </div>
         </div>
         <div class="col-xs-6 column">
-
           <table class="table table-condensed" style="background-color: #FFFFFF;">
             <thead>
               <tr>
@@ -67,38 +66,22 @@
             </thead>
             <tbody>
 
-              <div>
+              <div ng-repeat="message in inMessages">
                 <tr>
                   <td>
-                    {{index}}
                   </td>
                   <td>
-                    <a data-target="#@index" data-toggle="collapse">{{message.messageTitle}}</a>
+                    <a>{{message.title}}</a>
                   </td>
                   <td>
-                    {{message.senderName}}
+                    {{message.senderId}}
                   </td>
                   <td>
-                    {{message.tstamp}}
+                    {{message.creationDate}}
                   </td>
                   <td></td>
                 </tr>
-              </div>
-              <tr class="collapse" id="@index">
-                <td>#</td>
-                <td colspan="4">{{message.messageBody}}</td>
-                <td>
-                  <a href="#">
-                    <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button">
-                      <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                  </a>
-                  <a href="#">
-                    <span aria-hidden="true" class="glyphicon glyphicon-remove-circle"></span>
-                  </a>
-                </td>
-              </tr>
-
+            </div>
             </tbody>
           </table>
 

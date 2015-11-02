@@ -77,7 +77,7 @@ app.get("/currentUser", function(req,res){
   if(req.user == undefined){
     res.status(200).send({loggedIn: false});
   }else{
-    dbmodels.User.findOne(viewPermissions({_id : req.user.email},req.user.email), function(err, user){
+    dbmodels.User.findOne({email : req.user.email}, function(err, user){
       if(err){console.log(err)};
       console.log("User: " + user);
       res.status(200).send(user);
@@ -309,7 +309,7 @@ app.get("/api/:_model/:_id", function(req,res){
   }
   ret_model.findOne(viewPermissions({_id : req.params._id},req.user.email), function(err, element){
     if(err){console.log(err)};
-    console.log(element);
+    //console.log(element);
     res.json(element);
   });
 });
