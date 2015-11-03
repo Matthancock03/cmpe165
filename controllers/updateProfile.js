@@ -12,7 +12,7 @@ $http.get('/currentUser').then(function successCallback(response) {
   $scope.save = function(){
     console.log("Saved");
     //User.update($scope.user);
-    $scope.user.update();
+    $scope.user.$update();
     window.location.assign("/profile");
   }
 
