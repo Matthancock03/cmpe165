@@ -71,12 +71,8 @@ Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
       //console.log($scope.user);
   });
 
-  Mail.query({senderId: "Matthancock03@gmail.com"}, function(messages){
+Mail.query({senderId: "Matthancock03@gmail.com"}, function(messages){
         $scope.outMessages = messages;
-    });
+});
 
-
-  $scope.getMessage = function(){
-    console.log("Getting Message");
-    }
 });
