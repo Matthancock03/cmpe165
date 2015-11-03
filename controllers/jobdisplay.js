@@ -45,7 +45,7 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
         $scope.applications.sort(function(a,b){return a.ownerId.localeCompare(b.ownerId)});
         User.query({}, function(users, err){//change to search with in?
             var k = 0;
-            users.sort(function(a,b){a.email.localeCompare(b.email)})//nlogn
+            users.sort(function(a,b){return a.email.localeCompare(b.email)})//nlogn
             for(var i = 0; i < users.length && k < $scope.applications.length;){
                 if($scope.applications[k].ownerId != users[i].email) {//nlogn
                     i++;
