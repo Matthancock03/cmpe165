@@ -120,7 +120,7 @@ app.get("/login", function(req,res){
 app.get("/inbox", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
-app.get("/apphistory", function(req,res){
+app.get("/apphistory", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/applicationHistory.html');
 })
 

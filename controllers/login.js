@@ -5,7 +5,6 @@
 
     this.setTab = function(table){
       tab = table;
-      console.log("Table set to " + table);
     };
 
     this.panelNumber = function(panel){
@@ -38,10 +37,6 @@
       }, function errorCallback(response) {
         alert(response.data.error);
       });
-    };
-
-    this.panelNumber = function(panel){
-      return tab === panel;
     };
   });
 

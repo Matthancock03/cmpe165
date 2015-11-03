@@ -15,6 +15,10 @@
       <div class="row clearfix mainDiv">
         <div class="col-xs-12 column">
           <div class="page-header">
+            <div class="alert alert-success" ng-show="showSuccessAlert">
+              <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')" >×</button>
+              <strong>Done!</strong> {{successTextAlert}}
+            </div>
             <h1>
               {{user.firstName}}'s Messages
             </h1>
@@ -22,34 +26,34 @@
         </div>
       </div>
       <div class="row clearfix">
-        <div class="col-xs-3 column">
+        <div class="col-xs-2 column">
 
           <div class="btn-group btn-group-md">
             <br/><br/><br/>
             <br/>
             <div>
               <a href="#">
-                <button class="btn btn-default" type="button">
+                <button class="btn btn-default" type="button" ng-click="setTab(1)">
                   <em class="glyphicon glyphicon-align-left"></em>Inbox</button>
               </a>
               <div>
                 <br/>
                 <a href="#">
-                  <button class="btn btn-default" type="button">
+                  <button class="btn btn-default" type="button" ng-click="setTab(2)">
                     <em class="glyphicon glyphicon-align-left"></em>Sent</button>
                 </a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xs-6 column">
+        <div class="col-xs-8 column">
           <table class="table table-condensed" style="background-color: #FFFFFF;">
             <thead>
               <tr>
                 <th>
                   #
                 </th>
-                <th>
+                <th colspan="2">
                   Message
                 </th>
                 <th>
@@ -64,24 +68,63 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody ng-show="panelNumber(1)">
 
-              <div ng-repeat="message in inMessages">
-                <tr>
+                <tr ng-repeat-start="message in inMessages">
                   <td>
+                    {{$index+1}}
+                  </td>
+                  <td colspan="2">
+                    <a data-target="#{{$index+1}}" data-toggle="collapse" ng-click="toggleRead(inMessages[$index])">{{message.title}}</a>
                   </td>
                   <td>
-                    <a>{{message.title}}</a>
-                  </td>
-                  <td>
-                    {{message.senderId}}
+                    <p>{{message.senderId}}</p>
                   </td>
                   <td>
                     {{message.creationDate}}
                   </td>
-                  <td></td>
+                  <td>
+                    {{message.read}}
+                  </td>
                 </tr>
-            </div>
+                <tr class="collapse messageRow" id="{{$index+1}}" ng-repeat-end>
+                <td>#</td>
+                <td></td>
+                <td colspan="4">{{message.body}}</td>
+                <td>
+                  <a href="#">
+                    <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(inMessages[$index])">
+                      <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                  </a>
+                </td>
+              </tr>
+
+            </tbody>
+            <tbody ng-show="panelNumber(2)">
+                <tr ng-repeat-start="message in outMessages">
+                  <td>
+                    {{$index+1}}
+                  </td>
+                  <td colspan="2">
+                    <a data-target="#{{$index + inMessages.length + 1}}" data-toggle="collapse" ng-click="toggleRead(outMessages[$index])">{{message.title}}</a>
+                  </td>
+                  <td>
+                    <p>{{message.senderId}}</p>
+                  </td>
+                  <td>
+                    {{message.creationDate}}
+                  </td>
+                  <td>
+                      {{message.read}}
+                  </td>
+                </tr>
+                <tr class="collapse messageRow" id="{{$index + inMessages.length + 1}}" ng-repeat-end> <!-- Added to index to avoid toggling hidden table's rows -->
+                <td>#</td>
+                <td></td>
+                <td colspan="5">{{message.body}}</td>
+              </tr>
+
             </tbody>
           </table>
 
@@ -93,19 +136,19 @@
                 <div class="form-group" style="width: 50%; margin: 0 auto;">
                   <div style="width: 75%; margin: 0 auto;">
                     <h2 class="form-signin-heading">Message</h2>
-                    <input class="form-control" id="messageTitle" name="messageTitle" placeholder="Message Title" type="text" value=""/>
-                    <input class="form-control" id="messageBody" name="messageBody" placeholder="Message" type="text" value=""/>
-                    <input class="form-control" id="id" name="id" placeholder="User Id" style="display: none;" type="text" value=""/>
-                    <button class="btn btn-primary btn-lg btn-block" style="width: 50%;" type="submit">Send Message</button>
+                    <input class="form-control" ng-model="messageTitle" name="messageTitle" placeholder="Message Title" type="text" value=""/>
+                    <input class="form-control" ng-model="messageBody" name="messageBody" placeholder="Message" type="text" value=""/>
+                    <input class="form-control" ng-model="id" name="id" placeholder="User Id" style="display: none;" type="text" value=""/>
+                    <button class="btn btn-primary btn-lg btn-block" style="width: 50%;" data-target=".bs-example-modal-lg" data-toggle="modal" type="submit" ng-click="sendMessage()">Send Message</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- End modal -->
+           <!-- End modal -->
 
         </div>
-        <div class="col-xs-3 column"></div>
+        <div class="col-xs-2 column"></div>
       </div>
     </div>
   </div>
