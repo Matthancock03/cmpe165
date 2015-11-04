@@ -1,18 +1,23 @@
 angular.module('myApp').controller('Update', function($location, $http, $scope, User){
-  $scope.user = {};
-  console.log($location.search().email);
-  User.query({email: $location.search().email}, function(users, user){
-  $scope.user = users[0];
-  console.log(users.length);
+
+$http.get('/currentUser').then(function successCallback(response) {
+      //console.log("Current User call sucessful!");
+      //console.log("Email: " + response.data.email);
+      console.log(response.data);
+      $scope.user = User.get({_id: response.data._id}, function(user){
+    $scope.save = function(){
+      console.log("Saved");
+      //User.update($scope.user);
+      $scope.user.$update();
+      window.location.assign("/profile");
+    }
+  });
+      //user = response.data;
+      //console.log(user);
   });
 
-  $scope.save = function(){
-    console.log("Saved");
-    $scope.user.$update();
-  }
-
   $scope.cancel = function(){
-    window.location.assign("home");
+    window.location.assign("/profile");
   }
 
 });

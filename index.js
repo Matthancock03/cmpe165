@@ -34,12 +34,13 @@ app.use(stormpath.init(app, {
   web: {
     register: {
       enabled: true,
+      autoLogin: true,
       view: __dirname + '/views/jade/log.jade',
-      nextUri: '/home',  // don't send them here
+      nextUri: '/',
     },
     login: {
       view: __dirname + '/views/jade/log.jade', //path.join(__dirname,'views','login.ejs') // Route used in documentation
-      nextUri: '/home',
+      nextUri: '/',
     }
   },
   baseUrl: "/",
@@ -49,7 +50,7 @@ app.use(stormpath.init(app, {
 
 //When you add a model, require it here as the name of model; make it a property of dbmodels.
 //Make sure to put the same model name in MyApp including capitalization. or it won't work!
-
+db = require(__dirname +'/database');
 var dbmodels = {};
 dbmodels.Job = require(__dirname +'/models/job');
 dbmodels.Comment = require(__dirname + '/models/comment');
@@ -57,6 +58,7 @@ dbmodels.User = require(__dirname + '/models/user');
 dbmodels.Application = require(__dirname + '/models/application');
 dbmodels.Contract = require(__dirname + '/models/Contract');
 dbmodels.Mail = require(__dirname + '/models/mail');
+
 var retrieveModel = function(modelName, body)
 {
   for(property in dbmodels){//for each model
@@ -70,11 +72,22 @@ var retrieveModel = function(modelName, body)
 /**
  *   Routes
  */
-app.get("/", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/login.html');
-});
 
-app.get("/home", function(req,res){
+app.get("/currentUser", function(req,res){
+  if(req.user == undefined){
+    res.status(200).send({loggedIn: false});
+  }else{
+    dbmodels.User.findOne({email : req.user.email}, function(err, user){
+      if(err){console.log(err)};
+      console.log("User: " + user);
+      res.status(200).send(user);
+    });
+    //res.status(200).send(req.user);
+  }
+  });
+
+
+app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
 
@@ -93,20 +106,21 @@ app.get("/jobDisplay",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobDisplayNew.html');
 })
 
-app.get("/create",stormpath.loginRequired, function(req,res){
+app.get("/create", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
-app.get("/", function(req,res){
+app.get("/login", function(req,res){
   if(req.user != undefined){
     res.status(200).sendFile(__dirname + '/views/home.html');
   }else{
     res.status(200).sendFile(__dirname + '/views/login.html');
   }
 });
-app.get("/inbox", function(req,res){
+
+app.get("/inbox", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
-app.get("/apphistory", function(req,res){
+app.get("/apphistory", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/applicationHistory.html');
 })
 app.get("/stripePaymentSetup", function(req,res){
@@ -115,6 +129,35 @@ app.get("/stripePaymentSetup", function(req,res){
 app.get("/contract", function(req,res){
   res.status(200).sendFile(__dirname + '/views/templates/modalTerms&Agreement.html');
 })
+
+
+
+/**
+ * adds elements to the object used by a query to establish view permissions.
+ * @param objOfQuery
+ * @param ownerId
+ */
+var viewPermissions = function(objOfQuery, ownerId)
+{
+  objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
+  return objOfQuery
+}
+
+/**
+ * adds elements to the object used by a query to establish write permissions.
+ * @param objOfQuery
+ * @param ownerId
+ */
+var writePermissions = function(objOfQuery, ownerId)
+{
+  objOfQuery.ownerId = ownerId;
+  //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
+  return objOfQuery;
+}
+var stripe = require("stripe")(
+    "sk_test_1q9nLen2GaP2Q6Z2o5jpzM97"
+);
+
 
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');
@@ -155,33 +198,6 @@ app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   });
 
 });
-/**
- * adds elements to the object used by a query to establish view permissions.
- * @param objOfQuery
- * @param ownerId
- */
-var viewPermissions = function(objOfQuery, ownerId)
-{
-  objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
-  return objOfQuery
-}
-/**
- * adds elements to the object used by a query to establish write permissions.
- * @param objOfQuery
- * @param ownerId
- */
-var writePermissions = function(objOfQuery, ownerId)
-{
-  objOfQuery.ownerId = ownerId;
-  objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
-  return objOfQuery;
-}
-var stripe = require("stripe")(
-    "sk_test_1q9nLen2GaP2Q6Z2o5jpzM97"
-);
-
-
-
 app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
 
   var ret_model = retrieveModel(req.params._model);
@@ -195,12 +211,7 @@ app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
     if(err){console.log(err)};
   })
   });
-app.get("/currentUser", function(req,res){
-  if(req.user == undefined){
-    res.status(200).send({loggedIn: false});
-  }
-  res.status(200).send(req.user);
-});
+
 app.get("/api/:_model", function(req,res){
   console.log("Email: " + req.query);
   console.log(req.params._model);
@@ -276,6 +287,7 @@ app.post("/payments", stormpath.loginRequired, function(req, res) {
     });// To
   });
 });
+
 var TOKEN_URI = 'https://connect.stripe.com/oauth/token';
 var AUTHORIZE_URI = 'https://connect.stripe.com/oauth/authorize';
 
@@ -293,9 +305,7 @@ app.get('/authorize', stormpath.loginRequired, function(req, res) {
 });
 
 app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
-
   var code = req.query.code;
-
   // Make /oauth/token endpoint POST request
   request.post({
     url: TOKEN_URI,
@@ -326,6 +336,7 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
 
   });
 });
+
 app.get("/api/:_model/:_id", function(req,res){
   console.log("Id: " + req.params._id);
 
@@ -338,7 +349,7 @@ app.get("/api/:_model/:_id", function(req,res){
 
   ret_model.findOne(viewPermissions({_id : req.params._id},req.user.email), function(err, element){
     if(err){console.log(err)};
-    console.log(element);
+    //console.log(element);
     res.json(element);
   });
 });

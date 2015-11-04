@@ -10,6 +10,7 @@
     "express-stormpath": "^2.0.4",
     "jade": "^1.11.0",
     "mongoose": "^4.1.8",
+    "nodemailer": "^1.8.0",
     "querystring": "*",
     "request": "*",
     "stripe": "*"
