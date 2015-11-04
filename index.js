@@ -130,6 +130,35 @@ app.get("/contract", function(req,res){
   res.status(200).sendFile(__dirname + '/views/templates/modalTerms&Agreement.html');
 })
 
+
+
+/**
+ * adds elements to the object used by a query to establish view permissions.
+ * @param objOfQuery
+ * @param ownerId
+ */
+var viewPermissions = function(objOfQuery, ownerId)
+{
+  objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
+  return objOfQuery
+}
+
+/**
+ * adds elements to the object used by a query to establish write permissions.
+ * @param objOfQuery
+ * @param ownerId
+ */
+var writePermissions = function(objOfQuery, ownerId)
+{
+  objOfQuery.ownerId = ownerId;
+  //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
+  return objOfQuery;
+}
+var stripe = require("stripe")(
+    "sk_test_1q9nLen2GaP2Q6Z2o5jpzM97"
+);
+
+
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');
   //console.log(req);
@@ -169,35 +198,6 @@ app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   });
 
 });
-
-/**
- * adds elements to the object used by a query to establish view permissions.
- * @param objOfQuery
- * @param ownerId
- */
-var viewPermissions = function(objOfQuery, ownerId)
-{
-  objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
-  return objOfQuery
-}
-
-/**
- * adds elements to the object used by a query to establish write permissions.
- * @param objOfQuery
- * @param ownerId
- */
-var writePermissions = function(objOfQuery, ownerId)
-{
-  objOfQuery.ownerId = ownerId;
-  objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
-  return objOfQuery;
-}
-var stripe = require("stripe")(
-    "sk_test_1q9nLen2GaP2Q6Z2o5jpzM97"
-);
-
-
-
 app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
 
   var ret_model = retrieveModel(req.params._model);

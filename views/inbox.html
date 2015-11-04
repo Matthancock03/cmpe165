@@ -127,7 +127,7 @@
 
             </tbody>
           </table>
-
+          <div><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Send Mail</button>
           <!-- Large modal -->
 
           <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
@@ -146,7 +146,9 @@
             </div>
           </div>
            <!-- End modal -->
-
+            <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(inMessages[$index])">
+              <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+            </button>
         </div>
         <div class="col-xs-2 column"></div>
       </div>
