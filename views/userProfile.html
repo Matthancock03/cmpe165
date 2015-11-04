@@ -1,62 +1,104 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="UserController">
-  <head>
-    <title>Stagehand</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<head>
+  <title>Stagehand</title>
 
-    <link href="css/profile.css" rel="stylesheet">
-  </head>
-  <body>
-    <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <div class="container-fluid mainDiv" style="height: 100%;">
+  <link href="css/profile.css" rel="stylesheet">
+</head>
 
-      <div class="col-xs-2"></div>
-      <div class="col-xs-8">
+<body>
+  <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
 
+  <div class="container-fluid mainDiv" style="height: 100%;">
 
-        <div ng-switch on="imageExists">
-          <img alt="Profile Image" class="profileImage center-block" ng-src="{{user.img}}" ng-switch-when="true"/>
-          <img alt="Profile Image" class="profileImage center-block" ng-src="images/star.png" ng-switch-default/>
-        </div>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+      <div class="alert alert-success" ng-show="showSuccessAlert">
+        <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">×</button>
+        <strong>Done!</strong> {{successTextAlert}}
+      </div>
 
-        <h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <strong>About Me:</strong><br>
-            {{user.about}}
-          </li>
-          <li class="list-group-item">
-            <strong>Skills:</strong>
-            <ul>
-            <!--  <li ng-repeat="skill in user.skills"> -->
-              <li>
-                {{user.skills}}
-              </li>
-            </ul>
-          </li>
-          <li class="list-group-item">
-            <strong>Reviews:</strong>
+      <div ng-switch on="imageExists">
+        <img alt="Profile Image" class="profileImage center-block" ng-src="{{user.img}}" ng-switch-when="true" />
+        <img alt="Profile Image" class="profileImage center-block" ng-src="images/star.png" ng-switch-default/>
+      </div>
 
-          </li>
-        </ul>
-        <div ng-show="isUser">
-          <button type="button" ng-click="editProfile()" class="btn btn-success">
-            Edit Profile
-          </button>
+      <h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1>
+      <hr>
+      <h3 class='redText'>About</h3>
+      <hr> {{user.about}}
+      <h3 class='redText'>Skills</h3>
+      <hr> {{user.skills}}
+      <h3 class='redText'>Images & Videos</h3>
+      <hr> {{user.about}}
+      <div class="" ng-show="isUser">
+        <h3 class='redText'>Past Performances</h3>
+        <hr>
+        <div class="pastJobs" ng-repeat="job in jobs">
+          {{job.title}} {{job.description}} {{job.creationDate}}
         </div>
       </div>
-      <div class="col-xs-2"></div>
-    </div>
+      <span ng-show="{{jobs.length < 0}}">What's with this? Get out there and show them what you got!</span>
+      <div class="" ng-show="isUser">
+        <h3 class='redText'>Pending Auditions</h3>
+        <hr>
+      </div>
+      <h3 class='redText'>Reviews</h3>
+      <hr>
+      <div class="review" ng-repeat="review in user.reviews">
+        {{review.score}} {{review.comment}} {{review.reviewer}} {{review.creationDate}}
+      </div>
+      <span ng-show="user.reviews.length < 0">I guess no news is good news, right?</span>
+      <br>
+      <br>
+      <div ng-show="isUser">
+        <button type="button" ng-click="editProfile()" class="btn btn-success">
+          Edit Profile
+        </button>
+      </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
-    <script src="myApp.js"></script>
-    <script src="userProfile.js"></script>
-  </body>
+      <div ng-hide="isUser">
+        <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button">
+          <span aria-hidden="true" class="glyphicon glyphicon-envelope"></span>
+          Message
+        </button>
+      </div>
+
+      <!-- Large modal -->
+
+      <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="form-group" style="width: 50%; margin: 0 auto;">
+              <div style="width: 75%; margin: 0 auto;">
+                <h2 class="form-signin-heading">Message</h2>
+                <input class="form-control" ng-model="messageTitle" name="messageTitle" placeholder="Message Title" type="text" value="" />
+                <input class="form-control" ng-model="messageBody" name="messageBody" placeholder="Message" type="text" value="" />
+                <input class="form-control" ng-model="id" name="id" placeholder="User Id" style="display: none;" type="text" value="" />
+                <button class="btn btn-primary btn-lg btn-block" style="width: 50%;" data-target=".bs-example-modal-lg" data-toggle="modal" type="submit" ng-click="sendMessage()">Send Message</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End modal -->
+
+
+    </div>
+    <div class="col-xs-2"></div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
+  <script src="userProfile.js"></script>
+</body>
+
 </html>

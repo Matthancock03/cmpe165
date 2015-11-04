@@ -38,6 +38,10 @@
         alert(response.data.error);
       });
     };
+
+    this.panelNumber = function(panel){
+      return tab === panel;
+    };
   });
 
   angular.module('myApp').controller('Signup', function($http, $location, User){

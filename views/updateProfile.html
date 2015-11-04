@@ -54,6 +54,7 @@
               </div>
               <p>Upload Image</p>
               <input accept="image/*" name="file" ng-model="user.img" ngf-max-size="2MB" ngf-select type="file">
+              <br><input type="checkbox" ng-model="user.receiveEmails"> Receive Notifications <br>
               <div class="btnDiv">
                 <button class="cancelButton" ng-click="cancel()">Cancel</button>
                 <button class="saveButton" ng-click="save(user.img)">Save</button>

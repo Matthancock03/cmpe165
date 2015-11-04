@@ -12,9 +12,9 @@ var User = db.model('User', {
   img: { data: Buffer, contentType: String},
   about: {type: String},
   skills: {type: String},
-  videoLinks: {type: String},
+  videoLinks: {type: [String]},
   recieveEmail:{type: Boolean, default: true},
-  //reviews:{type: db.Schema}                 Not created yet
+  reviews:[{type: db.Schema.Types.ObjectId, ref: 'Review'}],
   creationDate: {type: Date, required: true, default: Date.now}
 })
 

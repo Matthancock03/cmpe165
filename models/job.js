@@ -1,5 +1,6 @@
 var db = require('../database');
 var q = require('../serverscripts/postToMailModel')
+
 schema = new db.Schema({
   ownerId:{type: String, required:false},
   modifiable:{type: Boolean, default: true},
@@ -11,6 +12,8 @@ schema = new db.Schema({
   time: {type: Date, required: true},
   location: {type: String, required: true},
   signerId: {type: String, required: false},
+  employee:{type: String, required:false},
+  completed:{type: Boolean, default: false},
   paymentNumber: {type: Number, required: false, default: 0},
   applicantSignatureData: [{
     ownerId:{type: String},

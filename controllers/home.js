@@ -2,7 +2,7 @@ angular.module('myApp').controller('Home', function($location, $http, $scope, Us
 
   $http.get('/currentUser').then(function successCallback(response) {
     console.log("Current User call sucessful!");
-    console.log("Email: " + response.data.email);
+    //console.log("Email: " + response.data.email);
     $scope.user = response.data;
     if(response.data != undefined){
       $scope.loggedIn = true;

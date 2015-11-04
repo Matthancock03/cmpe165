@@ -55,7 +55,7 @@ app.use(stormpath.init(app, {
 db = require(__dirname +'/database');
 var dbmodels = {};
 dbmodels.Job = require(__dirname +'/models/job');
-dbmodels.Comment = require(__dirname + '/models/comment');
+dbmodels.Review = require(__dirname + '/models/review');
 dbmodels.User = require(__dirname + '/models/user');
 dbmodels.Application = require(__dirname + '/models/application');
 dbmodels.Contract = require(__dirname + '/models/Contract');
@@ -81,7 +81,7 @@ app.get("/currentUser", function(req,res){
   }else{
     dbmodels.User.findOne({email : req.user.email}, function(err, user){
       if(err){console.log(err)};
-      console.log("User: " + user);
+      //console.log("User: " + user);
       res.status(200).send(user);
     });
     //res.status(200).send(req.user);
@@ -164,8 +164,8 @@ var stripe = require("stripe")(
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');
   //console.log(req);
-  console.log(req.body);
-  console.log(req.params._model);
+  //console.log(req.body);
+  //console.log(req.params._model);
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
   {
@@ -175,7 +175,7 @@ app.post("/api/:_model", function(req,res){//Really want to include login req he
   if(req.body.ownerId == null && req.user != null)//needed to resolve an issue with register
     req.body.ownerId = req.user.email;
   var job = new ret_model(req.body);
-  console.log(job);
+  //console.log(job);
   job.save(function(err, job){
     if(err){
       console.log(err);
@@ -185,18 +185,21 @@ app.post("/api/:_model", function(req,res){//Really want to include login req he
     res.json(201, job);
   })
 });
+
 app.put("/api/:_model/:_id", stormpath.loginRequired, function(req,res){
   console.log("In Put!")
   var ret_model = retrieveModel(req.params._model);
-  console.log(req.user.email);
+  //console.log(req.user.email);
   if(ret_model == null)
   {
     res.json(201, {error : "Invalid Request"});
     return;
   }
   //console.log(writePermissions({_id : req.params._id},req.user.email));
-  console.log(req.body._id);
-  ret_model.update(req.body._id, req.body, function(err, numAffected){
+  var mod = {_id: req.body._id};
+  console.log(mod);
+
+  ret_model.update(mod, req.body, function(err, numAffected){
     if(err){console.log(err)}
     console.log("Save callback. Number Affected: ");
     console.log(numAffected);

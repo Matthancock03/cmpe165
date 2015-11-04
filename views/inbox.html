@@ -94,7 +94,7 @@
                 <td>
                   <a href="#">
                     <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(message)">
-                      <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
+                      <span aria-hidden="true" class="glyphicon glyphicon-envelope"></span>
                     </button>
                   </a>
                 </td>
@@ -107,7 +107,7 @@
                     {{$index+1}}
                   </td>
                   <td colspan="2">
-                    <a data-target="#{{$index + inMessages.length + 1}}" data-toggle="collapse">{{message.title}}</a>
+                    <a data-target="#{{$index + inMessages.length + 1}}" ng-click="toggleRead(message)" data-toggle="collapse">{{message.title}}</a>
                   </td>
                   <td>
                     <p>{{message.senderId}}</p>
@@ -127,8 +127,8 @@
 
             </tbody>
           </table>
-          <div>
-          <!-- Large modal -->
+
+          <!-- Message modal -->
 
           <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -146,9 +146,7 @@
             </div>
           </div>
            <!-- End modal -->
-            <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(inMessages[$index])">
-              <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
-            </button>
+
         </div>
         <div class="col-xs-2 column"></div>
       </div>

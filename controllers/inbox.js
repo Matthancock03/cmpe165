@@ -45,31 +45,21 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, M
   }
 
 $scope.toggleRead = function(mess){
-  //console.log(mess);
+  console.log(mess);
   if(!mess.read){
     mess.read = true;
+    //console.log(mess);
     mess.$update();
   }
 };
 
-/*Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
+
+Mail.query({ownerId: "matthancock03@gmail.com"}, function(messages){
       $scope.inMessages = messages;
-  });*/
+  });
 
-$http.get('/currentUser').then(function successCallback(response) {
-    //console.log("Current User call sucessful!");
-    //console.log("Email: " + response.data.email);
-    $scope.user = response.data;
-    user = response.data;
-    //console.log(user);
-    $scope.inMessages = Mail.query({ownerId: $scope.user.email}, function(messages){
-        //$scope.inMessages = messages;
-        //console.log($scope.user);
-    });
-
-    $scope.outMessages = Mail.query({senderId: $scope.user.email}, function(messages){});
+Mail.query({senderId: "matthancock03@gmail.com"}, function(messages){
+        $scope.outMessages = messages;
 });
-
-
 
 });
