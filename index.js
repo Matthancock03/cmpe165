@@ -109,6 +109,12 @@ app.get("/inbox", function(req,res){
 app.get("/apphistory", function(req,res){
   res.status(200).sendFile(__dirname + '/views/applicationHistory.html');
 })
+app.get("/stripePaymentSetup", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/stripePaymentUI.html');
+})
+app.get("/contract", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/templates/modalTerms&Agreement.html');
+})
 
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');
@@ -205,6 +211,19 @@ app.get("/api/:_model", function(req,res){
     return;
   }
   job = new ret_model(req.body);
+  console.log(req.query)
+  for(property in req.query){//for each property of the query
+    if(req.query[property].charAt(0) == '{') {//primary issue. no need for syntax errors otherwise
+     try {
+
+        temp = JSON.parse(req.query[property]);//set it to an object version of the string passed.
+        req.query[property] = temp;
+      }
+      catch (e) {//this property not an object
+        console.log(e);
+      }
+    }
+  }
   ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
 
     if(err){
@@ -214,28 +233,45 @@ app.get("/api/:_model", function(req,res){
     res.json(element);
   });
 });
+app.post("/paymentSetup", stormpath.loginRequired, function(req, res) {
+  dbmodels.User.findOne({ownerId: req.user.email}, function (err2, user) {
+    stripe.customers.create({
+      description: 'Customer for test@example.com',
+      source: req.id // obtained with Stripe.js
+    },function(err, customer)
+    {
+      user.customerId = customer.id;
+      console.log(user.customerId)
+      user.save();
+    })
+  })
+})
 app.post("/payments", stormpath.loginRequired, function(req, res) {
 
 
   dbmodels.Application.findOne({_id : req.query.applicationId}, function (err1, application) {
-    dbmodels.User.findOne({ownerId: application.ownerId}, function (err2, user) {
-      if(user.customerId == null)
-        return;
+    dbmodels.User.findOne({email: application.ownerId}, function (err2, user) {
+      if(user.sellerId == null)//???
+        return res.redirect("/jobs");
+      dbmodels.User.findOne({email: req.user.email}, function (err2, user2) {
+        if(user2.customerId == null)
+          return res.redirect("/stripePaymentSetup");
+        dbmodels.Job.findOne({_id: application.jobId}, function (err3, job) {//May want to consider an async library of sorts. 3 of these calls could be made at the same time instead of waiting for the db to do its thing. slow.
+          if(job.paymentNumber == null)
+            job.paymentNumber = 0;
+          if(job.paymentNumber < 2)//only allowing 1 participant? what's the plan?
+            stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
+              amount: job.wages / 2 * 100,//hm. an array of booleans? maybe define signatureIds?
+              currency: "usd",
+              customer: user.customerId,
+              description: job.description
+            }, {stripe_account: user.sellerId}, function (err, charge) {
+              // asynchronously called
 
-      dbmodels.Job.findOne({_id: application.jobId}, function (err3, job) {
-        if(job.ownerId != req.user.email)
-          return;//
-        stripe.charges.create({
-          amount: job.wages / 2 * 100,
-          currency: "usd",
-          source: stripeToken, // obtained with Stripe.js
-
-          description: job.description
-        }, {stripe_account: user.customerId}, function (err, charge) {
-          // asynchronously called
-
+            });
+          job.paymentNumber++;
+          job.save();
         });
-        job.paymentnumber++;
       });
     });// To
   });
@@ -278,11 +314,15 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
     // Do something with your accessToken
     dbmodels.User.findOne({email: req.user.email}, function(err, user){
       console.log(user);
-      user.customerId = obj.stripe_user_id;
+      user.sellerId = obj.stripe_user_id;
       user.save();
     })
+    res.redirect("/stripePaymentSetup?newUrl=home");
     // For demo's sake, output in response:
-    res.send({ 'Your Token': obj.accessToken });
+    //Instead, let's load a page where the user inputs their credit card info.
+    //alternatively, instead of redirecting here, we can just block off creating jobs if you have no credit card info
+    // and block off applying for jobs if they have no stripe account.
+    //or, we could just mandate the stripe account and require credit card info once when they make their first payment
 
   });
 });
@@ -295,6 +335,7 @@ app.get("/api/:_model/:_id", function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
+
   ret_model.findOne(viewPermissions({_id : req.params._id},req.user.email), function(err, element){
     if(err){console.log(err)};
     console.log(element);

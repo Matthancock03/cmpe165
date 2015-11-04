@@ -6,7 +6,7 @@ angular.module('myApp').controller('Home', function($location, $http, $scope, Us
       $scope.loggedIn = false;
     }else{
       $scope.loggedIn = true;
-      if(response.data.customerId == null)
+      if(response.data.sellerId == null)
         window.location.href = "/authorize";
     }
     $scope.user = response.data;

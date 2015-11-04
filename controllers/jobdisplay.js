@@ -45,13 +45,16 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
         $scope.applications.sort(function(a,b){return a.ownerId.localeCompare(b.ownerId)});
         User.query({}, function(users, err){//change to search with in?
             var k = 0;
+            var appOwnerIds = $scope.userjob.applicantSignatureData.map(function(a) {return a.ownerId;}).
             users.sort(function(a,b){a.email.localeCompare(b.email)})//nlogn
             for(var i = 0; i < users.length && k < $scope.applications.length;){
                 if($scope.applications[k].ownerId != users[i].email) {//nlogn
                     i++;
                 }
                 else {
-                    applications[k].sent = userjob.applicantIdsToSign.binaryIndexOf(applications[k].ownerId) >= 0//item found O(nlogn)total runtime for n occurances.
+                    var index = $scope.userjob.applicantSignatureData.map(function(a) {return a.ownerId;}).binaryIndexOf(applications[k].ownerId)
+                    applications[k].sent = index >= 0//item found O(nlogn)total runtime for n occurances.
+                    applications[k].payments = $scope.userjob.applicantSignatureData[index].payments;
                     $scope.applications[k].name = users[i].firstName + " " + users[i].lastName;;
                     k++;
                 }//Both sorted, so like filtering in values with mergesort(?)
@@ -92,23 +95,28 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
     Array.prototype.binaryIndexOf = binaryIndexOf;
     $scope.acceptApplication = function(app){
         //Complete either way.
-        index = userjob.applicantIdsToSign.binaryIndexOf(app.ownerId)
+        var index = $scope.userjob.applicantSignatureData.map(function(a) {return a.ownerId;}).binaryIndexOf(app.ownerId)
         if(index < 0) {
-            //userjob.applicantIdsToSign.splice(-index, 0, app.ownerId)//O(n); avoiding n^2 for any one operation is for the best.
-            userjob.applicantIdsToSign.push(app.ownerId);//doing this for now because not sure about negative index
-            userjob.applicantIdsToSign.sort();
+            $scope.userjob.applicantSignatureData.splice(-index, 0, {ownerId: app.ownerId})//O(n); avoiding n^2 for any one operation is for the best.
+            //gonna make this work over sort() because sort isn't as trivial anymore.
 
-            userjob.update();
+
+            $scope.userjob.update();
             var m = new Mail();
             m.ownerId = app.ownerId;
             m.senderId = userjob.ownerId;
+            m.title = "The Employer of the job '" + userjob.title + "' is sending you a contract!"
             m.body = "Here's a link to your application!"
             m.links = ["/Contract?_id="+userjob._id];
             app.sent=true;
+            m.save();
         }
         else{
             alert("How did you get here?");
         }
+    }
+    $scope.partialDeposit= function(app){
+
     }
 
     //Need to know if you are the applicant or the owner
