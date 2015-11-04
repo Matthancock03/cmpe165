@@ -4,6 +4,10 @@ var message;
 
 angular.module('myApp').controller('Inbox', function($location, $http, $scope, Mail){
 
+  $http.get('/currentUser').then(function successCallback(response) {
+      $scope.user = response.data;
+  });
+
   $scope.successTextAlert = "Message Sent";
   $scope.showSuccessAlert = false;
 
@@ -12,17 +16,14 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, M
   };
 
   $scope.sendMessage = function(){
-      //console.log(message);
-      //console.log($scope.messageTitle);
-      //console.log($scope.messageBody);
 
-      var mail = new Mail(); //Just used it to create a couple dummy messages.
-      mail.ownerId = message.senderId;//The email to send to. NOT THE EMAIL OF THE SENDER!
-      mail.senderId = message.ownerId;//email sent from. the id of the sender technically.
+      var mail = new Mail();
+      mail.ownerId = message.senderId;
+      mail.senderId = message.ownerId;
       mail.links = ["http://mongoosejs.com/docs/middleware.html"]
       mail.sent = false
-      mail.body = $scope.messageBody;//the body of the email.
-      mail.title = $scope.messageTitle;//the title
+      mail.body = $scope.messageBody;
+      mail.title = $scope.messageTitle;
 
       mail.$save(function () {
         console.log("Message saved");
@@ -32,12 +33,10 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, M
   };
 
   $scope.setTab = function(table){
-    //console.log("Set Tab "  + table);
     tab = table;
   };
 
   $scope.panelNumber = function(panel){
-    //console.log("paneNumber " + panel);
     return tab === panel;
   };
 
@@ -45,30 +44,17 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, M
       message = mess;
   }
 
-$scope.toggleRead = function(message){
-  //console.log(message);
-  if(!message.read){
-    message.read = true;
-    message.$update(function (err) {
-      if(err){
-        console.log(err);
-      }
-      console.log("Message updated:");
-    });
+$scope.toggleRead = function(mess){
+  //console.log(mess);
+  if(!mess.read){
+    mess.read = true;
+    mess.$update();
   }
 };
 
-$http.get('/currentUser').then(function successCallback(response) {
-    //console.log("Current User call sucessful!");
-    //console.log("Email: " + response.data.email);
-    $scope.user = response.data;
-    user = response.data;
-    //console.log(user);
-});
 
 Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
       $scope.inMessages = messages;
-      //console.log($scope.user);
   });
 
 Mail.query({senderId: "Matthancock03@gmail.com"}, function(messages){

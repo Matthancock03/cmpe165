@@ -1,23 +1,51 @@
-angular.module('myApp').controller('Update', function($location, $http, $scope, User){
+var app = angular.module('UpdateProfile',['ngRoute', 'ngResource', 'ngFileUpload']).config(function($locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+});
+
+app.factory("User", function($resource) {
+    return $resource('api/' + "User" +'/:_id', { _id: '@_id' }, {
+        update: {
+            method: 'PUT'
+        }
+
+    });
+});
+
+angular.module('UpdateProfile').controller('Update', function($location, $http, $scope, User, Upload){
 
 $http.get('/currentUser').then(function successCallback(response) {
-      //console.log("Current User call sucessful!");
-      //console.log("Email: " + response.data.email);
-      console.log(response.data);
       $scope.user = response.data;
+      if(response.data.img){
+        $scope.imageExists = true;
+      }else{
+          $scope.imageExists = false;
+      }
       //user = response.data;
       //console.log(user);
   });
 
-  $scope.save = function(){
-    console.log("Saved");
-    //User.update($scope.user);
-    $scope.user.$update();
+  $scope.save = function(file){
+
+    var reader = new FileReader();
+    reader.onloadend = function () {
+    console.log($scope.user.email);
+    var query = { email: $scope.user.email};
+    $scope.user.img = reader.result;
+    User.update(query, $scope.user);
+
+    //$scope.user.save();
     window.location.assign("/profile");
-  }
+  };
+
+    reader.readAsDataURL(file);
+
+  };
 
   $scope.cancel = function(){
     window.location.assign("/profile");
-  }
+  };
 
 });

@@ -5,15 +5,17 @@
 }
 
 .mainDiv{
-  margin-top: 10%;
+  margin-top: 5%;
   height: 100%;
 }
 html, body{
 height: 100%;
 }
 .profileImage{
-  width: 85%;
+  width: 25%;
+  height: auto;
   margin-bottom: 5%;
+
 }
 
 

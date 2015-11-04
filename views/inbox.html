@@ -75,7 +75,7 @@
                     {{$index+1}}
                   </td>
                   <td colspan="2">
-                    <a data-target="#{{$index+1}}" data-toggle="collapse" ng-click="toggleRead(inMessages[$index])">{{message.title}}</a>
+                    <a data-target="#{{$index+1}}" data-toggle="collapse" ng-click="toggleRead(message)">{{message.title}}</a>
                   </td>
                   <td>
                     <p>{{message.senderId}}</p>
@@ -93,7 +93,7 @@
                 <td colspan="4">{{message.body}}</td>
                 <td>
                   <a href="#">
-                    <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(inMessages[$index])">
+                    <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(message)">
                       <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
                     </button>
                   </a>
@@ -107,7 +107,7 @@
                     {{$index+1}}
                   </td>
                   <td colspan="2">
-                    <a data-target="#{{$index + inMessages.length + 1}}" data-toggle="collapse" ng-click="toggleRead(outMessages[$index])">{{message.title}}</a>
+                    <a data-target="#{{$index + inMessages.length + 1}}" data-toggle="collapse">{{message.title}}</a>
                   </td>
                   <td>
                     <p>{{message.senderId}}</p>
@@ -116,7 +116,7 @@
                     {{message.creationDate}}
                   </td>
                   <td>
-                      {{message.read}}
+                      Sent
                   </td>
                 </tr>
                 <tr class="collapse messageRow" id="{{$index + inMessages.length + 1}}" ng-repeat-end> <!-- Added to index to avoid toggling hidden table's rows -->

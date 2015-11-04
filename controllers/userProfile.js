@@ -4,6 +4,11 @@ angular.module('myApp').controller('UserController', function($location, $http, 
         $http.get('/currentUser').then(function successCallback(response) {
             $scope.user = response.data;
             $scope.isUser = true;
+            if(response.data.img){
+              $scope.imageExists = true;
+            }else{
+              $scope.imageExists = false;
+            }
         });
       }else{
       $scope.isUser = ($location.search().isUser == 'true')? true : false ;

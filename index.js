@@ -7,15 +7,17 @@ var bodyParser = require('body-parser');
 
 
 var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
+
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
 app.use(express.static(__dirname + '/models'));
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/bower_components'));
+app.use(express.static(__dirname + '/node_modules/ng-file-upload/dist'));
+
 app.set('view engine', 'jade');
 /**
  *  Initializes stormpath middleware. To run locally you will need to export the the api key and secret.
@@ -157,9 +159,12 @@ app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
     res.json(201, {error : "Invalid Request"});
     return;
   }
-  ret_model.update(writePermissions({_id : req.params._id},req.user.email), req.body, function(err, numAffected){
+  //console.log(writePermissions({_id : req.params._id},req.user.email));
+  //console.log(req.body);
+  ret_model.update(req.user.email, req.body, function(err, numAffected){
     if(err){console.log(err)}
-    console.log("In Put callback!")
+    console.log("Save callback. Number Affected: ");
+    console.log(numAffected);
   });
 
 });
