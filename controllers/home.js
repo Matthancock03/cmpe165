@@ -20,6 +20,6 @@ angular.module('myApp').controller('Home', function($location, $http, $scope, Us
 
   $scope.searchJobs = function(argument) {
     //console.log("Search for " + $scope.queryParameter);
-    window.location.href = "/jobdisplay?_description=" + $scope.queryParameter + "&_location=" + $scope.location;
+    window.location.href = "/jobs?_description=" + $scope.queryParameter + "&_location=" + $scope.location;
   };
 });
