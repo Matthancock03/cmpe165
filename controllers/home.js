@@ -6,6 +6,8 @@ angular.module('myApp').controller('Home', function($location, $http, $scope, Us
     $scope.user = response.data;
     if(response.data != undefined){
       $scope.loggedIn = true;
+      if(response.data.sellerId == null)
+        window.location.href = "/authorize";
     }
   }, function errorCallback(response) {
     console.log("Current User error: " + response.error);

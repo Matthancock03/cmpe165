@@ -63,5 +63,4 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             window.location.href = "/home";
         }
     }
-
 });
