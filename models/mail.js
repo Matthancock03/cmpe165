@@ -14,6 +14,6 @@ var schema = new db.Schema({
     //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
     //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 })
-schema.post('save', test.manbirMail);
+schema.post('save', test.sendMail);
 
 module.exports = db.model("Mail", schema);

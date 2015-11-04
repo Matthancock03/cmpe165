@@ -52,13 +52,24 @@ $scope.toggleRead = function(mess){
   }
 };
 
-
-Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
+/*Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
       $scope.inMessages = messages;
-  });
+  });*/
 
-Mail.query({senderId: "Matthancock03@gmail.com"}, function(messages){
-        $scope.outMessages = messages;
+$http.get('/currentUser').then(function successCallback(response) {
+    //console.log("Current User call sucessful!");
+    //console.log("Email: " + response.data.email);
+    $scope.user = response.data;
+    user = response.data;
+    //console.log(user);
+    $scope.inMessages = Mail.query({ownerId: $scope.user.email}, function(messages){
+        //$scope.inMessages = messages;
+        //console.log($scope.user);
+    });
+
+    $scope.outMessages = Mail.query({senderId: $scope.user.email}, function(messages){});
 });
+
+
 
 });
