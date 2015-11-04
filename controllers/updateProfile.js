@@ -28,8 +28,9 @@ $http.get('/currentUser').then(function successCallback(response) {
   });
 
   $scope.save = function(file){
-
+    console.log(file);
     var reader = new FileReader();
+    if(file){
     reader.onloadend = function () {
     console.log($scope.user.email);
     var query = { email: $scope.user.email};
@@ -38,10 +39,14 @@ $http.get('/currentUser').then(function successCallback(response) {
 
     //$scope.user.save();
     window.location.assign("/profile");
-  };
+    };
 
     reader.readAsDataURL(file);
-
+    }else{
+      var query = { email: $scope.user.email};
+      User.update(query, $scope.user);
+      window.location.assign("/profile");
+    }
   };
 
   $scope.cancel = function(){
