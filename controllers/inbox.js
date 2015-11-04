@@ -64,15 +64,16 @@ $http.get('/currentUser').then(function successCallback(response) {
     $scope.user = response.data;
     user = response.data;
     //console.log(user);
-});
+    Mail.query({ownerId: $scope.user.email}, function(messages){
+        $scope.inMessages = messages;
+        //console.log($scope.user);
+    });
 
-Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
-      $scope.inMessages = messages;
-      //console.log($scope.user);
-  });
-
-Mail.query({senderId: "Matthancock03@gmail.com"}, function(messages){
+    Mail.query({senderId: $scope.user.email}, function(messages){
         $scope.outMessages = messages;
+    });
 });
+
+
 
 });
