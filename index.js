@@ -74,6 +74,15 @@ app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/login.html');
 });
 
+app.get("/currentUser", function(req,res){
+  if(req.user == undefined){
+    res.status(200).send({loggedIn: false});
+  }else{
+    res.status(200).send(req.user);
+  }
+  });
+
+
 app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
@@ -93,7 +102,7 @@ app.get("/jobDisplay",stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobDisplayNew.html');
 })
 
-app.get("/create",stormpath.loginRequired, function(req,res){
+app.get("/create", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobform.html');
 })
 app.get("/", function(req,res){
@@ -103,7 +112,8 @@ app.get("/", function(req,res){
     res.status(200).sendFile(__dirname + '/views/login.html');
   }
 });
-app.get("/inbox", function(req,res){
+
+app.get("/inbox", stormpath.loginRequired, function(req,res){
   res.status(200).sendFile(__dirname + '/views/inbox.html');
 })
 app.get("/apphistory", function(req,res){
@@ -155,6 +165,7 @@ app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
   });
 
 });
+
 /**
  * adds elements to the object used by a query to establish view permissions.
  * @param objOfQuery
@@ -165,6 +176,7 @@ var viewPermissions = function(objOfQuery, ownerId)
   objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
   return objOfQuery
 }
+
 /**
  * adds elements to the object used by a query to establish write permissions.
  * @param objOfQuery
@@ -195,12 +207,7 @@ app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
     if(err){console.log(err)};
   })
   });
-app.get("/currentUser", function(req,res){
-  if(req.user == undefined){
-    res.status(200).send({loggedIn: false});
-  }
-  res.status(200).send(req.user);
-});
+
 app.get("/api/:_model", function(req,res){
   console.log("Email: " + req.query);
   console.log(req.params._model);
@@ -293,9 +300,7 @@ app.get('/authorize', stormpath.loginRequired, function(req, res) {
 });
 
 app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
-
   var code = req.query.code;
-
   // Make /oauth/token endpoint POST request
   request.post({
     url: TOKEN_URI,
@@ -326,6 +331,7 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
 
   });
 });
+
 app.get("/api/:_model/:_id", function(req,res){
   console.log("Id: " + req.params._id);
 

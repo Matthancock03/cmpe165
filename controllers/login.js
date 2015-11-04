@@ -51,6 +51,7 @@
     console.log()
     this.submitSignup = function(user, passwordVerification){
       user.ownerId = user.email;
+      
       console.log()
       if(user.password == passwordVerification) {
         $http({
