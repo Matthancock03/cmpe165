@@ -153,7 +153,7 @@ var viewPermissions = function(objOfQuery, ownerId)
 var writePermissions = function(objOfQuery, ownerId)
 {
   objOfQuery.ownerId = ownerId;
-  //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
+  objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
   return objOfQuery;
 }
 var stripe = require("stripe")(
@@ -243,7 +243,10 @@ app.get("/api/:_model", function(req,res){
       }
     }
   }
-  ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
+  var foo = null;
+  if(req.user != null)
+    foo = req.user.email;
+  ret_model.find(viewPermissions(req.query, foo), function(err, element){
 
     if(err){
       console.log(err);

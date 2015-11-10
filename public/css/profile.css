@@ -6,6 +6,7 @@
 
 .mainDiv{
   margin-top: 5%;
+  margin-bottom: 10%;
   height: 100%;
 }
 html, body{
@@ -18,6 +19,13 @@ height: 100%;
 
 }
 
+#Name{
+  font-size: 55px;
+}
+
+#userName{
+  font-family: Lato;
+}
 
 h1{
   text-align: center;
@@ -30,6 +38,7 @@ hr{
   padding-top: 0px !important;
 }
 .redText{
+  font-size: 30px;
   font-family: Lato;
   font-style: italic;
   color: #a31111;
