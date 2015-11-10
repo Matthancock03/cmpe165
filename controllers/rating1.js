@@ -1,5 +1,7 @@
 (function () {
-    var app = angular.module('myApp', []);
+    var app = angular.module('myApp'
+    // , []// this was the problem line
+    );//John's comments here. testing
 
     var reviews = [{
         stars: 1,
@@ -18,8 +20,9 @@
         createdOn: 1397490980837
     }];
 
-
-    app.controller('ReviewController', function () {
+    //angular.module('myApp').
+    app.
+        controller('ReviewController', function () {
         this.review = {};
         this.reviews = reviews;
 
