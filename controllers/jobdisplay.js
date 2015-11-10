@@ -1,4 +1,4 @@
-angular.module('myApp').controller('jobdisplay', function($scope, $location, $http, Job, Application, User, Mail) {
+angular.module('myApp').controller('jobdisplay', function($scope, $location, $http, Job, Application, User, Mail){ 
     $scope.applied = false;
     if($location.search()._id != null) {
         console.log($location.search()._id);
@@ -118,6 +118,8 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
     $scope.partialDeposit= function(app){
 
     }
+   
+);
 
     //Need to know if you are the applicant or the owner
 });

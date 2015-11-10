@@ -128,8 +128,12 @@ app.get("/apphistory", stormpath.loginRequired, function(req,res){
 app.get("/stripePaymentSetup", function(req,res){
   res.status(200).sendFile(__dirname + '/views/stripePaymentUI.html');
 })
-app.get("/contract", function(req,res){
+app.get("/Contract", function(req,res){
   res.status(200).sendFile(__dirname + '/views/templates/modalTerms&Agreement.html');
+})
+
+app.get("/rate",stormpath.loginRequired, function(req,res){
+  res.status(200).sendFile(__dirname + '/views/rating2.html');
 })
 
 
