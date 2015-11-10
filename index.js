@@ -51,34 +51,20 @@ app.use(stormpath.init(app, {
 //When you add a model, require it here as the name of model; make it a property of dbmodels.
 //Make sure to put the same model name in MyApp including capitalization. or it won't work!
 db = require(__dirname +'/database');
-var dbmodels = {};
-dbmodels.Job = require(__dirname +'/models/job');
-dbmodels.Comment = require(__dirname + '/models/comment');
-dbmodels.User = require(__dirname + '/models/user');
-dbmodels.Application = require(__dirname + '/models/application');
-dbmodels.Contract = require(__dirname + '/models/Contract');
-dbmodels.Mail = require(__dirname + '/models/mail');
-
-var retrieveModel = function(modelName, body)
-{
-  for(property in dbmodels){//for each model
-    if(modelName == property)//if model's name from parameter is the same as the name of the model
-      return dbmodels[property];//return the model
-  }
-  return null // model not found
-}
-
+dbRoutes = require(__dirname + '/routes/dbRoutes')
+app.use("/api", dbRoutes);
+var dbmodels = dbRoutes.dbmodels;//
 
 /**
  *   Routes
  */
 
-app.get("/currentUser", function(req,res){
+app.get("/currentUser", function(req,res, next){
   if(req.user == undefined){
     res.status(200).send({loggedIn: false});
   }else{
     dbmodels.User.findOne({email : req.user.email}, function(err, user){
-      if(err){console.log(err)};
+      if(err){return next(err);};
       console.log("User: " + user);
       res.status(200).send(user);
     });
@@ -130,147 +116,51 @@ app.get("/contract", function(req,res){
   res.status(200).sendFile(__dirname + '/views/templates/modalTerms&Agreement.html');
 })
 
-
-
-/**
- * adds elements to the object used by a query to establish view permissions.
- * @param objOfQuery
- * @param ownerId
- */
-var viewPermissions = function(objOfQuery, ownerId)
-{
-  objOfQuery.$or = [{viewableIds: {$exists: false}}, {ownerId: ownerId}, {viewableIds: ownerId}];
-  return objOfQuery
-}
-
-/**
- * adds elements to the object used by a query to establish write permissions.
- * @param objOfQuery
- * @param ownerId
- */
-var writePermissions = function(objOfQuery, ownerId)
-{
-  objOfQuery.ownerId = ownerId;
-  //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
-  return objOfQuery;
-}
 var stripe = require("stripe")(
     "sk_test_1q9nLen2GaP2Q6Z2o5jpzM97"
 );
 
 
-app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
-  console.log('Post Received.');
-  //console.log(req);
+
+app.post("/paymentSetup", stormpath.loginRequired, function(req, res, next) {
+
   console.log(req.body);
-  console.log(req.params._model);
-  var ret_model = retrieveModel(req.params._model);
-  if(ret_model == null)
-  {
-    res.json(201, {error : "Invalid Request: No Model"});
-    return;
-  }
-  if(req.body.ownerId == null && req.user != null)//needed to resolve an issue with register
-    req.body.ownerId = req.user.email;
-  var job = new ret_model(req.body);
-  console.log(job);
-  job.save(function(err, job){
-    if(err){
-      console.log(err);
-      console.log(job);
-      console.log("Job did not save correctly.");
-    };
-    res.json(201, job);
-  })
-});
-app.put("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
-  console.log("In Put!")
-  var ret_model = retrieveModel(req.params._model);
-  console.log(req.user.email);
-  if(ret_model == null)
-  {
-    res.json(201, {error : "Invalid Request"});
-    return;
-  }
-  ret_model.update(writePermissions({_id : req.params._id},req.user.email), req.body, function(err, numAffected){
-    if(err){console.log(err)}
-    console.log("In Put callback!")
-  });
-
-});
-app.delete("/api/:_model/:_id",stormpath.loginRequired, function(req,res){
-
-  var ret_model = retrieveModel(req.params._model);
-  if(ret_model == null)
-  {
-    res.json(500, { error : "Invalid Request"});
-    return;
-  }
-
-  ret_model.remove(writePermissions({_id : req.params._id},req.user.email),function(err){
-    if(err){console.log(err)};
-  })
-  });
-
-app.get("/api/:_model", function(req,res){
-  console.log("Email: " + req.query);
-  console.log(req.params._model);
-  var ret_model = retrieveModel(req.params._model);
-  if(ret_model == null)
-  {
-    res.json(201, {error : "Invalid Request"});
-    return;
-  }
-  job = new ret_model(req.body);
-  console.log(req.query)
-  for(property in req.query){//for each property of the query
-    if(req.query[property].charAt(0) == '{') {//primary issue. no need for syntax errors otherwise
-     try {
-
-        temp = JSON.parse(req.query[property]);//set it to an object version of the string passed.
-        req.query[property] = temp;
-      }
-      catch (e) {//this property not an object
-        console.log(e);
-      }
-    }
-  }
-  ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
-
-    if(err){
-      console.log(err);
-      };
-    console.log(element);
-    res.json(element);
-  });
-});
-app.post("/paymentSetup", stormpath.loginRequired, function(req, res) {
   dbmodels.User.findOne({ownerId: req.user.email}, function (err2, user) {
     stripe.customers.create({
       description: 'Customer for test@example.com',
-      source: req.id // obtained with Stripe.js
+      source: req.body.id // obtained with Stripe.js
     },function(err, customer)
     {
+      if(err != null)
+        return next(err);
       user.customerId = customer.id;
       console.log(user.customerId)
       user.save();
     })
   })
 })
-app.post("/payments", stormpath.loginRequired, function(req, res) {
+app.post("/payments", stormpath.loginRequired, function(req, res, next) {
 
 
-  dbmodels.Application.findOne({_id : req.query.applicationId}, function (err1, application) {
+  dbmodels.Application.findOne({_id : req.body._id}, function (err1, application) {
     dbmodels.User.findOne({email: application.ownerId}, function (err2, user) {
       if(user.sellerId == null)//???
-        return res.redirect("/jobs");
+      {
+        console.log("???")
+        return {redirectURI: "/jobs"}
+      }
       dbmodels.User.findOne({email: req.user.email}, function (err2, user2) {
-        if(user2.customerId == null)
-          return res.redirect("/stripePaymentSetup");
+        if(user2.customerId == null) {
+          console.log("???2")
+          return res.res(500, "/stripePaymentSetup");
+        }
+        if(!application.signed) {
+          console.log("???3")
+          return
+        }
         dbmodels.Job.findOne({_id: application.jobId}, function (err3, job) {//May want to consider an async library of sorts. 3 of these calls could be made at the same time instead of waiting for the db to do its thing. slow.
-          if(job.paymentNumber == null)
-            job.paymentNumber = 0;
-          if(job.paymentNumber < 2)//only allowing 1 participant? what's the plan?
+          var index = job.applicantSignatureData.map(function(a) {return a.ownerId;}).indexOf(application.ownerId);
+          if(index >= 0 && job.applicantSignatureData[index].paymentNum < 2)//only allowing 1 participant? what's the plan?
             stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
               amount: job.wages / 2 * 100,//hm. an array of booleans? maybe define signatureIds?
               currency: "usd",
@@ -278,10 +168,18 @@ app.post("/payments", stormpath.loginRequired, function(req, res) {
               description: job.description
             }, {stripe_account: user.sellerId}, function (err, charge) {
               // asynchronously called
+              if(err != null)
+              {
+                return next(err);
+                console.log(err);
+              }
 
             });
-          job.paymentNumber++;
-          job.save();
+          job.applicantSignatureData[ownerIdArray.indexOf(application.ownerId)].paymentNum++;
+          //What should we do when payment is finished?
+          //create mail.
+
+          job.update();
         });
       });
     });// To
@@ -316,13 +214,14 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
       client_secret: 'sk_test_1q9nLen2GaP2Q6Z2o5jpzM97'
     }
   }, function(err, r, body) {
-
+    if(err){return next(err);};
     var obj = JSON.parse(body)
     console.log(req.user.email);
     console.log(body);
     //console.log(body);
     // Do something with your accessToken
     dbmodels.User.findOne({email: req.user.email}, function(err, user){
+      if(err){return next(err);};
       console.log(user);
       user.sellerId = obj.stripe_user_id;
       user.save();
@@ -334,23 +233,6 @@ app.get('/oauth/callback', stormpath.loginRequired, function(req, res) {
     // and block off applying for jobs if they have no stripe account.
     //or, we could just mandate the stripe account and require credit card info once when they make their first payment
 
-  });
-});
-
-app.get("/api/:_model/:_id", function(req,res){
-  console.log("Id: " + req.params._id);
-
-  var ret_model = retrieveModel(req.params._model);
-  if(ret_model == null)
-  {
-    res.json(201, {error : "Invalid Request"});
-    return;
-  }
-
-  ret_model.findOne(viewPermissions({_id : req.params._id},req.user.email), function(err, element){
-    if(err){console.log(err)};
-    //console.log(element);
-    res.json(element);
   });
 });
 

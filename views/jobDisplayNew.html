@@ -46,14 +46,14 @@
             <h3> {{userjob.title}}</h3>
 
             <p>{{userjob.description}}</p>
-            <button class="btn btn-success btn-lg btn-block" ng-show="notOwner" ng-disabled="applied"  ng-click="apply()" type="submit">
+            <button class="btn btn-success btn-lg btn-block" ng-cloak ng-show="notOwner" ng-disabled="applied"  ng-click="apply()" type="submit">
                 Apply
             </button>
-            <button class="btn btn-success btn-lg btn-block" ng-show="!notOwner" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-click="edit()" type="submit">
+            <button class="btn btn-success btn-lg btn-block" ng-cloak ng-show="!notOwner" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-click="edit()" type="submit">
                 Edit
             </button>
-            <h2 ng-show="applied">Viewable Applications</h2>
-            <div class="row panel panel-default" ng-repeat="app in applications | orderBy:'-creationDate'">
+            <h2 ng-cloak ng-show="applied">Viewable Applications</h2>
+            <div class="row panel panel-default" ng-cloak ng-repeat="app in applications | orderBy:'-creationDate'">
                 <div class="col-md-2"><h2>{{app.name}}</h2></div>
                 <div class="col-md-8"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
                 <div class="col-md-2">

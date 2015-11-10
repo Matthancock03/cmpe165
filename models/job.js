@@ -12,9 +12,9 @@ schema = new db.Schema({
   location: {type: String, required: true},
   signerId: {type: String, required: false},
   paymentNumber: {type: Number, required: false, default: 0},
-  applicantSignatureData: [{
+  applicantSignatureData: {type: [{
     ownerId:{type: String},
-    paymentNum:{type: Number, default:0}}]//Needed to maintain control of payment count by employer.
+    paymentNum:{type: Number, default:0}}], default: []},//Needed to maintain control of payment count by employer.
     //To sign, do a layered search because Job owners can't modify applications.
     // will place actual signing in application model that the employee can modify.
     //Hm. best way to do it? Application model instead of an array. users create them and see them, employer sees them.

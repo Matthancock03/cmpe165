@@ -16,9 +16,12 @@
   angular.module('myApp').controller('Login', function($http, $location, $window){
     this.email = "";
     this.password = "";
-
+    this.panelNumber = function(panel){
+      return tab === panel;
+    };
     this.submitLogin = function(email, password){
       console.log("Email: " + email + " Password: " + password);
+
       $http({
       method: 'POST',
       url: '/login',
@@ -43,7 +46,7 @@
   angular.module('myApp').controller('Signup', function($http, $location, User){
     this.user = new User();
     this.passwordVerification = "";
-    console.log()
+    console.log();
     this.submitSignup = function(user, passwordVerification){
       user.ownerId = user.email;
 
