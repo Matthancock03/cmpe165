@@ -23,13 +23,16 @@
 }
 html, body{
 height: 100%;
-background-color: #b0c4de;
+}
+
+.black {
+background-color: black;
+height: 100%;
 }
 
 .full {
   height: 100%;
 }
-
 .btnDiv{
   display: inline-block !important;
   margin-top: 5px;
