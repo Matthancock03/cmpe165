@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="jobdisplay">
 <head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+  <title>StageHand</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <!--
     a new Job display based on the version Daisy made.
@@ -18,62 +33,61 @@
     <title>Table Properties</title>
     <link rel="stylesheet" href="css/jobdisplay.css">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <style>
+      body {
+          background-color: #C0C0C0;
+      }
+      h2.Lato {
+    font-family: "Lato", Lobster, serif;
+margin-top: 1.0em;
+     margin-bottom: 0.67em;
+background-color: #C0C0C0;
+}
+h1.header
+{
+  margin:50px 10px;
+  font-size: 45px;
+  font-family: "Lato", Lobster, serif;
+background-color: #C0C0C0;
+}
+      </style>
+
+
 </head>
 
 <body>
 
+  <div class="container">
+  <div class="page-header">
+    <h1 class = "header">Job Detail</h1>
+  </div>
+
+</div>
+
 <div class="container-fluid full" >
     <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
     <div class="row clearfix full" style="margin-top:20px">
-
-
-            <h1 class="test/css">Job Detail</h1>
-            <style>
-                h3 {
-                    text-align: center;
-                }
-            </style>
-            <style>
-                img
-                {
-                    text-align: center;
-                }
-            </style>
-
-            <img src="http://questgarden.com/160/45/3/130619033321/images/Birthday-Party-1.jpg"  alt="baloons" align="middle" style="width:100px;height:100px;">
-
-
-            <h3> {{userjob.title}}</h3>
-
-            <p>{{userjob.description}}</p>
-            <button class="btn btn-success btn-lg btn-block" ng-show="notOwner" ng-disabled="applied"  ng-click="apply()" type="submit">
-                Apply
-            </button>
-            <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-click="edit()" type="submit">
-                Edit
-            </button>
-            <h2 ng-show="applied">Viewable Applications</h2>
-            <div class="row panel panel-default" ng-repeat="app in applications | orderBy:'-creationDate'">
-                <div class="col-md-2"><h2>{{app.name}}</h2></div>
-                <div class="col-md-8"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
-                <div class="col-md-2">
-                <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-disabled="app.sent" ng-click="acceptApplication(app)" type="submit">
-                    Send Contract
-                </button>
-                </div>
-            </div>
-            <!-- begin wwww.htmlcommentbox.com -->
-            <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
-            <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-            <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={}; (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10&ts=1444505289626");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
-            <!-- end www.htmlcommentbox.com -->
-
+      <div class="container">
+        <h2 class= "Lato">Job description</h2>
+        <div class="panel panel-default">
+          <div class="panel-heading"> Job Detail</div>
+          <div class="panel-body">Panel Content</div>
+  <button type="button" class="btn btn-primary">Apply now</button>
+        </div>
+    </div>
 
 
     </div>
-    </div>
+<div align = CENTER>
+  <!-- Begin Comments JavaScript Code --><script type="text/javascript" async>function ajaxpath_563a8e9091a97(url){return window.location.href == '' ? url : url.replace('&s=','&s=' + escape(window.location.href));}(function(){document.write('<div id="fcs_div_563a8e9091a97"><a title="free comment script" href="http://www.freecommentscript.com">&nbsp;&nbsp;<b>Free HTML User Comments</b>...</a></div>');fcs_563a8e9091a97=document.createElement('script');fcs_563a8e9091a97.type="text/javascript";fcs_563a8e9091a97.src=ajaxpath_563a8e9091a97((document.location.protocol=="https:"?"https:":"http:")+"//www.freecommentscript.com/GetComments2.php?p=563a8e9091a97&s=&Size=10#!563a8e9091a97");setTimeout("document.getElementById('fcs_div_563a8e9091a97').appendChild(fcs_563a8e9091a97)",1);})();</script><noscript><div><a href="http://www.freecommentscript.com" title="free html user comment box">Free Comment Script</a></div></noscript><!-- End Comments JavaScript Code -->
+
+</div>
+
     </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
