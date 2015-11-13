@@ -58,3 +58,30 @@ font-size: 50px;
   margin-top: 5px;
   width: 85%;
 }
+.box {
+  margin: 50px auto;
+  background-image: url("https://addons.cdn.mozilla.net/user-media/addon_icons/337/337643-64.png?modified=1429338926");
+  width: 150px;
+  height: 150px;
+
+}
+
+.box:hover {
+  -webkit-transform: rotate(360deg);
+  background: #9351A6;
+  border-radius: 50%;
+}
+
+.rotate {
+  -webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.rotate:hover {
+  -webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}

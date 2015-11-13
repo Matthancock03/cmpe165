@@ -27,3 +27,39 @@ html, body {
 ul.nav.nav-tabs.nav-justified li a {
     color: #A51919;
 }
+
+
+
+.box {
+  margin: 50px auto;
+  background: #B8B8B8  ;
+  background-image: url("../../images/logo.png");
+  background-repeat: no-repeat;
+  background-position: 25% 25%;
+
+
+  width: 380px;
+  height: 450px;
+
+}
+
+.box:hover {
+  -webkit-transform: rotate(360deg);
+
+background-position: 45% 20%;
+  border-radius: 50%;
+}
+
+.rotate {
+  -webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.rotate:hover {
+  -webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
