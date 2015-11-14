@@ -1,18 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-//When you add a model, require it, then return it when the model name matches the actual model name
-//Make sure to put the same model name in MyApp or it won't work!
-// You can add models to access Authorization tokens, but please don't include them in the retrieveModel section.
-// it will cause no end of grief as the generalized model we have running here will break down
-// because it's a type of model we don't want them to access.
-var Job = require(__dirname +'/models/job');
-var Comment = require(__dirname + '/models/comment');
-var User = require(__dirname + '/models/user');
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/controllers'));
@@ -73,7 +66,6 @@ var retrieveModel = function(modelName, body)
 
 }
 
-
 app.post("/api/:_model", function(req,res){
   console.log('Post Received.');
   //console.log(req);
@@ -96,6 +88,7 @@ app.post("/api/:_model", function(req,res){
     res.json(201, job);
   })
 });
+
 app.put("/api/:_model/:_id", function(req,res){
   console.log("In Put!")
   var ret_model = retrieveModel(req.params._model);
@@ -110,6 +103,7 @@ app.put("/api/:_model/:_id", function(req,res){
   });
 
 });
+
 app.delete("/api/:_model/:_id", function(req,res){
   var ret_model = retrieveModel(req.params._model);
   if(ret_model == null)
