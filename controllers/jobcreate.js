@@ -24,6 +24,8 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             $scope.userjob.$update()
             console.log("In submit?")
             window.location.href = "/jobdisplay?_id=" + $scope.userjob._id;
+
+
         }
         $scope.delete = function()
         {

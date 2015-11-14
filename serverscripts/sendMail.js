@@ -59,7 +59,7 @@ q.manbirMail = function(email) {
     var mailOptions = {
         from: 'stagehandinfo <stagehandinfo@gmail.com>', // sender address has to be same as authentication email
         to: email.ownerId, // list of receivers
-        subject: "'" + email.title + "' from" + email.senderId, // Subject line
+        subject: "'" + email.title + "' from " + email.senderId, // Subject line
         text: email.body + "\n" + plaintext, // plaintext body
     };
 
