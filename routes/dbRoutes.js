@@ -39,7 +39,9 @@ var viewPermissions = function(objOfQuery, ownerId)
 var writePermissions = function(objOfQuery, ownerId)
 {
     objOfQuery.ownerId = ownerId;
-    //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];
+    //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];//Handle internal to job object; only object to lock
+    //May just have to mock the behavior? UGH!!
+    //No time to implement subdocument permissions for modification.
     return objOfQuery;
 }
 dbRouter.get("/:_model", function(req,res, next){
@@ -54,7 +56,7 @@ dbRouter.get("/:_model", function(req,res, next){
     job = new ret_model(req.body);
     console.log(req.query)
     for(property in req.query){//for each property of the query
-        if(req.query[property].charAt(0) == '{') {//primary issue. no need for syntax errors otherwise
+        if(req.query[property] instanceof Array || req.query[property].charAt(0) == '{') {//primary issue. no need for syntax errors otherwise
             try {
 
                 temp = JSON.parse(req.query[property]);//set it to an object version of the string passed.
@@ -122,9 +124,12 @@ dbRouter.put("/:_model/:_id",stormpath.loginRequired, function(req,res,next){
     {
         return next({error : "Invalid Request"});
     }
-    ret_model.update(writePermissions({_id : req.params._id},req.user.email), req.body, function(err, numAffected){
-        if(err){return next(err)}
-        console.log("In Put callback!")
+    ret_model.findOne(writePermissions({_id : req.params._id},req.user.email), function(err, doc){
+        for(property in req.body)
+            doc[property] = req.body[property];
+        console.log(doc);
+        doc.save();
+        console.log("In find callback!")
     });
 
 });

@@ -52,15 +52,14 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
     $scope.apply = function(){
         $scope.applied = true;
 
-        var application = {
+        var application = new Application({
             jobId: $scope.master._id,
-            viewableIds:[$scope.master.ownerId]//Use this array in any model when you need to limit people who can view things.
-            // include other viewers ONLY; don't need and can't easily access own id for now. ownership implies viewability anyways
-            // if undefined, system will assume anyone can view.
-        };
+            viewableIds:[$scope.master.ownerId],
+            bid: $scope.userjob.wages
+        });
         console.log(application);
 
-        Application.save(application, function() {
+        application.$save(application, function() {
             //window.location.href = "/jobs";//need to be careful with these?
             // Is url xss a thing if the contents based on the url are escaped?
 
@@ -113,7 +112,7 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
             m.title = "The Employer of the job '" + $scope.userjob.title + "' is sending you a contract!"
             m.body = "Here's a link to your application!"
             m.links = ["/Contract?_id="+ app._id];
-            app.sent=true;
+            //app.sent=true;
             m.$save();
             app.$update();
 
@@ -123,7 +122,7 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
         }
     }
     $scope.partialDeposit= function(app){
-        $http.post("/payments", {_id: app._id}).then(function(suc){
+        $http.post("/payments", {_id: app._id, bid: app.bid}).then(function(suc){
             $scope.deposited=true;
         },function(err){
             //???

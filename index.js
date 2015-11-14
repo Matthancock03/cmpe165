@@ -139,6 +139,7 @@ app.post("/paymentSetup", stormpath.loginRequired, function(req, res, next) {
     })
   })
 })
+
 app.post("/payments", stormpath.loginRequired, function(req, res, next) {
 
 
@@ -161,25 +162,38 @@ app.post("/payments", stormpath.loginRequired, function(req, res, next) {
         dbmodels.Job.findOne({_id: application.jobId}, function (err3, job) {//May want to consider an async library of sorts. 3 of these calls could be made at the same time instead of waiting for the db to do its thing. slow.
           var index = job.applicantSignatureData.map(function(a) {return a.ownerId;}).indexOf(application.ownerId);
           if(index >= 0 && job.applicantSignatureData[index].paymentNum < 2)//only allowing 1 participant? what's the plan?
-            stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
-              amount: job.wages / 2 * 100,//hm. an array of booleans? maybe define signatureIds?
-              currency: "usd",
-              customer: user.customerId,
-              description: job.description
-            }, {stripe_account: user.sellerId}, function (err, charge) {
-              // asynchronously called
-              if(err != null)
-              {
-                return next(err);
-                console.log(err);
-              }
-
-            });
-          job.applicantSignatureData[ownerIdArray.indexOf(application.ownerId)].paymentNum++;
+          {
+            var amount;
+            if (!job.wagesMax)
+                amount = job.wages / 2 * 100
+            else if(req.body.bid != application.bid)//shenanegans prevention
+                return;
+            else
+                amount = application.bid;
+              stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
+                amount: amount,//hm. an array of booleans? maybe define signatureIds?
+                currency: "usd",
+                customer: user.customerId,
+                description: job.description
+              }, {stripe_account: user.sellerId}, function (err, charge) {
+                // asynchronously called
+                if (err != null) {
+                  return next(err);
+                  console.log(err);
+                }
+                job.applicantSignatureData[index].paymentNum++;
+                if (job.applicantSignatureData[index] >= 2) {
+                  job.paidTwice++;
+                  if (job.paidTwice >= job.totalParticipantNum)
+                    job.done = true;
+                }
+                job.save();
+              });
+          }
           //What should we do when payment is finished?
           //create mail.
 
-          job.update();
+
         });
       });
     });// To

@@ -8,6 +8,7 @@ var Mail = require("./mail")
 var q = new db.Schema({jobId:{type: String, required:true},
     viewableIds:{type: [String], required:true},
     creationDate: {type: Date, required: false, default: Date.now()},
+    bid:{type: Number, required: true},
     //Use this array in any model when you need to limit people who can view things.
     // include other viewers ONLY; don't need and can't easily access own id. ownership assumes viewability anyways
     // if undefined, system will assume anyone can view.
@@ -16,7 +17,7 @@ var q = new db.Schema({jobId:{type: String, required:true},
 })
 
 
-q.post('update', function(application){
+q.post('save', function(application){//TRIGGERS ONLY when updated by ID!
     if(application.signed) {
         Job.findOne({_id: application.jobId}, function (job) {
             if (job.applicantSignatureData.map(function(a) {return a.ownerId;}).contains(application.ownerId)) {//Check to see that the user has been sent the request
