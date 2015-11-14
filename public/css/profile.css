@@ -5,20 +5,40 @@
 }
 
 .mainDiv{
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-bottom: 10%;
   height: 100%;
 }
 html, body{
 height: 100%;
 }
 .profileImage{
-  width: 85%;
+  width: 25%;
+  height: auto;
   margin-bottom: 5%;
+
 }
 
+#Name{
+  font-size: 55px;
+}
+
+#userName{
+  font-family: Lato;
+}
 
 h1{
   text-align: center;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+hr{
+  margin-top: -10px !important;
+  padding-top: 0px !important;
+}
+.redText{
+  font-size: 30px;
   font-family: Lato;
   font-style: italic;
   color: #a31111;

@@ -21,15 +21,9 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             $scope.reset();
         });
         $scope.submit = function() {
-            if ($scope.userjob.signature == null) {
-                $scope.userjob.$update()
-                console.log("In submit?")
-                window.location.href = "/jobdisplay?_id=" + $scope.userjob._id;
-            }
-            else
-            {
-                alert("Contract has been signed");
-            }
+            $scope.userjob.$update()
+            console.log("In submit?")
+            window.location.href = "/jobdisplay?_id=" + $scope.userjob._id;
 
 
         }
@@ -63,5 +57,4 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
             window.location.href = "/home";
         }
     }
-
 });

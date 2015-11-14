@@ -1,23 +1,65 @@
-angular.module('myApp').controller('Inbox', function($location, $http, $scope, Mail){
-  /*var mail = new Mail();
-  mail.ownerId = "Matthancock03@gmail.com";//The email to send to. NOT THE EMAIL OF THE SENDER!
-  mail.senderId = "mrandhawa27@gmail.com";//email sent from. the id of the sender technically.
-  mail.links = ["http://mongoosejs.com/docs/middleware.html"]
-  mail.sent = false
-  mail.body = "Dummy Body";//the body of the email.
-  mail.title = "Dummy Title";//the title
-  mail.$save(function () {
-    console.log("Message saved :");
-  }); */
+var user;
+var tab = 1;
+var message;
 
-$http.get('/currentUser').then(function successCallback(response) {
-    //console.log("Current User call sucessful!");
-    //console.log("Email: " + response.data.email);
-    $scope.user = response.data;
-    //console.log(this.user);
+angular.module('myApp').controller('Inbox', function($location, $http, $scope, Mail){
+
+  $http.get('/currentUser').then(function successCallback(response) {
+      $scope.user = response.data;
   });
 
-  Mail.query({ownerId: "Matthancock03@gmail.com"}, function(messages){
+  $scope.successTextAlert = "Message Sent";
+  $scope.showSuccessAlert = false;
+
+  $scope.switchBool = function(value) { //Displays sucessfuly sent email message.
+   $scope[value] = !$scope[value];
+  };
+
+  $scope.sendMessage = function(){
+
+      var mail = new Mail();
+      mail.ownerId = message.senderId;
+      mail.senderId = message.ownerId;
+      mail.links = ["http://mongoosejs.com/docs/middleware.html"]
+      mail.sent = false
+      mail.body = $scope.messageBody;
+      mail.title = $scope.messageTitle;
+
+      mail.$save(function () {
+        console.log("Message saved");
+      });
+      $scope.outMessages.push(mail);
+      $scope.showSuccessAlert = true;
+  };
+
+  $scope.setTab = function(table){
+    tab = table;
+  };
+
+  $scope.panelNumber = function(panel){
+    return tab === panel;
+  };
+
+  $scope.setMessage = function(mess){
+      message = mess;
+  }
+
+$scope.toggleRead = function(mess){
+  console.log(mess);
+  if(!mess.read){
+    mess.read = true;
+    //console.log(mess);
+    mess.$update();
+  }
+};
+
+
+Mail.query({ownerId: "matthancock03@gmail.com"}, function(messages){
       $scope.inMessages = messages;
   });
+
+Mail.query({senderId: "matthancock03@gmail.com"}, function(messages){
+        $scope.outMessages = messages;
+});
+
 });

@@ -6,7 +6,7 @@
  */
 var q = {};
 var nodemailer = require('nodemailer');
-
+var User = require('../models/user');
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -15,8 +15,23 @@ var transporter = nodemailer.createTransport({
         pass: 'vegeta11'
     }
 });//any way to define this globally?
-q.manbirMail = function(email) {
+/**
+ * Use this to send mail instead of ManbirMail.
+ * includes check if the user wants to receive email notifications and if the user exists, which is important.
+ * @param email mail doc from model middleware call
+ */
+q.sendMail = function(email)
+{
+    User.findOne({email: email.ownerId}, function(err, user){//err is always first as in error scenarios it would have to send null for the first argument instead of just sending the error.
+        if(user == null || (user.recieveEmail != null && !user.recieveEmail))
+            return;
+        q.manbirMail(email)
+    })
+}
 
+q.manbirMail = function(email) {
+    //Need to make sure that user is OK with emails.
+    //Also should probably make sure user exists. don't want our email service to be used for spam.
 
     //console.log('%s has been saved', email._id);
     //hm. problem. what if they use a local link?
@@ -44,7 +59,7 @@ q.manbirMail = function(email) {
     var mailOptions = {
         from: 'stagehandinfo <stagehandinfo@gmail.com>', // sender address has to be same as authentication email
         to: email.ownerId, // list of receivers
-        subject: "'" + email.title + "' from" + email.senderId, // Subject line
+        subject: "'" + email.title + "' from " + email.senderId, // Subject line
         text: email.body + "\n" + plaintext, // plaintext body
     };
 

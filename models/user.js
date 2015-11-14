@@ -6,14 +6,15 @@ var User = db.model('User', {
   firstName: {type: String, required: true},
   lastName: {type: String, required: true},
   customerId: {type: String},
+  sellerId: {type: String},
   ownerId: {type: String},//will be the same as email; important to allow modifications of the user table without rewriting functions
   //This will be email here. id = email
   img: { data: Buffer, contentType: String},
   about: {type: String},
   skills: {type: String},
-  videoLinks: {type: String},
-  //stripeacc: {type: String, required: true},// need something for stripe to transfer money to and from. what do?
-  //reviews:{type: db.Schema}                 Not created yet
+  videoLinks: {type: [String]},
+  recieveEmail:{type: Boolean, default: true},
+  reviews:[{type: db.Schema.Types.ObjectId, ref: 'Review'}],
   creationDate: {type: Date, required: true, default: Date.now}
 })
 

@@ -5,16 +5,23 @@ height: 100%;
 .bannerImage{
 width: 100%;
 height: 300px;
-margin-top: 35px;
+margin-top: 45px;
 }
 
 .redText{
   color: #A51919;
 }
 
+#aboutText{
+  margin-top: 10px;
+  font-family: Lato;
+  text-align: center;
+  font-size: 20px;
+}
+
 #searchDiv{
   width: 50%;
-  height: 150px;
+  height: 190px;
   background-color: rgba(10, 10, 10, 0.72);
   border-radius: 25px;
   margin-top: 25px;
@@ -58,6 +65,7 @@ font-size: 50px;
   margin-top: 5px;
   width: 85%;
 }
+
 .box {
   margin: 50px auto;
   background-image: url("https://addons.cdn.mozilla.net/user-media/addon_icons/337/337643-64.png?modified=1429338926");
@@ -84,4 +92,5 @@ font-size: 50px;
 	-moz-transition: all 1s ease-in-out;
 	-o-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
+
 }
