@@ -10,6 +10,10 @@ module.exports.jobUpdateMail = function(job){
         for(var i = 0; i < applicants.length; i++) {//for each applicant of the job
             var mail = new Mail();
             mail.ownerId = applicants[i].ownerId
+            mail.senderId = job.ownerId
+            mail.title = "Job '"+ job.title + "' has been updated!"
+            mail.body = "The job you've applied to has been updated!",
+            mail.links=["/jobdisplay?_id="+job._id]
             //Manbir's stuff here. make the body of the email. note that all links have to be in the separate link section.
             //job has all the new elements of the job that was updated.
             mail.save();// will send the mail

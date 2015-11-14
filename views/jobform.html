@@ -11,7 +11,7 @@
 
 <body>
   <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
-  <div class="container-fluid full"  ng-controller="jobcreate" style="margin-top:20px">
+  <div class="container-fluid full"  ng-controller="jobcreate" style="margin-top:20px" ng-cloak>
     <div class="row clearfix full">
 
       <div class="col-xs-2"></div>
@@ -20,7 +20,13 @@
         <span>
           <img src="images/clapperboard.svg" alt="clapperboard" class="clapper center-block" />
           <h1>Set the Stage!</h1>
+
         </span>
+        <span ng-show="!userjob.wagesMax && userjob.wagesMin"style="color:red">No Min without Max</span>
+        <span ng-show="userjob.wagesMin && userjob.wagesMin >= userjob.wages" style="color:red">Min must be less than Default</span>
+        <span ng-show="userjob.wagesMax && !userjob.wagesMin" style="color:red">No Max without Min</span>
+        <span ng-show="userjob.wagesMax && userjob.wagesMax < userjob.wages" style="color:red">Max must be greater than Default</span>
+        <span ng-show="!userjob.modifiable && userjob.modifiable != null" style="color:red">Can't modify a job when the contract has been signed.</span>
         <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
           <div class="input-group ">
             <div class="input-group-addon">
@@ -44,10 +50,28 @@
           </div>
           <div class="input-group">
             <div class="input-group-addon">
-              Wages:
+              Participant #:
             </div>
-            <input class="form-control" placeholder="Why" ng-model="userjob.wages" type="text" currency-formatter>
+            <input class="form-control" placeholder="How Many" ng-model="userjob.totalParticipantNum" type="number">
           </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+              Min wage:
+            </div>
+            <input class="form-control" placeholder="" ng-model="userjob.wagesMin" type="text" ng-disabled="userjob.wages == null" currency-formatter>
+            </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+              Default:
+            </div>
+            <input class="form-control" placeholder="Why" ng-model="userjob.wages" type="text" currency-formatter required>
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+              Max wage:
+            </div>
+            <input class="form-control" placeholder="" ng-model="userjob.wagesMax" type="text" ng-disabled="userjob.wages == null" currency-formatter>
+            </div>
           <div class="input-group">
             <div class="input-group-addon">
               Description:
@@ -64,7 +88,7 @@
             <button class="btn btn-danger btn-lg btnDiv" ng-click="delete()" type="button">
               {{cancelText}}
             </button>
-            <button class="btn btn-success btn-lg btnDiv" type="submit">
+            <button class="btn btn-success btn-lg btnDiv" ng-disabled="(!userjob.modifiable && userjob.modifiable != null) || (userjob.wagesMax && userjob.wagesMax < userjob.wages) || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && !userjob.wagesMin) || (userjob.wagesMin && !userjob.wagesMax)" type="submit">
               Submit
             </button>
           </div>

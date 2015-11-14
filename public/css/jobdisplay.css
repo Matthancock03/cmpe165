@@ -1,11 +1,3 @@
-h1 {
-    color: maroon;
-    text-align: center;
-}
-body {
-    background-color: linen;
-    font-family: Arial, Verdana, sans-serif;
-    color: #111111;}
 table {
     width: 600px;}
 th, td {
@@ -23,3 +15,29 @@ tr:hover {
     background-color: #c3e6e5;}
 .money {
     text-align: right;}
+
+body {
+        background-color: #C0C0C0;
+    }
+    h2.Lato {
+  font-family: "Lato", Lobster, serif;
+margin-top: 1.0em;
+   margin-bottom: 0.67em;
+background-color: #C0C0C0;
+}
+
+h1.header
+{
+margin:50px 10px;
+font-size: 45px;
+font-family: "Lato", Lobster, serif;
+background-color: #C0C0C0;
+}
+
+img
+{
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}

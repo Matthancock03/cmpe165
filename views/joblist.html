@@ -1,41 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/joblist.css">
-    <link rel="stylesheet" href="css/sideBar.css">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/joblist.css">
 </head>
+
 <body>
   <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
-<div  ng-controller="joblist" style="padding-left:10px; padding-right:10px">
-<h1>Jobs near you</h1>
-<div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs | orderBy:'-creationDate'">
-    <div class="col-xs-2">
-        <h4>{{job.title}}</h4>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2"></div>
+      <div class="col-xs-8" id="displayDiv" ng-controller="joblist" style="padding-left:10px; padding-right:10px">
+        <h1>Productions near you</h1>
+        <br>
+        <div class="row clearfix full">
+          <div class="col-xs-3">
+            <h4>Title</h4>
+          </div>
+          <div class="col-xs-2">
+            <h4>Wage</h4>
+          </div>
+          <div class="col-xs-2">
+            <h4>Location</h4>
+          </div>
+          <div class="col-xs-2">
+            <h4>Time</h4>
+          </div>
+          <div class="col-xs-3">
+          </div>
+        </div>
+        <hr />
+        <div ng-cloak class= "row clearfix full jobcontainer" ng-repeat="job in jobs | orderBy:'-creationDate'">
+          <div class="col-xs-3">
+            <h4>{{job.title}}</h4>
+          </div>
+          <div class="col-xs-2">
+            <h5 ng-show="job.wagesMax">{{job.wagesMax | currency}} ~ {{job.wagesMin | currency}}</h5>
+            <h5 ng-show="!job.wagesMax">{{job.wages | currency}}</h5>
+          </div>
+          <div class="col-xs-2">
+            <h5>{{job.location}}</h5>
+          </div>
+          <div class="col-xs-2">
+            <h5>{{job.time | date : 'MMMM d, h:mm a'}}</h5>
+          </div>
+          <div class="col-xs-3">
+            <button class="btn btn-success btn-lg btn-block" ng-click="toDisplay(job)" type="submit">
+              Learn More...
+            </button>
+          </div>
+          </div>
+      </div>
+      <div class="col-xs-2"></div>
     </div>
-    <div class="col-xs-2">
-        <h5>{{job.wages | currency}}</h5>
-    </div>
-    <div class="col-xs-2">
-        <h5>{{job.location}}</h5>
-    </div>
-    <div class="col-xs-2">
-        <h5>{{job.time | date : 'MMMM d, h:mm a'}}</h5>
-    </div>
-    <div class="col-xs-2">
-        <button class="btn btn-success btn-lg btn-block" ng-click="toDisplay(job)" type="submit">
-            Learn More...
-        </button>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
-    <script src="myApp.js"></script>
-    <script src="joblist.js"></script>
-</div>
-</div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
+  <script src="joblist.js"></script>
+
 </body>
+
 </html>

@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="jobdisplay">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="css/jobs.css" rel="stylesheet">
+    <link href="css/jobdisplay.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"/>
 
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
-  <title>StageHand</title>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <meta charset="UTF-8">
     <!--
     a new Job display based on the version Daisy made.
     She never merged that part, but the UI is passable so I'm using it over the other one.
@@ -24,78 +18,110 @@
     and having it be the stylesheet for every page?
     -->
     <title>{{userjob.title}}</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="css/jobs.css">
+  </head>
 
+  <body>
 
-    <title>Table Properties</title>
-    <link rel="stylesheet" href="css/jobdisplay.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <style>
-      body {
-          background-color: #C0C0C0;
-      }
-      h2.Lato {
-    font-family: "Lato", Lobster, serif;
-margin-top: 1.0em;
-     margin-bottom: 0.67em;
-background-color: #C0C0C0;
-}
-h1.header
-{
-  margin:50px 10px;
-  font-size: 45px;
-  font-family: "Lato", Lobster, serif;
-background-color: #C0C0C0;
-}
-
-
-      </style>
-
-
-</head>
-
-<body>
-
-
-  <div class="container">
-  <div class="page-header">
-    <h1 class = "header">Job Detail</h1>
-  </div>
-
-</div>
-
-<div class="container-fluid full" >
-    <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
-    <div class="row clearfix full" style="margin-top:20px">
-      <div class="container">
-        <h2 class= "Lato">Job description</h2>
-        <div class="panel panel-default">
-          <div class="panel-heading"> Job Detail</div>
-          <div class="panel-body">Panel Content</div>
-  <button type="button" class="btn btn-primary">Apply now</button>
+    <div class="container-fluid full">
+      <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+      <div class="row clearfix full" style="margin-top:20px">
+        <div class="container">
+          <h2 class="Lato">Job description</h2>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Job Detail</div>
+            <div class="panel-body">Panel Content</div>
+            <button class="btn btn-primary" type="button">Apply now</button>
+          </div>
         </div>
-    </div>
 
+      </div>
 
-    </div>
-<div align = CENTER>
-  <!-- Begin Comments JavaScript Code --><script type="text/javascript" async>function ajaxpath_563a8e9091a97(url){return window.location.href == '' ? url : url.replace('&s=','&s=' + escape(window.location.href));}(function(){document.write('<div id="fcs_div_563a8e9091a97"><a title="free comment script" href="http://www.freecommentscript.com">&nbsp;&nbsp;<b>Free HTML User Comments</b>...</a></div>');fcs_563a8e9091a97=document.createElement('script');fcs_563a8e9091a97.type="text/javascript";fcs_563a8e9091a97.src=ajaxpath_563a8e9091a97((document.location.protocol=="https:"?"https:":"http:")+"//www.freecommentscript.com/GetComments2.php?p=563a8e9091a97&s=&Size=10#!563a8e9091a97");setTimeout("document.getElementById('fcs_div_563a8e9091a97').appendChild(fcs_563a8e9091a97)",1);})();</script><noscript><div><a href="http://www.freecommentscript.com" title="free html user comment box">Free Comment Script</a></div></noscript><!-- End Comments JavaScript Code -->
+      <div CENTER align=>
+        <!-- Begin Comments JavaScript Code -->
+        <script async type="text/javascript">
+          function ajaxpath_563a8e9091a97(url) {
+            return window.location.href == ''
+              ? url
+              : url.replace('&s=', '&s=' + escape(window.location.href));
+          }(function() {
+            document.write('<div id="fcs_div_563a8e9091a97"><a title="free comment script" href="http://www.freecommentscript.com">&nbsp;&nbsp;<b>Free HTML User Comments</b>...</a></div>');
+            fcs_563a8e9091a97 = document.createElement('script');
+            fcs_563a8e9091a97.type = "text/javascript";
+            fcs_563a8e9091a97.src = ajaxpath_563a8e9091a97((
+            document.location.protocol == "https:"
+              ? "https:"
+              : "http:") + "//www.freecommentscript.com/GetComments2.php?p=563a8e9091a97&s=&Size=10#!563a8e9091a97");
+            setTimeout("document.getElementById('fcs_div_563a8e9091a97').appendChild(fcs_563a8e9091a97)", 1);
+          })
+          ();
+        </script>
+        <noscript>
+          <div>
+            <a href="http://www.freecommentscript.com" title="free html user comment box">Free Comment Script</a>
+          </div>
+        </noscript>
+      </div>
+        <!-- End Comments JavaScript Code -->
 
-</div>
+        <h1 class="test/css">Job Detail</h1>
 
-    </body>
+        <img align="middle" alt="baloons" src="http://questgarden.com/160/45/3/130619033321/images/Birthday-Party-1.jpg" style="width:100px;height:100px;">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="myApp.js"></script>
-<script src="jobdisplay.js"></script>
+        <h3>
+          {{userjob.title}}</h3>
+
+        <p>{{userjob.description}}</p>
+        <div ng-cloak>
+          <p ng-show="userjob.wagesMin && notOwner" style="text-align:center">Minimum
+            {{userjob.wagesMin | currency}}
+            ~
+            <input currency-formatter ng-model="userjob.wages" type="text">
+            ~
+            {{userjob.wagesMax | currency}}
+            Maximum
+          </p>
+          <button class="btn btn-success btn-lg btn-block" ng-click="apply()" ng-disabled="applied || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && userjob.wages > userjob.wagesMax)" ng-show="notOwner" type="submit">
+            I'll do it for
+            {{userjob.wages | currency}}
+          </button>
+          <button class="btn btn-success btn-lg btn-block" ng-click="edit()" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-show="!notOwner" type="submit">
+            Edit
+          </button>
+          <h2 ng-show="applied">Viewable Applications</h2>
+        </div>
+        <div class="row panel panel-default" ng-cloak ng-repeat="app in applications | orderBy:'bid'">
+          <div class="col-md-2">
+            <h2>{{app.name}}</h2>
+          </div>
+          <div class="col-md-6">
+            <h3>
+              <a ng-href="/profile?email={{app.ownerId}}">Profile</a>
+            </h3>
+          </div>
+          <div class="col-md-2">
+            <h3>{{app.bid | currency}}</h3>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-success btn-lg btn-block" ng-click="acceptApplication(app)" ng-disabled="app.sent" ng-show="!notOwner && !(app.sent && app.signed)" type="submit">
+              Send Contract
+            </button>
+            <button class="btn btn-success btn-lg btn-block" ng-click="partialDeposit(app)" ng-disabled="deposited" ng-show="!notOwner && app.sent && app.signed && app.payments == 0" type="submit">
+              Send First Payment
+            </button>
+            <button class="btn btn-success btn-lg btn-block" ng-click="partialDeposit(app)" ng-disabled="app.payments > 1" ng-show="!notOwner && app.sent && app.signed && app.payments > 0" type="submit">
+              Send Second Payment
+            </button>
+          </div>
+        </div>
+        <!-- begin wwww.htmlcommentbox.com -->
+
+        <div id="HCB_comment_box">
+          <a href="http://www.htmlcommentbox.com">Comment Form</a>
+          is loading comments...
+        </div>
+        <link href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" rel="stylesheet" type="text/css"/>
+
+</body>
 </html>
