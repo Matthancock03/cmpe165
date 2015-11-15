@@ -27,16 +27,18 @@
         <img alt="Profile Image" class="profileImage center-block" ng-src="images/star.png" ng-switch-default/>
       </div>
 
-      <h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1>
+      <h1 class='redText' id="Name">{{user.firstName + " " + user.lastName}}</h1>
       <hr>
-      <h3 class='redText'>About</h3>
+      <h3><span class="redText">Stage Name: </span><span id="userName">{{user.userName}}</span></h3>
+      <hr>
+      <h3 class='redText'>About:</h3>
       <hr> {{user.about}}
-      <h3 class='redText'>Skills</h3>
+      <h3 class='redText'>Skills:</h3>
       <hr> {{user.skills}}
-      <h3 class='redText'>Images & Videos</h3>
+      <h3 class='redText'>Images & Videos:</h3>
       <hr> {{user.about}}
       <div class="" ng-show="isUser">
-        <h3 class='redText'>Past Performances</h3>
+        <h3 class='redText'>Past Performances:</h3>
         <hr>
         <div class="pastJobs" ng-repeat="job in jobs">
           {{job.title}} {{job.description}} {{job.creationDate}}
@@ -44,10 +46,11 @@
       </div>
       <span ng-show="{{jobs.length < 0}}">What's with this? Get out there and show them what you got!</span>
       <div class="" ng-show="isUser">
-        <h3 class='redText'>Pending Auditions</h3>
+        <h3 class='redText'>Pending Auditions:</h3>
         <hr>
+        <span ng-show="{{jobs.length < 0}}">What's with this? Get out there and show them what you got!</span>
       </div>
-      <h3 class='redText'>Reviews</h3>
+      <h3 class='redText'>Reviews:</h3>
       <hr>
       <div class="review" ng-repeat="review in user.reviews">
         {{review.score}} {{review.comment}} {{review.reviewer}} {{review.creationDate}}
@@ -57,6 +60,7 @@
       <br>
       <div ng-show="isUser">
         <button type="button" ng-click="editProfile()" class="btn btn-success">
+          <span aria-hidden="true" class="glyphicon glyphicon-pencil"></span>
           Edit Profile
         </button>
       </div>

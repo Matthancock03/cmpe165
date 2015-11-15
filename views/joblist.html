@@ -34,12 +34,13 @@
           </div>
         </div>
         <hr />
-        <div class="row clearfix full" ng-repeat="job in jobs | orderBy:'-creationDate'">
+        <div ng-cloak class= "row clearfix full jobcontainer" ng-repeat="job in jobs | orderBy:'-creationDate'">
           <div class="col-xs-3">
             <h4>{{job.title}}</h4>
           </div>
           <div class="col-xs-2">
-            <h5>{{job.wages | currency}}</h5>
+            <h5 ng-show="job.wagesMax">{{job.wagesMax | currency}} ~ {{job.wagesMin | currency}}</h5>
+            <h5 ng-show="!job.wagesMax">{{job.wages | currency}}</h5>
           </div>
           <div class="col-xs-2">
             <h5>{{job.location}}</h5>
@@ -63,6 +64,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
   <script src="myApp.js"></script>
   <script src="joblist.js"></script>
+
 </body>
 
 </html>

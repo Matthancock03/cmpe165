@@ -38,7 +38,7 @@ Job.query({employee: "matthancock03@gmail.com"}, function(jobs){
         $scope.jobs = jobs;
 });
 
-    
+
   $scope.sendMessage = function() {
 
     console.log("Current User: " + $scope.currentUser.email);
