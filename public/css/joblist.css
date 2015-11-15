@@ -1,2 +1,20 @@
-.jobcontainer > div
-{padding-top: 2px;}
+@font-face {
+    font-family: Lato;
+    src: url(http://fonts.googleapis.com/css?family=Georgia);
+    font-weight: bold;
+}
+
+
+#displayDiv{
+  margin-top: 50px;
+}
+
+h1{
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+
+hr{
+  margin: 0, 0, 0, 0 !important;
+}

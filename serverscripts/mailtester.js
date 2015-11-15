@@ -7,7 +7,7 @@
 driver = require("./sendMail");
 email1 = {};
 email1._id = "???"
-email1.ownerId = "johnfranklin42@gmail.com";//The email to send to. NOT THE EMAIL OF THE SENDER!
+email1.ownerId = "Matthancock03@gmail.com";//The email to send to. NOT THE EMAIL OF THE SENDER!
 email1.senderId = "mrandhawa27@gmail.com";//email sent from. the id of the sender technically.
 email1.links = ["http://mongoosejs.com/docs/middleware.html"]
 email1.sent = false

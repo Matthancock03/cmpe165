@@ -51,9 +51,6 @@
 </head>
 <body>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script>
-    Stripe.setPublishableKey('pk_test_8DDyr5McQXrTdEa4mviz3Fq6 ');
-</script>
 <div class="container" ng-controller="stripeController">
 <!-- Code built off of example/index.html in angular-payments. no point in reinventing the wheel. -->
     <div class="row">
@@ -61,7 +58,7 @@
             <div class="row">
 
                 <div class="span4">
-                    <h3>Set up account to recieve money from</h3>
+                    <h3>Set up payment details</h3>
                 </div>
 
                 <form stripe-form="handleStripe" name="myForm">

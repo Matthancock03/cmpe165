@@ -49,7 +49,7 @@
             <button class="btn btn-success btn-lg btn-block" ng-show="notOwner" ng-disabled="applied"  ng-click="apply()" type="submit">
                 Apply
             </button>
-            <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-click="edit()" type="submit">
+            <button class="btn btn-success btn-lg btn-block" ng-show="!notOwner" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-click="edit()" type="submit">
                 Edit
             </button>
             <h2 ng-show="applied">Viewable Applications</h2>
@@ -57,8 +57,14 @@
                 <div class="col-md-2"><h2>{{app.name}}</h2></div>
                 <div class="col-md-8"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
                 <div class="col-md-2">
-                <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-disabled="app.sent" ng-click="acceptApplication(app)" type="submit">
+                <button class="btn btn-success btn-lg btn-block" ng-show="!notOwner && !(app.sent && app.signed)" ng-disabled="app.sent" ng-click="acceptApplication(app)" type="submit">
                     Send Contract
+                </button>
+                <button class="btn btn-success btn-lg btn-block" ng-show="!notOwner && app.sent && app.signed && app.payments == 0" ng-disabled="deposited" ng-click="partialDeposit(app)" type="submit">
+                    Send First Payment
+                </button>
+                <button class="btn btn-success btn-lg btn-block" ng-show="!notOwner && app.sent && app.signed && app.payments > 0" ng-disabled="app.payments > 1" ng-click="partialDeposit(app)" type="submit">
+                    Send Second Payment
                 </button>
                 </div>
             </div>
