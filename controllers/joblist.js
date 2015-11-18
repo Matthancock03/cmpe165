@@ -4,7 +4,7 @@
 
 //var app = angular.module('myApp',["angoose.client"])
 angular.module('myApp').controller('joblist', function($scope, Job){
-    $scope.jobs = Job.query({done:false},function() {//Only jobs that aren't finished.
+    $scope.jobs = Job.query(function() {
         console.log($scope.jobs);
     });
     $scope.toDisplay = function(job)

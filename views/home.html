@@ -16,23 +16,19 @@
       <div class="row">
         <div class="col-xs-12">
           <p id="homeHeader">
-            Show them what you got!
-         </p>
-         <p id='aboutText'>
-           Stagehand is a platform for connecting performers with productions! <br>
-           Whether it be a Broadway production, an exciting flash mob, an elaborate engagement proposal,<br>
-           or just a simple prank, anywhere that there is a need for performers we will find them.
-         </p>
+            Find the characters for your production
+          </p>
+
           <div class="center-block" id="searchDiv">
             <p id="searchHeader">
-              Search for a performance near you!
+              Search for a performer near you!
             </p>
             <div class="inputBoxes center-block">
               <div class="input-group">
                 <div class="input-group-addon">
                   <span class="glyphicon glyphicon-map-marker"></span>
                 </div>
-                <input class="form-control" placeholder="Enter Your City" ng-model="location" style="text-align: center;" type="text">
+                <input class="form-control" placeholder="Enter Your City" style="text-align: center;" type="text">
               </div>
             </div>
             <div class="inputBoxes center-block">
@@ -40,34 +36,22 @@
                 <div class="input-group-addon">
                   <span class="glyphicon glyphicon-bullhorn"></span>
                 </div>
-                <input class="form-control" placeholder="What Type of Performer?" ng-model="queryParameter" style="text-align: center;" type="text">
+                <input class="form-control" placeholder="What Type of Performer?" style="text-align: center;" type="text">
               </div>
-              <button class="btn btn-success btn-lg center-block createButton" type="button" ng-click="searchJobs()">
-                Search
-              </button>
             </div>
           </div>
-          <div>
+          <div ng-show="loggedIn">
+
             <p id="homeHeader">
               Or...
             </p>
-            <div class="center-block" id="createDiv" ng-show="loggedIn">
+            <div class="center-block" id="createDiv">
               <p id="searchHeader">
-                Set the stage for your own production!
+                Create a job and let them come to you!
               </p>
-              <a href="/create" target="_self">
+              <a href="/create">
               <button class="btn btn-success btn-lg center-block createButton" type="button">
-                Create Performance!
-              </button>
-              </a>
-            </div>
-            <div class="center-block" id="createDiv" ng-show="!loggedIn">
-              <p id="searchHeader">
-                Sign in and direct your own performance!
-              </p>
-              <a href="/login" target="_self">
-              <button class="btn btn-success btn-lg center-block createButton" type="button">
-                Sign In!
+                Create Job!
               </button>
               </a>
             </div>

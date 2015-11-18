@@ -1,79 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="UpdateProfile">
+<html lang="en" ng-app="myApp">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>StageHand</title>
-    <meta charset="utf-8">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/updateProfile.css" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>StageHand</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/updateProfile.css">
+</head>
 
-  <body>
-    <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
-    <div class="container-fluid full" ng-controller="Update">
-      <div class="row clearfix full">
+<body>
+  <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+  <div class="container-fluid full"  ng-controller="Update">
+    <div class="row clearfix full">
 
-        <div class="col-xs-2"></div>
-
-        <div class="col-xs-8 full" style="margin-top: 5%;">
-          <div>
-            <div ng-switch on="imageExists">
-              <img alt="Profile Image" class="profileImage center-block" ng-src="{{user.img}}" ng-switch-when="true"/>
-              <img alt="Profile Image" class="profileImage center-block" ng-src="images/star.png" ng-switch-default/>
-            </div>
-            <form class="form-login ng-pristine ng-valid job-form center-block" role="form">
-
-              <span>
-                <h1>{{user.firstName + " " + user.lastName}}</h1>
-              </span>
-
-              <div class="input-group ">
-                <div class="input-group-addon">
-                  User Name:
-                </div>
-                <input class="form-control" ng-model="user.userName" placeholder="Change Username" required type="text">
-              </div>
-              <div class="input-group ">
-                <div class="input-group-addon">
-                  About:
-                </div>
-                <input class="form-control" ng-model="user.about" placeholder="Describe Yourself" required type="text">
-              </div>
-              <div class="input-group">
-                <div class="input-group-addon">
-                  Skills:
-                </div>
-                <input class="form-control" ng-model="user.skills" placeholder="Skills separated by ','" required type="text">
-              </div>
-              <div class="input-group">
-                <div class="input-group-addon">
-                  Videos:<!-- Time isn't working with datetime-local, but really like UI of datetime-local. Need a fix. --><!-- Other problem: nice datepicker only in Chrome!--></div>
-                <input class="form-control" ng-model="user.videoLinks" placeholder="Youtube Links Separated by ','" required type="text">
-
-              </div>
-              <p>Upload Image</p>
-              <input accept="image/*" name="file" ng-model="user.img" ngf-max-size="2MB" ngf-select type="file">
-              <br><input type="checkbox" ng-model="user.receiveEmails"> Receive Notifications <br>
-              <div class="btnDiv">
-                <button class="cancelButton" ng-click="cancel()">Cancel</button>
-                <button class="saveButton" ng-click="save(user.img)">Save</button>
-              </div>
-            </form>
-          </div>
-          <div class="col-xs-2"></div>
-        </div>
+      <div class="col-xs-2">
       </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload-shim.min.js"></script>
-      <!-- for no html5 browsers support -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload.min.js"></script>
-      <script src="updateProfile.js"></script>
 
-    </body>
+      <div class="col-xs-8 full" style="margin-top: 10%;">
+        <span>
+          <img src="images/clapperboard.svg" alt="clapperboard" class="clapper center-block" />
+          <h1>{{user.firstName + " " + user.lastName}}</h1>
+        </span>
+        <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
+          <div class="input-group ">
+            <div class="input-group-addon">
+              User Name:
+            </div>
+            <input class="form-control" placeholder="Change Username" ng-model="user.userName" type="text" required>
+          </div>
+          <div class="input-group ">
+            <div class="input-group-addon">
+              About:
+            </div>
+            <input class="form-control" placeholder="Describe Yourself" ng-model="user.about" type="text" required>
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+              Skills:
+            </div>
+            <input class="form-control" placeholder="Skills separated by ','" ng-model="user.skills" type="text" required>
+          </div>
+          <div class="input-group">
+            <div class="input-group-addon">
+              Videos:<!-- Time isn't working with datetime-local, but really like UI of datetime-local. Need a fix. -->
+            <!-- Other problem: nice datepicker only in Chrome!-->
+            </div>
+            <input class="form-control" placeholder="Youtube Links Separated by ','" ng-model="user.videoLinks" type="text" required>
 
-  </html>
+          </div>
+          <div class="btnDiv">
+            <button class="cancelButton" ng-click="cancel()">Cancel</button>
+            <button class="saveButton" ng-click="save()">Save</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-xs-2">
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="myApp.js"></script>
+  <script src="updateProfile.js"></script>
+
+</body>
+
+</html>

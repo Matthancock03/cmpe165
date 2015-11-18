@@ -1,8 +1,0 @@
-Index: views/userProfile.html
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
---- views/userProfile.html	(revision 59e82d040a48d9fcb92a072b54aa9a0310bbe93b)
-+++ views/userProfile.html	(revision )
-@@ -1,0 +1,0 @@

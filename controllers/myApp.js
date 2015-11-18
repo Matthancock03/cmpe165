@@ -4,7 +4,6 @@ var app = angular.module('myApp',['ngRoute', 'ngResource']).config(function($loc
         requireBase: false
     });
 });
-
 //Liberated from stackExchange. Annoying problem that isn't the focus of this course.
 // http://stackoverflow.com/questions/23927695/angularjs-currency-formatting-in-input-box
 app.directive('currencyFormatter', ['$filter', function ($filter) {
@@ -45,6 +44,6 @@ var generateResource = function(name)
 }
 //When you make a model, add it to the modelNameList and to the function call in the server run javascript
 //(index.js for now, could change in the future)
-var modelNameList = ["Job", "User", "Review", "Contract", "Application", "Mail"]
+var modelNameList = ["Job", "User", "Comment", "Contract", "Application", "Mail"]
 for(var i = 0; i < modelNameList.length; i++)
     generateResource(modelNameList[i]);

@@ -5,23 +5,16 @@ height: 100%;
 .bannerImage{
 width: 100%;
 height: 300px;
-margin-top: 45px;
+margin-top: 35px;
 }
 
 .redText{
   color: #A51919;
 }
 
-#aboutText{
-  margin-top: 10px;
-  font-family: Lato;
-  text-align: center;
-  font-size: 20px;
-}
-
 #searchDiv{
   width: 50%;
-  height: 190px;
+  height: 150px;
   background-color: rgba(10, 10, 10, 0.72);
   border-radius: 25px;
   margin-top: 25px;
@@ -64,9 +57,4 @@ font-size: 50px;
 .inputBoxes{
   margin-top: 5px;
   width: 85%;
-}
-
-button.btn.btn-success.btn-lg.center-block.createButton {
-    width: 50%;
-    margin-top: 15px;
 }

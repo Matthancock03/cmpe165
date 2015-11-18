@@ -2,7 +2,7 @@
  * Created by johnfranklin on 10/16/15.
  */
 var db = require('../database');
-var test = require("../serverscripts/sendMail")
+var test = require("../manbirsmail")
 var schema = new db.Schema({
     ownerId:{type: String, required:true},//=recipient, not maker. need to do it this way so users can mark as read.
     body:{type: String},
@@ -14,6 +14,6 @@ var schema = new db.Schema({
     //,terms: {type: Schema.Types.ObjectId, ref: 'Term'}
     //,comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 })
-schema.post('save', test.sendMail);
+schema.post('save', test.manbirMail);
 
 module.exports = db.model("Mail", schema);

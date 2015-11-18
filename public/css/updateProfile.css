@@ -17,14 +17,8 @@
   height: auto;
 }
 
-.profileImage{
-  width: 25%;
-  height: auto;
-  margin-bottom: 5%;
-
-}
-
 .job-form{
+  padding-top: 5%;
   width: 75%;
 }
 html, body{
