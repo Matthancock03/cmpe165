@@ -104,6 +104,8 @@ dbRouter.get("/:_model", function(req,res, next){
         }
 
     }
+    if(req.query.$populate)//Array
+    {}
     ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
 
         if(err){
