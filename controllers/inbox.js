@@ -17,10 +17,10 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, M
 
   $scope.sendMessage = function(){
 
-      var mail = new Mail();
-      mail.ownerId = message.senderId;
-      mail.senderId = message.ownerId;
-      mail.links = ["http://mongoosejs.com/docs/middleware.html"]
+      var mail = new Mail(); //Just used it to create a couple dummy messages.
+      mail.ownerId = message.senderId;//The email to send to. NOT THE EMAIL OF THE SENDER!
+      mail.senderId = message.ownerId;//email sent from. the id of the sender technically.
+      mail.links = ["http://mongoosejs.com/docs/middleware.html"]//??
       mail.sent = false
       mail.body = $scope.messageBody;
       mail.title = $scope.messageTitle;
@@ -53,13 +53,20 @@ $scope.toggleRead = function(mess){
   }
 };
 
+$http.get('/currentUser').then(function successCallback(response) {
+    //console.log("Current User call sucessful!");
+    //console.log("Email: " + response.data.email);
+    $scope.user = response.data;
+    user = response.data;
+    //console.log(user);
+    $scope.inMessages = Mail.query({ownerId: $scope.user.email}, function(messages){
+        //$scope.inMessages = messages;
+        console.log($scope.inMessages);
+    });
 
-Mail.query({ownerId: "matthancock03@gmail.com"}, function(messages){
-      $scope.inMessages = messages;
-  });
-
-Mail.query({senderId: "matthancock03@gmail.com"}, function(messages){
-        $scope.outMessages = messages;
+    $scope.outMessages = Mail.query({senderId: $scope.user.email}, function(messages){
+        console.log($scope.outMessages);
+    });
 });
 
 });

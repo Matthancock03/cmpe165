@@ -6,12 +6,48 @@ var express = require('express');
 var stormpath = require('express-stormpath');
 db = require('../database');
 var dbmodels = {};
-dbmodels.Job = require('../models/job');
-dbmodels.Review = require('../models/review');
-dbmodels.User = require('../models/user');
-dbmodels.Application = require('../models/application');
-dbmodels.Contract = require('../models/Contract');
-dbmodels.Mail = require('../models/mail');
+try
+{
+    dbmodels.Job = db.model("Job");
+}
+catch(e) {
+    dbmodels.Job = require('../models/job');
+}
+try
+{
+    dbmodels.Comment = db.model("Comment");
+}
+catch(e) {
+    dbmodels.Comment = require('../models/comment');
+}
+try
+{
+    dbmodels.User = db.model("User");
+}
+catch(e) {
+    dbmodels.User = require('../models/user');
+}
+try
+{
+    dbmodels.Application = db.model("Application");
+}
+catch(e) {
+    dbmodels.Application = require('../models/application');
+}
+try
+{
+    dbmodels.Contract = db.model("Contract");
+}
+catch(e) {
+    dbmodels.Contract = require('../models/Contract');
+}
+try
+{
+    dbmodels.Mail = db.model("Mail");
+}
+catch(e) {
+    dbmodels.Mail = require('../models/mail');
+}
 
 var dbRouter = express.Router();
 dbRouter.dbmodels = dbmodels;
@@ -66,7 +102,10 @@ dbRouter.get("/:_model", function(req,res, next){
                 console.log(e);
             }
         }
+
     }
+    if(req.query.$populate)//Array
+    {}
     ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
 
         if(err){
@@ -125,10 +164,13 @@ dbRouter.put("/:_model/:_id",stormpath.loginRequired, function(req,res,next){
         return next({error : "Invalid Request"});
     }
     ret_model.findOne(writePermissions({_id : req.params._id},req.user.email), function(err, doc){
-        for(property in req.body)
-            doc[property] = req.body[property];
-        console.log(doc);
-        doc.save();
+        if(doc) {
+            for (property in req.body)
+                doc[property] = req.body[property];
+            console.log(doc);
+            doc.save();
+        }
+        else{console.log("nothing returned for update")}
         console.log("In find callback!")
     });
 

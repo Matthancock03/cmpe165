@@ -4,23 +4,23 @@
         <h1>Reviews</h1>
         <ul class="list-unstyled">
             <li ng-repeat="review in reviewCtrl.reviews">
-                <blockquote>
+                <blockquote> 
                     <strong>{{review.stars}} Stars</strong>
-                    {{review.body}}
-                    <cite class="clearfix">—{{review.author}} on {{review.createdOn | date}}</cite>
+                    {{review.body}} 
+                    <cite class="clearfix">—{{review.ownerId}} on {{review.createdOn | date}}</cite>
                 </blockquote>
             </li>
         </ul>
-
+        
         <form name="reviewForm" ng-submit="reviewForm.$valid && reviewCtrl.addReview(review)" novalidate>
-            <blockquote ng-show="reviewCtrl.review">
+            <blockquote ng-show="reviewCtrl.review"> 
                 <strong>{{reviewCtrl.review.stars}} Stars</strong>
-                {{reviewCtrl.review.body}}
+                {{reviewCtrl.review.body}} 
                 <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
             </blockquote>
-
+            
              <h4>Submit Review</h4>
-
+    
             <fieldset class="form-group">
                 <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
                     <option value="">Your rating</option>
@@ -33,7 +33,7 @@
                 <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="Your email address" title="Email" required>
             </fieldset>
 
-
+            
             <fieldset class="form-group">
                 <input type="submit" class="btn btn-primary pull-right" value="Submit Review">
             </fieldset>
@@ -53,3 +53,5 @@
       <script src="myApp.js"></script>
       <script src="rating1.js"></script>
       <script src="ratingg.js"></script>
+
+  

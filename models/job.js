@@ -30,3 +30,4 @@ schema = new db.Schema({
 schema.post("save", q.jobUpdateMail);
 
 module.exports = db.model("Job", schema);
+q.loadModels();
