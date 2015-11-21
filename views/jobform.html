@@ -26,7 +26,7 @@
         <span ng-show="userjob.wagesMin && userjob.wagesMin >= userjob.wages" style="color:red">Min must be less than Default</span>
         <span ng-show="userjob.wagesMax && !userjob.wagesMin" style="color:red">No Max without Min</span>
         <span ng-show="userjob.wagesMax && userjob.wagesMax < userjob.wages" style="color:red">Max must be greater than Default</span>
-        <span ng-show="!userjob.modifiable || userjob.modifiable == null" style="color:red">Can't modify a job when the contract has been signed.</span>
+        <span ng-show="!userjob.modifiable && userjob.modifiable != null" style="color:red">Can't modify a job when the contract has been signed.</span>
         <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
           <div class="input-group ">
             <div class="input-group-addon">
@@ -62,7 +62,7 @@
             </div>
           <div class="input-group">
             <div class="input-group-addon">
-              Default:
+              Default Wage:
             </div>
             <input class="form-control" placeholder="Why" ng-model="userjob.wages" type="text" currency-formatter required>
           </div>
@@ -88,7 +88,7 @@
             <button class="btn btn-danger btn-lg btnDiv" ng-click="delete()" type="button">
               {{cancelText}}
             </button>
-            <button class="btn btn-success btn-lg btnDiv" ng-disabled="(!userjob.modifiable || userjob.modifiable == null) || (userjob.wagesMax && userjob.wagesMax < userjob.wages) || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && !userjob.wagesMin) || (userjob.wagesMin && !userjob.wagesMax)" type="submit">
+            <button class="btn btn-success btn-lg btnDiv" ng-disabled="(!userjob.modifiable && userjob.modifiable != null) || (userjob.wagesMax && userjob.wagesMax < userjob.wages) || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && !userjob.wagesMin) || (userjob.wagesMin && !userjob.wagesMax)" type="submit">
               Submit
             </button>
           </div>

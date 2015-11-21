@@ -90,7 +90,11 @@
                 <tr class="collapse messageRow" id="{{$index+1}}" ng-repeat-end>
                 <td>#</td>
                 <td></td>
-                <td colspan="4">{{message.body}}</td>
+                <td colspan="4">
+                  <p>{{message.body}}</p>
+                  <p ng-repeat="link in message.links"><a target ="_self"href="{{link}}">{{link}}</a></p>
+                </td>
+
                 <td>
                   <a href="#">
                     <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button" ng-click="setMessage(inMessages[$index])">
@@ -122,8 +126,11 @@
                 <tr class="collapse messageRow" id="{{$index + inMessages.length + 1}}" ng-repeat-end> <!-- Added to index to avoid toggling hidden table's rows -->
                 <td>#</td>
                 <td></td>
-                <td colspan="5">{{message.body}}</td>
-              </tr>
+                <td colspan="5">
+                  <p>{{message.body}}</p>
+                  <p ng-repeat="link in message.links"><a href="{{link}}">{{link}}</a></p>
+                </td>
+                </tr>
 
             </tbody>
           </table>

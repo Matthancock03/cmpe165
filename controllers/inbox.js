@@ -19,7 +19,7 @@ angular.module('myApp').controller('Inbox', function($location, $http, $scope, M
       var mail = new Mail(); //Just used it to create a couple dummy messages.
       mail.ownerId = message.senderId;//The email to send to. NOT THE EMAIL OF THE SENDER!
       mail.senderId = message.ownerId;//email sent from. the id of the sender technically.
-      mail.links = ["http://mongoosejs.com/docs/middleware.html"]
+      mail.links = ["http://mongoosejs.com/docs/middleware.html"]//??
       mail.sent = false
       mail.body = $scope.messageBody;//the body of the email.
       mail.title = $scope.messageTitle;//the title
@@ -66,11 +66,11 @@ $http.get('/currentUser').then(function successCallback(response) {
     //console.log(user);
     $scope.inMessages = Mail.query({ownerId: $scope.user.email}, function(messages){
         //$scope.inMessages = messages;
-        //console.log($scope.user);
+        console.log($scope.inMessages);
     });
 
     $scope.outMessages = Mail.query({senderId: $scope.user.email}, function(messages){
-
+        console.log($scope.outMessages);
     });
 });
 
