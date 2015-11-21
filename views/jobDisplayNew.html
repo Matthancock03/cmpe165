@@ -61,15 +61,15 @@
                 <button class="btn btn-success btn-lg" ng-show="!notOwner && app.sent && app.signed && app.payments > 0" ng-disabled="app.payments > 1" ng-click="partialDeposit(app)" type="submit">
                     Send Second Payment
                 </button>
+                <button class="btn btn-success btn-lg" data-target=".fire-modal-lg" data-toggle="modal" type="button" ng-show="!notOwner">
+                  Fire Employee
+                </button>
                 </div>
             </div>
-            <button class="btn btn-success btn-lg" data-target=".fire-modal-lg" data-toggle="modal" type="button" ng-show="!notOwner">
-              Fire Employee
-            </button>
+
             <button class="btn btn-success btn-lg" data-target=".quit-modal-lg" data-toggle="modal" type="button" ng-show="notOwner">
               Quit Job
             </button>
-
             <!-- begin wwww.htmlcommentbox.com -->
             <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
             <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
@@ -82,7 +82,7 @@
 
     <ng-include autoscroll="" onload="" src="'templates/fireEmployee.html'"></ng-include>
     <ng-include autoscroll="" onload="" src="'templates/modalQuitJob.html'"></ng-include>
-    
+
     </div>
     </body>
 

@@ -46,7 +46,7 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
         window.location.href = "/create?_id="+$scope.userjob._id
     };
     $scope.quit = function() {
-        console.log("Employee Quit");
+        console.log("Employee Quit " + $scope.user.email);
     };
 
     $scope.fire = function() {
