@@ -1,3 +1,38 @@
+
+@font-face {
+    font-family: Lato;
+    src: url(http://fonts.googleapis.com/css?family=Georgia);
+    font-weight: bold;
+}
+
+h1{
+  text-align: center;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+hr{
+  margin-top: -10px !important;
+  padding-top: 0px !important;
+}
+.redText{
+  font-size: 30px;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+#HCB_comment_box, h3{
+  font-size: 30px;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+
+body {
+    background-color: #FFFFFF !important;
+    font-family: Arial, Verdana, sans-serif;
+    color: #111111;}
+
 table {
     width: 600px;}
 th, td {
