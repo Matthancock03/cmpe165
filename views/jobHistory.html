@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
-    <title>Job History</title>
+    <title>Job Request History</title>
 
     <!--accessible from the directory /apphistory -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
 <body ng-controller="jobHistory">
 
 
-<h1 class='redText'>Job History</h1>
+<h1 class='redText'>Job Request History</h1>
 <div ng-repeat="app in pastJobs">
     <div class="container-fluid mainDiv" style="height: 100%;">
 
@@ -33,7 +33,7 @@
                 </li>
                 <li class="list-group-item">
                     <strong>Job Time:</strong><br>
-                    {{app.jobTime}}
+                    {{app.time}}
                 </li>
                 <li class="list-group-item">
                     <button class="btn btn-success btn-lg btn-block" ng-click="toDisplay(app)" type="submit">
