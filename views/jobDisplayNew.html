@@ -1,7 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="jobdisplay">
 <head>
+    <style>
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+            display: none !important;
+        }
+
+    </style>
     <meta charset="UTF-8">
+
+        <!-- Large modal -->
+
+        <div aria-hidden="true" id="myModal"aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="form-group" style="width: 70%; margin: 0 auto; padding:10px">
+                        <div style="width: 75%; margin: 0 auto;">
+                            <h2 class="form-signin-heading" style="text-align: center">Are you sure you want to fire this person? You won't get your money back.</h2>
+                            <div>
+                            <button class="btn btn-danger btn-lg" style="width: 49%; padding-right: 1%"  ng-click="fireLoaded()" type="submit">
+                                Fire
+                            </button>
+                            <button class="btn btn-success btn-lg" style="width: 49%;" data-target=".bs-example-modal-lg" data-dismiss="modal" type="submit">Cancel</button>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <!--
     a new Job display based on the version Daisy made.
     She never merged that part, but the UI is passable so I'm using it over the other one.
@@ -46,23 +72,44 @@
             <h3> {{userjob.title}}</h3>
 
             <p>{{userjob.description}}</p>
-            <button class="btn btn-success btn-lg btn-block" ng-show="notOwner" ng-disabled="applied"  ng-click="apply()" type="submit">
-                Apply
-            </button>
-            <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-click="edit()" type="submit">
-                Edit
-            </button>
-            <h2 ng-show="applied">Viewable Applications</h2>
-            <div class="row panel panel-default" ng-repeat="app in applications | orderBy:'-creationDate'">
-                <div class="col-md-2"><h2>{{app.name}}</h2></div>
-                <div class="col-md-8"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
-                <div class="col-md-2">
-                <button class="btn btn-success btn-lg btn-block" ng-hide="notOwner" ng-disabled="app.sent" ng-click="acceptApplication(app)" type="submit">
+            <div ng-cloak>
+                <p ng-show="userjob.wagesMin && notOwner" style="text-align:center">Minimum {{userjob.wagesMin | currency}} ~ <input type="text" ng-model="userjob.wages" currency-formatter> ~ {{userjob.wagesMax | currency}} Maximum </p>
+                <button class="btn btn-success btn-lg" ng-show="notOwner" ng-disabled="applied || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && userjob.wages > userjob.wagesMax)"  ng-click="apply()" type="submit">
+                    I'll do it for {{userjob.wages | currency}}
+                </button>
+                <button class="btn btn-success btn-lg" ng-show="loaded && !notOwner" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-click="edit()" type="submit">
+                    Edit
+                </button>
+                <h2 ng-show="applied">Viewable Applications</h2>
+            </div>
+            <div class="row panel panel-default" ng-cloak ng-repeat="app in applications | orderBy:'bid'">
+                <div class="col-md-2"><h3>{{app.name}}</h3></div>
+                <div class="col-md-2"><h3><a ng-href="/profile?email={{app.ownerId}}">Profile</a></h3></div>
+                <div class="col-md-2"><h3>{{app.bid | currency}}</h3></div>
+                <div class="col-md-6" style="padding:7px">
+
+                <div style="text-align:center">
+                <button class="btn btn-success btn-lg" ng-show="loaded && !notOwner && !(app.sent && app.signed)" ng-disabled="app.sent" ng-click="acceptApplication(app)" type="submit">
                     Send Contract
                 </button>
+                <button class="btn btn-success btn-lg" ng-show="loaded && !notOwner && app.sent && app.signed && app.payments == 0" ng-disabled="deposited" ng-click="partialDeposit(app)" type="submit">
+                    Send First Payment
+                </button>
+                <button class="btn btn-success btn-lg" ng-show="loaded && !notOwner && app.sent && app.signed && app.payments > 0" ng-disabled="app.payments > 1" ng-click="partialDeposit(app)" type="submit">
+                    Send Second Payment
+                </button>
+                <button type="button" ng-click="loadForFire(app)"class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal" ng-show="loaded && !notOwner && app.sent && app.signed" ng-disabled="app.payments > 1" >
+                    Fire
+                </button>
+                <button class="btn btn-danger btn-lg" data-target=".quit-modal-lg" data-toggle="modal" type="button" ng-show="notOwner">
+                    Quit Job
+                </button>
+                </div>
                 </div>
             </div>
-            <!-- begin wwww.htmlcommentbox.com -->
+            <ng-include autoscroll="" onload="" src="'templates/modalQuitJob.html'"></ng-include>
+
+        <!-- begin wwww.htmlcommentbox.com -->
             <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
             <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
             <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10&ts=1444505289626");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
