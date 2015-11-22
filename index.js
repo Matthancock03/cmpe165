@@ -120,6 +120,10 @@ app.get("/apphistory", function(req,res){
   res.status(200).sendFile(__dirname + '/views/applicationHistory.html');
 })
 
+app.get("/jobhistory", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/jobHistory.html');
+})
+
 app.post("/api/:_model", function(req,res){//Really want to include login req here, but need to handle User creation without being logged in.
   console.log('Post Received.');
   //console.log(req);

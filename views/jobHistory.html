@@ -2,7 +2,7 @@
 <html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
-    <title>Application History</title>
+    <title>Job History</title>
 
     <!--accessible from the directory /apphistory -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -13,10 +13,10 @@
 
 </head>
 
-<body ng-controller="appHistory">
+<body ng-controller="jobHistory">
 
 
-<h1 class='redText'>Job Application History</h1>
+<h1 class='redText'>Job History</h1>
 <div ng-repeat="app in pastJobs">
     <div class="container-fluid mainDiv" style="height: 100%;">
 
@@ -29,7 +29,7 @@
                 </li>
                 <li class="list-group-item">
                     <strong>Employer:</strong><br>
-                    {{app.email}}
+                    {{app.ownerId}}
                 </li>
                 <li class="list-group-item">
                     <strong>Job Time:</strong><br>
@@ -50,14 +50,12 @@
 
 
 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="myApp.js"></script>
-<script src="apphistory.js"></script>
+<script src="jobhistory.js"></script>
 </body>
 </html>
