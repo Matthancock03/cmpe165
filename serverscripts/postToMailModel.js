@@ -7,6 +7,7 @@
 var Mail = require("../models/Mail")
 var Applications;
 var Jobs;
+var Users;
 
 /*
 Must be set up this way. other ways as far as I can think of lead to infinite dependency loops; application and job models both have instances of this class.
@@ -25,7 +26,14 @@ module.exports.loadModels = function() {
     {
         Jobs = require("../models/job")
     }
+    try {
+        Users = db.model("User")
+    }catch(e)
+    {
+        Users = require("../models/user")
+    }
 }
+
 module.exports.jobUpdateMail = function(job) {
     //Create an email letting people who've applied for a job know when it's updated
     //doc._id//job's id
@@ -37,12 +45,30 @@ module.exports.jobUpdateMail = function(job) {
             mail.ownerId = elems[i].ownerId
             mail.senderId = job.ownerId
             mail.title = "Job '" + job.title + "' has been updated!"
-            mail.body = "The job you've applied to has been updated!",
-                mail.links = ["/jobdisplay?_id=" + job._id]
+            mail.body = "The job you've applied to has been updated. Check the link:"
+            mail.links = ["/jobdisplay?_id=" + job._id]
             console.log(mail);
             //Manbir's stuff here. make the body of the email. note that all links have to be in the separate link section.
             //job has all the new elements of the job that was updated.
             mail.save();// will send the mail
+        }
+        if(elems.length == 0 && job.terms)//treat updates without applicants as new jobs, terms defined.
+        {
+            Users.find({emailForTags: {$in: job.terms}}, function(err, users){
+                for (var i = 0; i < users.length; i++) {//for each person with interest in this type of job
+                    var mail = new Mail();
+                    mail.ownerId = users[i].ownerId
+                    mail.senderId = job.ownerId
+                    mail.title = "Considered this job? '" + job.title + "'"
+                    mail.body = "A job's been posted that looks right up your alley.\n"+
+                        "Title: "+ job.title +"\n Description: " + job.description +
+                        "\nLocation: " + job.location+"\n More information in the link below!"
+                    mail.links = ["/jobdisplay?_id=" + job._id]
+                    console.log(mail);
+
+                    mail.save();// will send the mail
+                }
+            })
         }
     })
 
