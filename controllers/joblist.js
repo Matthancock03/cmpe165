@@ -7,10 +7,10 @@ angular.module('myApp').controller('joblist', function($scope, Job){
     $scope.jobs = Job.query({done:false},function() {//Only jobs that aren't finished.
         console.log($scope.jobs);
     });
+    $scope.queryString = "";
     $scope.toDisplay = function(job)
     {
         window.location.href = "/jobdisplay?_id="+job._id;
     }
 
-    console.log($scope.jobs);
 });
