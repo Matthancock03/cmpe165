@@ -69,7 +69,7 @@ app.get("/currentUser", function(req,res, next){
     dbmodels.User.findOne({email : req.user.email}, function(err, user){
 
       if(err){return next(err);};
-      //console.log("User: " + user);
+      console.log("User: " + user);
       res.status(200).send(user);
     });
     //res.status(200).send(req.user);
@@ -78,10 +78,6 @@ app.get("/currentUser", function(req,res, next){
 
 
 app.get("/", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/home.html');
-});
-
-app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
 

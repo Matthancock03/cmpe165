@@ -28,23 +28,20 @@ $http.get('/currentUser').then(function successCallback(response) {
   });
 
   $scope.save = function(file){
-    var query = {_id: $scope.user._id};
-    console.log(typeof file);
 
-    if(typeof file == 'string' || file == undefined){
-      User.update($scope.user);
-      window.location.assign("/profile");
-    }else{
     var reader = new FileReader();
     reader.onloadend = function () {
     console.log($scope.user.email);
+    var query = {_id: $scope.user._id};
     $scope.user.img = reader.result;
     User.update(query, $scope.user);
+
+    //$scope.user.save();
     window.location.assign("/profile");
-    };
+  };
 
     reader.readAsDataURL(file);
-    }
+
   };
 
   $scope.cancel = function(){

@@ -15,10 +15,10 @@ catch(e) {
 }
 try
 {
-    dbmodels.Comment = db.model("Review");
+    dbmodels.Comment = db.model("Comment");
 }
 catch(e) {
-    dbmodels.Comment = require('../models/review');
+    dbmodels.Comment = require('../models/comment');
 }
 try
 {
@@ -78,8 +78,6 @@ var writePermissions = function(objOfQuery, ownerId)
     //objOfQuery.$or = [{modifiable: {$exists: false}}, {modifiable : true}];//Handle internal to job object; only object to lock
     //May just have to mock the behavior? UGH!!
     //No time to implement subdocument permissions for modification.
-    console.log("Write Permissions");
-    console.log(objOfQuery);
     return objOfQuery;
 }
 dbRouter.get("/:_model", function(req,res, next){
@@ -160,22 +158,18 @@ dbRouter.post("/:_model", function(req,res, next){//Really want to include login
 dbRouter.put("/:_model/:_id",stormpath.loginRequired, function(req,res,next){
     console.log("In Put!")
     var ret_model = retrieveModel(req.params._model);
-    //console.log(req.body.skills, req.body.about);
+    console.log(req.user.email);
     if(ret_model == null)
     {
         return next({error : "Invalid Request"});
     }
-
     ret_model.findOne(writePermissions({_id : req.params._id},req.user.email), function(err, doc){
-
         if(doc) {
             for (property in req.body)
                 doc[property] = req.body[property];
             console.log(doc);
-            doc.save(function(err){
-              console.log(err);
-            });
-          }
+            doc.save();
+        }
         else{console.log("nothing returned for update")}
         console.log("In find callback!")
     });

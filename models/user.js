@@ -9,7 +9,7 @@ var User = db.model('User', {
   sellerId: {type: String},
   ownerId: {type: String},//will be the same as email; important to allow modifications of the user table without rewriting functions
   //This will be email here. id = email
-  img: { type: String},
+  img: { data: Buffer, contentType: String},
   about: {type: String},
   skills: {type: String},
   videoLinks: {type: [String]},
