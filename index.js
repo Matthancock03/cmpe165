@@ -89,7 +89,8 @@ app.get("/home", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
 });
 
-app.get("/about", function(req,res){
+
+app.get("/about", function(req,res){//About page needs content
   res.status(200).sendFile(__dirname + '/views/about.html');
 });
 
