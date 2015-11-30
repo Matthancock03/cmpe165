@@ -4,7 +4,7 @@
 
 
 
-var Mail = require("../models/mail")
+var Mail;
 var Applications;
 var Jobs;
 var Users;
@@ -31,6 +31,11 @@ module.exports.loadModels = function() {
     }catch(e)
     {
         Users = require("../models/user")
+    }try{
+      Mail = db.model("Mail")
+    }catch(e)
+    {
+      Mail = require("../models/mail")
     }
 }
 
