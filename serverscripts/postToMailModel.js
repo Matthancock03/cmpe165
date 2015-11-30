@@ -4,7 +4,7 @@
 
 
 
-var Mail = require("../models/Mail")
+var Mail = require("../models/mail")
 var Applications;
 var Jobs;
 var Users;
