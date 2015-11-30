@@ -15,10 +15,10 @@ catch(e) {
 }
 try
 {
-    dbmodels.Comment = db.model("Comment");
+    dbmodels.Review = db.model("Review");
 }
 catch(e) {
-    dbmodels.Comment = require('../models/comment');
+    dbmodels.Comment = require('../models/review');
 }
 try
 {
