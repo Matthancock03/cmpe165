@@ -1,6 +1,3 @@
-html, body{
-height: 100%;
-}
 video#bgvid {
     margin-top: 75px;
     position: fixed;
@@ -79,6 +76,7 @@ font-weight: bold;
 font-style: italic;
 font-size: 50px;
 }
+
 #or{
   text-align: center;
   margin-top: 15px;
