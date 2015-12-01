@@ -45,15 +45,20 @@ margin-top: 45px;
 
 #createDiv{
   width: 50%;
-  height: 50px;
-  background-color: rgba(10, 10, 10, 0.82);
-
+  height: 100px;
+  background-color: rgba(10, 10, 10, 0.72);
+  border-radius: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 15px, 15px, 15px, 15px;
 }
 #headerDiv{
   width: 50%;
   background-color: rgba(10, 10, 10, 0.82);
   border-radius: 25px;
   margin-top: 50px;
+  padding-top: -40px;
+  padding-bottom: -40px;
 }
 
 #searchHeader{
@@ -67,9 +72,9 @@ font-size: 24px;
 }
 
 #homeHeader{
-  text-align: center;
-  color: #A51919;
-  font-family: Lato;
+text-align: center;
+color: #A51919;
+font-family: Lato;
 font-weight: bold;
 font-style: italic;
 font-size: 50px;
