@@ -14,6 +14,12 @@
   padding-bottom: 25px;
   margin-bottom: 2%;
 }
+#buttonDiv{
+  display: inline-block;
+}
+#reviewButton{
+    background-color: #A51919 !important;
+}
 
 .profileImage{
   width: 25%;
@@ -21,6 +27,14 @@
   margin-bottom: 5%;
 
 }
+
+.input
+{
+    border: 0px solid #a31111;
+    border-bottom-width: 1px;
+    background-color: transparent;
+}
+
 
 #Name{
   font-size: 55px;
