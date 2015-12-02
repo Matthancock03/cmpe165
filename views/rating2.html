@@ -1,0 +1,57 @@
+
+<body ng-app="myApp" >
+    <div class="container" ng-controller="ReviewController as reviewCtrl">
+        <h1>Reviews</h1>
+        <ul class="list-unstyled">
+            <li ng-repeat="review in reviewCtrl.reviews">
+                <blockquote> 
+                    <strong>{{review.stars}} Stars</strong>
+                    {{review.body}} 
+                    <cite class="clearfix">—{{review.ownerId}} on {{review.createdOn | date}}</cite>
+                </blockquote>
+            </li>
+        </ul>
+        
+        <form name="reviewForm" ng-submit="reviewForm.$valid && reviewCtrl.addReview(review)" novalidate>
+            <blockquote ng-show="reviewCtrl.review"> 
+                <strong>{{reviewCtrl.review.stars}} Stars</strong>
+                {{reviewCtrl.review.body}} 
+                <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+            </blockquote>
+            
+             <h4>Submit Review</h4>
+    
+            <fieldset class="form-group">
+                <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required>
+                    <option value="">Your rating</option>
+                </select>
+            </fieldset>
+            <fieldset class="form-group">
+                <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Your review" title="Review" required></textarea>
+            </fieldset>
+            <fieldset class="form-group">
+                <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="Your email address" title="Email" required>
+            </fieldset>
+
+            
+            <fieldset class="form-group">
+                <input type="submit" class="btn btn-primary pull-right" value="Submit Review">
+            </fieldset>
+        </form>
+
+    </div>
+    <div ng-controller= "ratingUser">
+
+            <p> ??{{user.email}} </p>
+        </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+      <script src="myApp.js"></script>
+      <script src="rating1.js"></script>
+      <script src="ratingg.js"></script>
+
+  

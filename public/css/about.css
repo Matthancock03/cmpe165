@@ -1,0 +1,60 @@
+html, body{
+height: 100%;
+}
+
+.bannerImage{
+width: 100%;
+height: 300px;
+margin-top: 35px;
+}
+
+.redText{
+  color: #A51919;
+}
+
+#searchDiv{
+  width: 50%;
+  height: 150px;
+  background-color: rgba(10, 10, 10, 0.72);
+  border-radius: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 15px, 15px, 15px, 15px;
+}
+
+#createDiv{
+  width: 50%;
+  height: 100px;
+  background-color: rgba(10, 10, 10, 0.72);
+  border-radius: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 15px, 15px, 15px, 15px;
+}
+
+#searchHeader{
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+  font-family: Lato;
+font-weight: bold;
+font-style: italic;
+font-size: 24px;
+}
+
+#homeHeader{
+  text-align: center;
+  margin-top: 10px;
+  color: #A51919;
+  font-family: Lato;
+font-weight: bold;
+font-style: italic;
+font-size: 50px;
+}
+#createButton{
+  width: 50%;
+}
+.inputBoxes{
+  margin-top: 5px;
+  width: 85%;
+}

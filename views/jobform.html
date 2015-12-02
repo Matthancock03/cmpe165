@@ -6,62 +6,88 @@
   <title>Who do you want to do what where?</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/jobs.css">
+  <link rel="stylesheet" href="../css/jobs.css">
 </head>
 
-<body>
-  <div class="container-fluid full">
+<body style="background-color: gray;">
+  <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+  <div class="container-fluid mainDiv"  ng-controller="jobcreate"  ng-cloak>
     <div class="row clearfix full">
-      <div class="col-xs-2 black full">
-      </div>
-      <div class="col-xs-10 full">
-        <form class="form-login ng-pristine ng-valid job-form center-block" role="form" action="/" method="post">
-          <div class="input-group ">
-            <div class="input-group-addon">
-              Title:
-            </div>
-            <input class="form-control" placeholder="Who and What" ng-model="job.title" type="text">
-          </div>
-          <div class="input-group">
-            <div class="input-group-addon">
-              Location:
-            </div>
-            <input class="form-control" placeholder="Where" ng-model="userjob.location" type="text">
-          </div>
-          <div class="input-group">
-            <div class="input-group-addon">
-              Time:
-            </div>
-            <input class="form-control" placeholder="When" ng-model="userjob.time" type="text">
-          </div>
-          <div class="input-group">
-            <div class="input-group-addon">
-              Wages:
-            </div>
-            <input class="form-control" placeholder="Why" ng-model="userjob.price" type="text">
-          </div>
-          <div class="input-group">
-            <div class="input-group-addon">
-              Description:
-            </div>
-            <textarea class="form-control" placeholder="How" ng-model="userjob.description" type="text"></textarea>
-          </div>
-          <div class="input-group">
-            <div class="input-group-addon">
-              Terms:
-            </div>
-            <input class="form-control" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
-          </div>
-          <button class="btn btn-primary btn-lg btn-block" ng-click="submit(job)" type="submit">
 
-            Submit
-          </button>
+      <div class="col-xs-1"></div>
+
+      <div class="col-xs-10 full">
+        <span>
+          <img src="images/clapperboard.svg" alt="clapperboard" class="clapper center-block" />
+          <h1>Set the Stage!</h1>
+
+        </span>
+        <span ng-show="!userjob.wagesMax && userjob.wagesMin"style="color:red">No Min without Max</span>
+        <span ng-show="userjob.wagesMin && userjob.wagesMin >= userjob.wages" style="color:red">Min must be less than Default</span>
+        <span ng-show="userjob.wagesMax && !userjob.wagesMin" style="color:red">No Max without Min</span>
+        <span ng-show="userjob.wagesMax && userjob.wagesMax < userjob.wages" style="color:red">Max must be greater than Default</span>
+        <span ng-show="!userjob.modifiable && userjob.modifiable != null" style="color:red">Can't modify a job when the contract has been signed.</span>
+        <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
+          <div class="input-group ">
+            <h3 class='redText'>Title:</h3>
+            <input class="form-control input" placeholder="Who and What" ng-model="userjob.title" type="text" required>
+          </div>
+          <div class="input-group">
+            <h3 class='redText'>Location:</h3>
+            <input class="form-control input" placeholder="Where" ng-model="userjob.location" type="text" required>
+          </div>
+          <div class="input-group">
+            <h3 class='redText'>Time:</h3>
+              <!-- Time isn't working with datetime-local, but really like UI of datetime-local. Need a fix. -->
+            <!-- Other problem: nice datepicker only in Chrome!-->
+            <input class="form-control input" placeholder="When" ng-model="userjob.time" type="datetime-local" required>
+
+          </div>
+          <div class="input-group">
+            <h3 class='redText'>Participant #:</h3>
+            <input class="form-control input" placeholder="How Many" ng-model="userjob.totalParticipantNum" type="number">
+          </div>
+          <div class="input-group">
+            <h3 class='redText'>Min Wage:</h3>
+            <input class="form-control input" placeholder="" ng-model="userjob.wagesMin" type="text" ng-disabled="userjob.wages == null" currency-formatter>
+            </div>
+          <div class="input-group">
+            <h3 class='redText'>Default Wage:</h3>
+            <input class="form-control input" placeholder="Why" ng-model="userjob.wages" type="text" currency-formatter required>
+          </div>
+          <div class="input-group">
+            <h3 class='redText'>Max Wage:</h3>
+            <input class="form-control input" placeholder="" ng-model="userjob.wagesMax" type="text" ng-disabled="userjob.wages == null" currency-formatter>
+            </div>
+          <div class="input-group">
+            <h3 class='redText'>Description:</h3>
+            <textarea class="form-control input" placeholder="How" ng-model="userjob.description" type="text" required></textarea>
+          </div>
+          <div class="input-group">
+            <h3 class='redText'>Terms:</h3>
+            <input class="form-control input" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
+          </div>
+          <div class="">
+            <button class="btn btn-danger btn-lg btnDiv" ng-disabled="(!userjob.modifiable && userjob.modifiable != null)" ng-click="delete()" type="button">
+              {{cancelText}}
+            </button>
+            <button class="btn btn-success btn-lg btnDiv" ng-disabled="(!userjob.modifiable && userjob.modifiable != null) || (userjob.wagesMax && userjob.wagesMax < userjob.wages) || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && !userjob.wagesMin) || (userjob.wagesMin && !userjob.wagesMax)" type="submit">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
+      <div class="col-xs-1"></div>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="myApp.js"></script>
   <script src="jobcreate.js"></script>
+
 </body>
 
 </html>

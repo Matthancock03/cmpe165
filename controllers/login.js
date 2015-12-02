@@ -1,16 +1,10 @@
-(function(){
-  var app = angular.module('Authentication',[])
-  app.config(['$httpProvider', function($httpProvider) {
-    delete $httpProvider.defaults.headers.common["X-Requested-With"],
-    delete $httpProvider.defaults.headers.common["Referer"]
-}]);
 
   var tab = 1;
-  app.controller('Auth', function(){
+
+  angular.module('myApp').controller('Auth', function(){
 
     this.setTab = function(table){
       tab = table;
-      console.log("Table set to " + table);
     };
 
     this.panelNumber = function(panel){
@@ -19,63 +13,32 @@
 
   });
 
-  app.controller('Login', function($http){
+  angular.module('myApp').controller('Login', function($http, $location, $window){
     this.email = "";
     this.password = "";
-
+    this.panelNumber = function(panel){
+      return tab === panel;
+    };
     this.submitLogin = function(email, password){
       console.log("Email: " + email + " Password: " + password);
-      /*$http.get("https://api.stormpath.com/v1/applications/1JcFMH3kdfpBj4SS0abfQi/accounts?email=tk421@stormpath.com", {
-      headers: {"Accept": "application/json"}
-      });*/
-
-      $http({
-      method: 'GET',
-      url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts?email=tk421@stormpath.com',
-      headers: {
-        "Accept": "application/json",
-        "Authorization" : "Basic MUVZT0xPVDVQSk5VQTlCNkZaOUcyWjdGRTo4bjluSzBkeTU4VTIyUEtVWkZQcmxpVVB0eU42bm0yZzRIYVVQdjI3Si9N"
-    }
-      }).then(function successCallback(response) {
-        for (property in response) {
-          console.log(property + ':' + response[property]+'; ');
-
-        }
-      }, function errorCallback(response) {
-        for (property in response) {
-          console.log(property + ':' + response[property]+'; ');
-
-        }
-      });
-    };
-    this.panelNumber = function(panel){
-      return tab === panel;
-    };
-  });
-
-  app.controller('Signup', function($http){
-    this.email = "";
-    this.password = "";
-    this.passwordVerfication = "";
-
-    this.submitSignup = function(email, password, passwordVerification){
-      console.log("Email: " + email + " Password: " + password + " Verification: " + passwordVerification);
 
       $http({
       method: 'POST',
-      url: 'https://api.stormpath.com/v1/applications/173vkD8p8nkeJb55sXM6WW/accounts',
-      headers: {"Accept": "application/json", "Content-Type" : "application/json"},
+      url: '/login',
+      headers:{
+        "Accept" : "application/json"
+      },
       data: {
-        "givenName": "Matt",
-        "surname": "Hancock",
-        "username": "Matth03",
-        "email": "matt-hancock@live.com",
-        "password":"wordup"}
+        "username": email,
+        "password": password
+      }
       }).then(function successCallback(response) {
-        // this callback will be called asynchronously
-        // when the response is available
+        window.location = "/";
+        for(property in response.headers){
+          console.log(response.headers[property]);
+        }
       }, function errorCallback(response) {
-      console.log("Not working.\n\n");
+        alert(response.data.error);
       });
     };
 
@@ -84,4 +47,47 @@
     };
   });
 
-  })();
+  angular.module('myApp').controller('Signup', function($http, $location, User){
+    this.user = new User();
+    this.passwordVerification = "";
+    console.log();
+    this.submitSignup = function(user, passwordVerification){
+      user.ownerId = user.email;
+
+      console.log()
+      if(user.password == passwordVerification) {
+        $http({
+          method: 'POST',
+          url: '/register',
+          headers: {
+            "Accept": "application/json"
+          },
+          data: {
+            "givenName": user.firstName.toLowerCase(),
+            "surname": user.lastName.toLowerCase(),
+            //"username": "Matth03",
+            "email": user.email,
+            "password": user.password
+          }
+        }).then(function successCallback(response) { //On sucessful callback from Stormpath request create new User and save.
+          console.log("Stormpath sucessful");
+          console.log("Email: " + user.email + " Name: " + user.firstName + " " + user.lastName + " Password: " + user.password + " Verification: " + passwordVerification);
+          user.$save(function () {
+            console.log("User saved :");
+            for (property in user) {
+              console.log(property + " " + user[property]);
+            }//Ooh. this'll be useful later. I can make the connection of models to the REST API really simple with this.
+          });
+          window.location = "/";
+        }, function errorCallback(response) {
+          alert(response.data.error);
+        });
+      }
+      else
+        alert("Passwords don't match.");
+    };
+
+    this.panelNumber = function(panel){
+      return tab === panel;
+    };
+  });

@@ -1,0 +1,85 @@
+@font-face {
+    font-family: Lato;
+    src: url(http://fonts.googleapis.com/css?family=Georgia);
+    font-weight: bold;
+}
+
+.mainDiv{
+  min-height: 100%;
+  height: 100% !important;
+  margin-top: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding-top: 5%;
+  padding-bottom: 25px;
+  margin-bottom: 2%;
+}
+#buttonDiv{
+  display: inline-block;
+}
+#reviewButton{
+    background-color: #A51919 !important;
+}
+
+.profileImage{
+  width: 25%;
+  height: auto;
+  margin-bottom: 5%;
+
+}
+
+.input
+{
+    border: 0px solid #a31111;
+    border-bottom-width: 1px;
+    background-color: transparent;
+}
+
+
+#Name{
+  font-size: 55px;
+}
+
+#userName{
+  font-family: Lato;
+}
+
+h1{
+  font-size: 50px;
+  text-align: center;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+a:hover{
+  color: #a31111;
+}
+hr{
+  margin-top: -10px !important;
+  padding-top: 0px !important;
+}
+
+th{
+  color: #a31111;
+}
+.redText{
+  font-size: 30px;
+  font-family: Lato;
+  font-style: italic;
+  color: #a31111;
+}
+
+.smallRed{
+  font-size: 22px;
+  font-family: Lato;
+  font-style: italic;
+  color: #f7eb0c;
+  background-color: rgba(10, 10, 10, 0.72);
+  border-radius: 25px;
+  padding-left: 10px;
+  max-width: 30%;
+}
