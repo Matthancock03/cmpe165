@@ -3,7 +3,7 @@
  */
 var db = require('../database');
 module.exports = db.model("Contract", {
-    jobId: {type: String, required: true},
+    jobId: {type: String, required: true, ref: "Job"},
     TOAgreement: {type: String, required: true},
     creationDate: {type: Date, required: false, default: Date.now()},
     employeeSignatureDate: {type: String, required: false},

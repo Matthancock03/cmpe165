@@ -15,8 +15,8 @@
 
   <div class="container-fluid mainDiv" style="height: 100%;">
 
-    <div class="col-xs-2"></div>
-    <div class="col-xs-8">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-5">
       <div class="alert alert-success" ng-show="showSuccessAlert">
         <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')">×</button>
         <strong>Done!</strong> {{successTextAlert}}
@@ -47,12 +47,6 @@
         <h3 class='redText'>Pending Auditions</h3>
         <hr>
       </div>
-      <h3 class='redText'>Reviews</h3>
-      <hr>
-      <div class="review" ng-repeat="review in user.reviews">
-        {{review.score}} {{review.comment}} {{review.reviewer}} {{review.creationDate}}
-      </div>
-      <span ng-show="user.reviews.length < 0">I guess no news is good news, right?</span>
       <br>
       <br>
       <div ng-show="isUser">
@@ -62,7 +56,7 @@
       </div>
 
       <div ng-hide="isUser">
-        <button class="btn btn-default btn-xs" data-target=".bs-example-modal-lg" data-toggle="modal" type="button">
+        <button class="btn btn-default btn-xs" data-target=".BBBBBB" data-toggle="modal" type="button">
           <span aria-hidden="true" class="glyphicon glyphicon-envelope"></span>
           Message
         </button>
@@ -70,7 +64,7 @@
 
       <!-- Large modal -->
 
-      <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
+      <div aria-hidden="true" aria-labelledby="myLargeModalLabel" class="modal fade bs-example-modal-lg BBBBBB" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="form-group" style="width: 50%; margin: 0 auto;">
@@ -79,7 +73,7 @@
                 <input class="form-control" ng-model="messageTitle" name="messageTitle" placeholder="Message Title" type="text" value="" />
                 <input class="form-control" ng-model="messageBody" name="messageBody" placeholder="Message" type="text" value="" />
                 <input class="form-control" ng-model="id" name="id" placeholder="User Id" style="display: none;" type="text" value="" />
-                <button class="btn btn-primary btn-lg btn-block" style="width: 50%;" data-target=".bs-example-modal-lg" data-toggle="modal" type="submit" ng-click="sendMessage()">Send Message</button>
+                <button class="btn btn-primary btn-lg btn-block" style="width: 50%;" data-target=".BBBBBB" data-toggle="modal" type="submit" ng-click="sendMessage()">Send Message</button>
               </div>
             </div>
           </div>
@@ -89,7 +83,49 @@
 
 
     </div>
-    <div class="col-xs-2"></div>
+    <div aria-hidden="true" aria-labelledby="newModal" class="modal fade bs-example-modal-lg AAAAAA" role="dialog" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="form-group" style="width: 50%; margin: 0 auto;">
+            <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
+              <h2 class="form-signin-heading">Review them!</h2>
+
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Rating(1-5)
+                </div>
+                <input class="form-control" ng-model="rev.stars" type="number" min="1" max="5" required>
+              </div>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  Review:
+                </div>
+                <textarea class="form-control" placeholder="" ng-model="rev.body" type="text" required></textarea>
+              </div>
+              <button class="btn btn-success btn-lg btn-block" ng-disabled="!rev || !rev.stars || rev.stars < 1 || rev.stars > 5" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-cloak class="col-md-5 ratingscontainer">
+      <button ng-show="loaded && !isUser" class="btn btn-success btn-md btn-block" data-target=".AAAAAA" data-toggle="modal" type="button" ng-click="loadReview(blank)">
+        Leave Review
+      </button>
+      <h2 ng-show="loaded && !noreviews">Average Rating: {{total | number : 2}}/5</h2>
+      <h2 ng-show="loaded && noreviews">No Reviews! A blank slate.</h2>
+      <div class="row panel panel-default" ng-repeat="r in ratings">
+        <div class="col-md-5" style="align:center"><h4><a href="/profile?email={{r.ownerId}}" target="_self">{{r.ownerId}}</a>:</h4></div>
+        <div class="col-md-2"><h2>{{r.stars}}/5</h2></div>
+        <div class="col-md-5" ng-show="r.ownerId != user.email" ><h3>{{r.body}} </h3></div>
+        <div class="col-md-4" ng-show="r.ownerId == user.email" ><h3>{{r.body}} </h3></div>
+        <div class="col-md-1" ng-show="r.ownerId == user.email" ><button class="btn btn-success btn-md" data-target=".AAAAAA" ng-click="loadReview(r)" data-toggle="modal" style="margin-top:30px"type="button" >
+          Edit Review
+        </button></div>
+
+
+      </div>
+    <div class="col-xs-1"></div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

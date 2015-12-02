@@ -85,7 +85,7 @@
             <input class="form-control" placeholder="List tags here separated by commas" ng-model="userjob.terms" type="text">
           </div>
           <div class="">
-            <button class="btn btn-danger btn-lg btnDiv" ng-click="delete()" type="button">
+            <button class="btn btn-danger btn-lg btnDiv" ng-disabled="(!userjob.modifiable && userjob.modifiable != null)" ng-click="delete()" type="button">
               {{cancelText}}
             </button>
             <button class="btn btn-success btn-lg btnDiv" ng-disabled="(!userjob.modifiable && userjob.modifiable != null) || (userjob.wagesMax && userjob.wagesMax < userjob.wages) || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && !userjob.wagesMin) || (userjob.wagesMin && !userjob.wagesMax)" type="submit">

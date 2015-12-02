@@ -15,10 +15,10 @@ catch(e) {
 }
 try
 {
-    dbmodels.Comment = db.model("Comment");
+    dbmodels.Review = db.model("Review");
 }
 catch(e) {
-    dbmodels.Comment = require('../models/comment');
+    dbmodels.Review = require('../models/review');
 }
 try
 {
@@ -104,15 +104,21 @@ dbRouter.get("/:_model", function(req,res, next){
         }
 
     }
-    if(req.query.$populate)//Array
-    {}
-    ret_model.find(viewPermissions(req.query, req.user.email), function(err, element){
-
+    var toPopulate;
+    if(req.query.$populate)//String
+    {
+        toPopulate = req.query.$populate;
+        delete req.query.$populate
+    }
+    query = ret_model.find(viewPermissions(req.query, req.user.email))
+    if(toPopulate)
+        query = query.populate(toPopulate)//Keep it a single string.
+    query.exec(function(err, elements){
         if(err){
             console.log(err);
         };
-        console.log(element);
-        res.json(element);
+        console.log(elements);
+        res.json(elements);
     });
 });
 dbRouter.get("/:_model/:_id", function(req,res, next){

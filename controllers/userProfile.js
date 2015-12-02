@@ -1,16 +1,34 @@
 angular.module('myApp').controller('UserController', function($location, $http, $scope, User, Mail, Review, Job) {
+  var revCallback = function(elems) {
+    $scope.blank = new Review();
+    $scope.total = 0.0;
+    $scope.ratings = elems
 
+    console.log($scope.ratings);
+    if ($scope.ratings.length <= 0) {
+      $scope.noreviews = true;
+    }
+    else {
+      for (var i = 0; i < $scope.ratings.length; i++) {
+        if ($scope.ratings[i].stars)
+          $scope.total += $scope.ratings[i].stars
+      }
+      $scope.total /= $scope.ratings.length;
+    }
+    $scope.loaded = true;
+  }
   $http.get('/currentUser').then(function successCallback(response) {
     if ($location.search().email == undefined) {
       $scope.user = response.data;
       $scope.isUser = true;
-
+      Review.query({reviewee: $scope.user.ownerId},revCallback);
       if (response.data.img) {
         $scope.imageExists = true;
       } else {
         $scope.imageExists = false;
       }
     }
+
     $scope.currentUser = response.data;
   });
 
@@ -27,6 +45,8 @@ angular.module('myApp').controller('UserController', function($location, $http, 
         } else {
           $scope.imageExists = false;
         }
+        console.log("before review!")
+        Review.query({reviewee: $scope.user.ownerId},revCallback)
       } else {
         console.log(users);
         console.log(users.length);
@@ -50,7 +70,7 @@ Job.query({employee: "matthancock03@gmail.com"}, function(jobs){
     var mail = new Mail();
     mail.ownerId = $scope.user.email;
     mail.senderId = $scope.currentUser.email;
-    mail.links = ["http://mongoosejs.com/docs/middleware.html"]
+    mail.links = []
     mail.sent = false
     mail.body = $scope.messageBody;
     mail.title = $scope.messageTitle;
@@ -61,10 +81,25 @@ Job.query({employee: "matthancock03@gmail.com"}, function(jobs){
 
     $scope.showSuccessAlert = true;
   };
+  $scope.loadReview = function(review)
+  {
 
-  $scope.editProfile = function() {
-    window.location.assign("update");
-  };
+    $scope.rev = review;
+    console.log($scope.rev)
 
+    //load into review submitter?
+  }
+  $scope.submit = function(){
+    if(!$scope.rev.reviewee)
+      $scope.rev.reviewee = $scope.user.email;
+    if(!$scope.rev._id)
+      $scope.rev.$save().then(function(){
+            location.reload()
+      })
+    else
+      $scope.rev.$update().then(function(){
+        location.reload()
+      })
+  }
 
 });

@@ -4,7 +4,7 @@
 var db = require('../database');
 
 //A class to allow users to create additions to Jobs without giving them permission to modify. neater this way.
-var q = new db.Schema({jobId:{type: String, required:true},
+var q = new db.Schema({jobId:{type: String, required:true, ref: "Job"},
     viewableIds:{type: [String], required:true},
     //Use this array in any model when you need to limit people who can view things.
     // include other viewers ONLY; don't need and can't easily access own id. ownership assumes viewability anyways
@@ -13,7 +13,7 @@ var q = new db.Schema({jobId:{type: String, required:true},
     bid:{type: Number, required: true},
 
     signed:{type: Boolean, default:false},
-    ownerId:{type: String, required:false}//This tag will provide modification limitation; defined on server end.
+    ownerId:{type: String, required:false, ref:"User"}//This tag will provide modification limitation; defined on server end.
 })
 
 var q2 = require('../serverscripts/postToMailModel')

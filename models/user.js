@@ -9,12 +9,12 @@ var User = db.model('User', {
   sellerId: {type: String},
   ownerId: {type: String},//will be the same as email; important to allow modifications of the user table without rewriting functions
   //This will be email here. id = email
-  img: { data: Buffer, contentType: String},
+  img: {type: String},
   about: {type: String},
   skills: {type: String},
   videoLinks: {type: [String]},
   recieveEmail:{type: Boolean, default: true},
-  reviews:[{type: db.Schema.Types.ObjectId, ref: 'Review'}],
+  emailForTags: {type: [String]},
   creationDate: {type: Date, required: true, default: Date.now}
 })
 

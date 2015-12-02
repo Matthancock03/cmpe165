@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34853ffa-148f-4157-b4ea-2c7d98ea0e01" name="Default" comment="Set up firing, firing emails in JobDisplay, Got contract signing emails working.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/serverscripts/applicationacceptedtest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/rating1.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/express_server.js" afterPath="" />
+    <list default="true" id="34853ffa-148f-4157-b4ea-2c7d98ea0e01" name="Default" comment="Added ability to populate returned values; not set up properly to handle some things however.&#10;&#10;Added support for terms.  needs more testing.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Contract.js" afterPath="$PROJECT_DIR$/models/Contract.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/application.js" afterPath="$PROJECT_DIR$/models/application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/dbRoutes.js" afterPath="$PROJECT_DIR$/routes/dbRoutes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/inbox.html" afterPath="$PROJECT_DIR$/views/inbox.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/inbox.js" afterPath="$PROJECT_DIR$/controllers/inbox.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/job.js" afterPath="$PROJECT_DIR$/models/job.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/jobDisplayNew.html" afterPath="$PROJECT_DIR$/views/jobDisplayNew.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/jobdisplay.js" afterPath="$PROJECT_DIR$/controllers/jobdisplay.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/jobform.html" afterPath="$PROJECT_DIR$/views/jobform.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serverscripts/postToMailModel.js" afterPath="$PROJECT_DIR$/serverscripts/postToMailModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/rating2.html" afterPath="$PROJECT_DIR$/views/rating2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/review.js" afterPath="$PROJECT_DIR$/models/review.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/updateProfile.html" afterPath="$PROJECT_DIR$/views/updateProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/user.js" afterPath="$PROJECT_DIR$/models/user.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/userProfile.html" afterPath="$PROJECT_DIR$/views/userProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/userProfile.js" afterPath="$PROJECT_DIR$/controllers/userProfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
-    <list id="7cab7604-06da-41a8-b9d6-5b63f4399112" name="Don't Change This" comment="" />
     <ignored path="cmpe165.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,11 +31,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jobcreate.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/jobcreate.js">
+      <file leaf-file-name="userProfile.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/userProfile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4878049">
+              <caret line="120" column="50" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/user.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="review.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/review.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userProfile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/userProfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.012195">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myApp.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/myApp.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.8518518">
+              <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -52,72 +97,18 @@
         <entry file="file://$PROJECT_DIR$/controllers/jobdisplay.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
+              <caret line="111" column="11" selection-start-line="77" selection-start-column="8" selection-end-line="111" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jobDisplayNew.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/jobDisplayNew.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8873239">
-              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="updateProfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/updateProfile.js">
+      <file leaf-file-name="dbRoutes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/dbRoutes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userProfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/userProfile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userProfile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/userProfile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.375">
-              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="189" column="34" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
-              <folding>
-                <marker date="1448145966000" expanded="true" signature="8703:8707" placeholder="{...}" />
-                <marker date="1448145966000" expanded="true" signature="8703:8711" placeholder="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -137,7 +128,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nodemailer-testing" />
+        <entry key="$PROJECT_DIR$" value="John's-additions" />
       </map>
     </option>
   </component>
@@ -146,10 +137,8 @@
       <list>
         <option value="$PROJECT_DIR$/views/templates/navBar.html" />
         <option value="$PROJECT_DIR$/views/home.html" />
-        <option value="$PROJECT_DIR$/views/jobform.html" />
         <option value="$PROJECT_DIR$/views/login.html" />
         <option value="$PROJECT_DIR$/controllers/login.js" />
-        <option value="$PROJECT_DIR$/models/Contract.js" />
         <option value="$PROJECT_DIR$/controllers/myApp.js" />
         <option value="$PROJECT_DIR$/models/manbirsmail.js" />
         <option value="$PROJECT_DIR$/models/mailtester.js" />
@@ -163,9 +152,7 @@
         <option value="$PROJECT_DIR$/serverscripts/payment.js" />
         <option value="$PROJECT_DIR$/express_server.js" />
         <option value="$PROJECT_DIR$/models/comment.js" />
-        <option value="$PROJECT_DIR$/serverscripts/postToMailModel.js" />
         <option value="$PROJECT_DIR$/views/basicView.html" />
-        <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/models/mail.js" />
         <option value="$PROJECT_DIR$/serverscripts/sendMail.js" />
         <option value="$PROJECT_DIR$/controllers/home.js" />
@@ -173,8 +160,6 @@
         <option value="$PROJECT_DIR$/controllers/stripeController.js" />
         <option value="$PROJECT_DIR$/controllers/contractcontroller.js" />
         <option value="$PROJECT_DIR$/views/templates/modalTerms&amp;Agreement.html" />
-        <option value="$PROJECT_DIR$/models/application.js" />
-        <option value="$PROJECT_DIR$/models/job.js" />
         <option value="$PROJECT_DIR$/controllers/jobcreate.js" />
         <option value="$PROJECT_DIR$/controllers/inbox.js" />
         <option value="$PROJECT_DIR$/controllers/updateProfile.js" />
@@ -182,6 +167,17 @@
         <option value="$PROJECT_DIR$/views/inbox.html" />
         <option value="$PROJECT_DIR$/controllers/jobdisplay.js" />
         <option value="$PROJECT_DIR$/views/jobDisplayNew.html" />
+        <option value="$PROJECT_DIR$/models/Contract.js" />
+        <option value="$PROJECT_DIR$/models/job.js" />
+        <option value="$PROJECT_DIR$/views/jobform.html" />
+        <option value="$PROJECT_DIR$/serverscripts/postToMailModel.js" />
+        <option value="$PROJECT_DIR$/models/application.js" />
+        <option value="$PROJECT_DIR$/views/updateProfile.html" />
+        <option value="$PROJECT_DIR$/routes/dbRoutes.js" />
+        <option value="$PROJECT_DIR$/models/review.js" />
+        <option value="$PROJECT_DIR$/models/user.js" />
+        <option value="$PROJECT_DIR$/controllers/userProfile.js" />
+        <option value="$PROJECT_DIR$/views/userProfile.html" />
       </list>
     </option>
   </component>
@@ -193,10 +189,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="12" />
-    <option name="y" value="23" />
+    <option name="x" value="-1" />
+    <option name="y" value="74" />
     <option name="width" value="1268" />
-    <option name="height" value="773" />
+    <option name="height" value="598" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -263,7 +259,53 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="serverscripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="routes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -295,10 +337,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cmpe165" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -315,278 +371,6 @@
       <recent name="$PROJECT_DIR$/serverscripts" />
       <recent name="$PROJECT_DIR$" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/contractcontroller.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/home.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/inbox.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/jobcreate.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/jobdisplay.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/joblist.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/login.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/myApp.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/updateProfile.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/controllers/userProfile.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/models/Contract.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/models/application.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/models/job.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/models/user.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/package.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/css/home.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/css/jobdisplay.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/css/joblist.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/css/profile.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/css/updateProfile.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/serverscripts/postToMailModel.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/serverscripts/sendMail.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/home.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/inbox.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/jobDisplayNew.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/jobform.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/joblist.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/login.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/templates/modalQuitJob.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/templates/modalTerms&amp;Agreement.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/templates/navBar.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/updateProfile.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/userProfile.html</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/models/review.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/.jshintrc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/.npmignore</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/Gruntfile.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/LICENSE</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/README.md</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/.name</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/artifacts/ng_file_upload_demo_server_war.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/artifacts/ng_file_upload_demo_server_war_exploded.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/codeStyleSettings.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/compiler.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/copyright/profiles_settings.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/encodings.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/libraries/Maven__com_google_appengine_appengine_api_1_0_sdk_1_9_18.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/libraries/Maven__com_google_appengine_appengine_endpoints_1_9_18.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_2.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/libraries/Maven__javax_inject_javax_inject_1.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/modules.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/vcs.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/C#/UploadController.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/C#/UploadHandler.ashx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/C#/UploadHandler.ashx.cs</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/pom.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/java/com/df/angularfileupload/CORSFilter.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/java/com/df/angularfileupload/FileUpload.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/java/com/df/angularfileupload/S3Signature.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/resources/META-INF/jdoconfig.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/resources/META-INF/persistence.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/resources/log4j.properties</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/WEB-INF/appengine-web.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/WEB-INF/logging.properties</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/WEB-INF/web.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/common.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/crossdomain.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/donate.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/favicon.ico</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/img/tea.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/img/tea.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/index.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/FileAPI.flash.swf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/FileAPI.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/FileAPI.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-file-upload-all.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-file-upload-all.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-file-upload-shim.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-file-upload-shim.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-file-upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-file-upload.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-img-crop.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/ng-img-crop.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/src/main/webapp/js/upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/maven-archiver/pom.properties</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/META-INF/MANIFEST.MF</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/appengine-web.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/META-INF/jdoconfig.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/META-INF/persistence.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/com/df/angularfileupload/CORSFilter.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/com/df/angularfileupload/FileUpload$SizeEntry.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/com/df/angularfileupload/FileUpload.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/com/df/angularfileupload/S3Signature.class</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/classes/log4j.properties</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/logging.properties</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/WEB-INF/web.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/common.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/crossdomain.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/donate.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/favicon.ico</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/img/tea.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/img/tea.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/index.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/FileAPI.flash.swf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/FileAPI.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/FileAPI.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-file-upload-all.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-file-upload-all.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-file-upload-shim.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-file-upload-shim.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-file-upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-file-upload.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-img-crop.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/ng-img-crop.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/demo/target/ng-file-upload-demo-server-0.0.1/js/upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.flash.swf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-all.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-all.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-shim.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/nuget/NuGet.exe</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/nuget/Package.nuspec</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/nuget/build.bat</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/nuget/nuget.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/package.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/release.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/FileAPI.flash.swf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/FileAPI.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/data-url.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/drop.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/exif.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/model.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/resize.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/select.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/shim-elem.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/shim-filereader.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/shim-upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/upload.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/src/validate.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/test/.bowerrc</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/test/bower.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/test/index.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/ng-file-upload/test/spec/test.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/images/film_roll.jpg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/images/oscar.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/images/star.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/routes/dbRoutes.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/routes/subModelRoutes.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/rating2.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/views/templates/fireEmployee.html</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/models/comment.js</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Node.js.mailtester.js">
     <configuration default="false" name="mailtester.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="$PROJECT_DIR$/serverscripts/mailtester.js" working-dir="$PROJECT_DIR$">
@@ -650,7 +434,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="033775e7-7e60-4579-921c-2635e0feb681" name="Default" comment="..." />
+      <changelist id="34853ffa-148f-4157-b4ea-2c7d98ea0e01" name="Default" comment="" />
       <created>1446000017424</created>
       <option name="number" value="Default" />
       <updated>1446000017424</updated>
@@ -679,7 +463,13 @@
       <option name="project" value="LOCAL" />
       <updated>1446168911229</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added ability to populate returned values; not set up properly to handle some things however.&#10;&#10;Added support for terms.  needs more testing though">
+      <created>1448666463267</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1448666463267</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -692,51 +482,51 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="12" y="23" width="1268" height="773" extended-state="0" />
-    <editor active="false" />
+    <frame x="-1" y="74" width="1268" height="598" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2290749" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.020391516" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.50326264" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1867863" sideWeight="0.24726477" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40234947" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33084112" sideWeight="0.49673736" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44094488" sideWeight="0.49673736" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24978012" sideWeight="0.4903581" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1867863" sideWeight="0.75273526" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959217" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26182708" sideWeight="0.48591548" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26182708" sideWeight="0.5140845" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44094488" sideWeight="0.50326264" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32677165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932332" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22613803" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44268775" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.020391516" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1867863" sideWeight="0.24726477" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32777777" sideWeight="0.50326264" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40373832" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33084112" sideWeight="0.49673736" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32677165" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24978012" sideWeight="0.4903581" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959217" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1867863" sideWeight="0.75273526" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25774878" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -756,7 +546,9 @@
     <MESSAGE value="got Manbir's method working with emails. All we have to do now is insert hooks that add mails to the mail model with the bodies and texts we have to send when we have to send them. fulfilling the other notification requirements should be really easy now." />
     <MESSAGE value="fixed some bugs in manbir's code, renamed some files to be more descriptive. tested authorization api for stripe. Added postToMailModel which has code for Manbir to work with, stripping out complications." />
     <MESSAGE value="Made some more progress onto setting up partial payment. Contracts need to work where job owners send them out to employees first or there will be no situation where applicants will be notified if the job is updated because updates will be impossible.&#10;&#10;Also did some setup on email notifications. need more testing though." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some more progress onto setting up partial payment. Contracts need to work where job owners send them out to employees first or there will be no situation where applicants will be notified if the job is updated because updates will be impossible.&#10;&#10;Also did some setup on email notifications. need more testing though." />
+    <MESSAGE value="Added ability to populate returned values; not set up properly to handle some things however.&#10;&#10;Added support for terms.  needs more testing." />
+    <MESSAGE value="Added ability to populate returned values; not set up properly to handle some things however.&#10;&#10;Added support for terms.  needs more testing though" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability to populate returned values; not set up properly to handle some things however.&#10;&#10;Added support for terms.  needs more testing though" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -765,211 +557,33 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/joblist.html">
+    <entry file="file://$PROJECT_DIR$/views/userProfile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/myApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/jobRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/jobform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="35" selection-start-line="80" selection-start-column="35" selection-end-line="80" selection-end-column="35" />
+          <caret line="124" column="43" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
           <folding>
-            <element signature="n#style#0;n#span#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/jobDisplayNew.html">
+    <entry file="file://$PROJECT_DIR$/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/joblist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/jobdisplay.js">
+    <entry file="file://$PROJECT_DIR$/models/review.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.5555553">
-          <caret line="10" column="44" selection-start-line="9" selection-start-column="6" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/updateProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.875">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="18" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/stripeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="3" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serverscripts/payment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/stripePaymentUI.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="18.509804">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serverscripts/sendMail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="87" selection-start-line="52" selection-start-column="87" selection-end-line="52" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/userRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/joblist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/jobRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/joblist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/inbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/myApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serverscripts/paymentTester.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Contract.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/mail.js">
+    <entry file="file://$PROJECT_DIR$/controllers/userProfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -980,135 +594,47 @@
     <entry file="file://$PROJECT_DIR$/models/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding />
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/contractcontroller.js">
+    <entry file="file://$PROJECT_DIR$/models/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73426574">
-          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/serverscripts/postToMailModel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.048951">
-          <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20979021">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/job.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.222222">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/applicationHistory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/applicationView.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serverscripts/mailtester.js">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/inbox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20842105">
-          <caret line="138" column="0" selection-start-line="136" selection-start-column="10" selection-end-line="138" selection-end-column="0" />
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/jobDisplay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3636364">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/dependencies.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates/modalTerms&amp;Agreement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44397464">
-          <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/jobform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.118393235">
-          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/jobcreate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="189" column="34" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
-          <folding>
-            <marker date="1448145966000" expanded="true" signature="8703:8707" placeholder="{...}" />
-            <marker date="1448145966000" expanded="true" signature="8703:8711" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/userProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.375">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/updateProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/updateProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -1120,11 +646,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/jobdisplay.js">
+    <entry file="file://$PROJECT_DIR$/views/jobform.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="161" column="13" selection-start-line="161" selection-start-column="13" selection-end-line="161" selection-end-column="13" />
+          <caret line="84" column="87" selection-start-line="84" selection-start-column="53" selection-end-line="84" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Contract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/dbRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/inbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/inbox.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="110" column="23" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/jobDisplay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/templates/modalTerms&amp;Agreement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1132,25 +700,207 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/userProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/jobDisplayNew.html">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8873239">
-          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="260" column="0" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/myApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/jobcreate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/inbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/inbox.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-66.25">
+          <caret line="110" column="23" selection-start-line="110" selection-start-column="23" selection-end-line="110" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/templates/modalTerms&amp;Agreement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22222222">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/jobDisplay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.25">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/joblist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/userRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/job.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/jobcreate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="75" selection-start-line="25" selection-start-column="75" selection-end-line="25" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/updateProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serverscripts/postToMailModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/updateProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.25">
+          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Contract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="51" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/jobform.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="84" column="87" selection-start-line="84" selection-start-column="53" selection-end-line="84" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/mail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/jobdisplay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="111" column="11" selection-start-line="77" selection-start-column="8" selection-end-line="111" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8518518">
+          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/myApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/review.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/dbRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/userProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.012195">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/userProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4878049">
+          <caret line="120" column="50" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
