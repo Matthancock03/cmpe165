@@ -173,7 +173,8 @@ app.post("/payments", stormpath.loginRequired, function(req, res, next) {
       dbmodels.User.findOne({email: req.user.email}, function (err2, user2) {
         if(user2.customerId == null) {
           console.log("???2")
-          return res.status(500, "/stripePaymentSetup");
+          return  res.status(200).sendFile(__dirname + '/views/stripePaymentUI.html');
+
         }
         if(!application.signed) {
           console.log("???3")
