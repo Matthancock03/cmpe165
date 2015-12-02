@@ -79,14 +79,14 @@ app.get("/currentUser", function(req,res, next){
 
 
 app.get("/", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/home.html');
+  res.status(200).sendFile(__dirname + '/views/newHome.html');
 });
 app.get("/jobhistory", function(req,res){
   res.status(200).sendFile(__dirname + '/views/jobHistory.html');
 })
 
 app.get("/home", function(req,res){
-  res.status(200).sendFile(__dirname + '/views/home.html');
+  res.status(200).sendFile(__dirname + '/views/newHome.html');
 });
 
 app.get("/newhome", function(req,res){

@@ -30,15 +30,15 @@
 
       <h3 class='redText'>Performance Details:</h3>
             <p>{{userjob.description}}</p>
-            <div ng-cloak>
+            <div ng-cloak class="row" style="text-align:center">
                 <p ng-show="userjob.wagesMin && notOwner" style="text-align:center">Minimum {{userjob.wagesMin | currency}} ~ <input type="text" ng-model="userjob.wages" currency-formatter> ~ {{userjob.wagesMax | currency}} Maximum </p>
-                <button class="btn btn-success btn-lg" ng-show="notOwner" ng-disabled="applied || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && userjob.wages > userjob.wagesMax)"  ng-click="apply()" type="submit">
+                <button class="btn btn-success btn-lg" style="margin:auto" ng-show="notOwner" ng-disabled="applied || (userjob.wagesMin && userjob.wages < userjob.wagesMin) || (userjob.wagesMax && userjob.wages > userjob.wagesMax)"  ng-click="apply()" type="submit">
                     I'll do it for {{userjob.wages | currency}}
                 </button>
-                <button class="btn btn-success btn-lg" ng-show="!notOwner" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-click="edit()" type="submit">
+                <button class="btn btn-success btn-lg" style="margin:auto" ng-show="!notOwner" ng-disabled="userjob.modifiable != null && !userjob.modifiable" ng-click="edit()" type="submit">
                     Edit
                 </button>
-                <hr>
+                <br>
                 <h2 ng-show="applied">Viewable Applications</h2>
             </div>
             <div class="row panel panel-default" ng-cloak ng-repeat="app in applications | orderBy:'bid'">
@@ -58,12 +58,14 @@
                 <button class="btn btn-success btn-lg" data-target=".fire-modal-lg" data-toggle="modal" type="button" ng-show="!notOwner">
                   Fire Employee
                 </button>
+                    <!-- commented out because I don't have time to get this working.
+                    <button class="btn btn-success btn-lg" data-target=".quit-modal-lg" data-toggle="modal" type="button" ng-show="notOwner">
+                        Quit Job
+                    </button>
+                    -->
                 </div>
             </div>
 
-            <button class="btn btn-success btn-lg" data-target=".quit-modal-lg" data-toggle="modal" type="button" ng-show="notOwner">
-              Quit Job
-            </button>
             <!-- begin wwww.htmlcommentbox.com -->
             <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
             <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />

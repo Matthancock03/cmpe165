@@ -4,11 +4,15 @@ angular.module('myApp').controller('Home', function($location, $http, $scope, Us
     console.log("Current User call sucessful!");
     //console.log("Email: " + response.data.email);
     $scope.user = response.data;
-    if(response.data != undefined){
+    if(response.data != undefined && response.data.ownerId != undefined){
       $scope.loggedIn = true;
 
       if(response.data.ownerId != null && response.data.sellerId == null)
         window.location.href = "/authorize";
+    }
+    else
+    {
+      $scope.loggedIn = false;
     }
   }, function errorCallback(response) {
     console.log("Current User error: " + response.error);
