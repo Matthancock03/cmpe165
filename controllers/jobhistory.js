@@ -17,6 +17,10 @@ angular.module('myApp').controller('jobHistory', function($location, $http, $sco
         },function(elems, err){
             console.log(elems)
         });
+        $scope.toDisplay = function(job)
+        {
+            window.location.href = "/jobdisplay?_id="+job._id;
+        }
 
 
     });

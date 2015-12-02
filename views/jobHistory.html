@@ -17,7 +17,10 @@
 
 
 <h1 class='redText'>Job Request History</h1>
-<div ng-repeat="app in pastJobs">
+<div>
+    <input type="text" ng-model="searchBox">
+</div>
+<div ng-repeat="app in pastJobs | filter: searchBox">
     <div class="container-fluid mainDiv" style="height: 100%;">
 
         <div class="col-xs-2"></div>
@@ -28,8 +31,8 @@
                     {{app.title}}
                 </li>
                 <li class="list-group-item">
-                    <strong>Employer:</strong><br>
-                    {{app.ownerId}}
+                    <strong>Description:</strong><br>
+                    {{app.description}}
                 </li>
                 <li class="list-group-item">
                     <strong>Job Time:</strong><br>

@@ -55,13 +55,14 @@ angular.module('myApp').controller('appHistory', function($location, $http, $sco
 
 
                     }
+
                 })
 
-
             });
-        $scope.toDisplay = function(app)
+
+        $scope.toDisplay = function(job)
         {
-            window.location.href = "/jobdisplay?_id="+app._id;
+            window.location.href = "/jobdisplay?_id="+job._id;
         }
 
     });

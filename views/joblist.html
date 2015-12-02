@@ -11,7 +11,9 @@
   <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
 <div  ng-controller="joblist" style="padding-left:10px; padding-right:10px">
 <h1>Jobs near you</h1>
-<div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs | orderBy:'-creationDate'">
+
+    <input type="text" ng-model="searchBox">
+<div class= "row clearfix full jobcontainer"  ng-repeat="job in jobs | orderBy:'-creationDate' | filter:searchBox">
     <div class="col-xs-2">
         <h4>{{job.title}}</h4>
     </div>
