@@ -69,8 +69,19 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
         application.$save(application, function() {
             //window.location.href = "/jobs";//need to be careful with these?
             // Is url xss a thing if the contents based on the url are escaped?
+            var m = new Mail();
+            m.ownerId = $scope.userjob.ownerId;
+            m.senderId = $scope.user.ownerId;
+            m.title = "I've applied to your job '" + $scope.userjob.title + "'"
+            m.body = "Send me a contract and let's do this."
+            m.links = ["/jobdisplay?_id="+ $scope.userjob._id];
+            //app.sent=true;
+            m.$save(
+                function(){
+                    //location.reload();
+                }
+            );
 
-            location.reload();
         })
 
     }
@@ -78,6 +89,7 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
         Application.query({jobId: $location.search()._id}, function (elems, err) {
             $scope.applications = elems;
             $scope.applied = elems.length > 0//Any applications
+
             $scope.applications.sort(function (a, b) {
                 return a.ownerId.localeCompare(b.ownerId)
             });

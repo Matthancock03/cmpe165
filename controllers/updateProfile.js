@@ -18,6 +18,7 @@ angular.module('UpdateProfile').controller('Update', function($location, $http, 
 
 $http.get('/currentUser').then(function successCallback(response) {
       $scope.user = response.data;
+        $scope.user.emailForTags = $scope.user.emailForTags.join(",")
       if(response.data.img){
         $scope.imageExists = true;
       }else{
@@ -27,13 +28,16 @@ $http.get('/currentUser').then(function successCallback(response) {
       //console.log(user);
   });
 
-  $scope.save = function(file){
+
+    $scope.save = function(file){
 
     var reader = new FileReader();
     reader.onloadend = function () {
     console.log($scope.user.email);
     var query = {_id: $scope.user._id};
     $scope.user.img = reader.result;
+        console.log($scope.user.emailForTags);
+    $scope.user.emailForTags = $scope.user.emailForTags.split(" ").join("").toLowerCase().split(",")
     User.update(query, $scope.user);
 
     //$scope.user.save();

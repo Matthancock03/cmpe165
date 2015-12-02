@@ -46,12 +46,14 @@
               </li>
               <li class="list-group-item">
                 <strong>Job Time:</strong><br>
-                {{app.time}}
+                {{app.time | date : 'MMMM d, h:mm a'}}
               </li>
               <li class="list-group-item">
-                <button class="btn btn-success btn-lg btn-block" ng-click="toDisplay(app)" type="submit">
+                <a href="/jobdisplay?_id={{app._id}}" target="_self">
+                <button class="btn btn-success btn-lg btn-block" type="submit">
                   Go to Job
                 </button>
+                </a>
               </li>
 
             </ul>

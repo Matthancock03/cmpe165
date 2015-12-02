@@ -53,9 +53,12 @@ module.exports.jobUpdateMail = function(job) {
             //job has all the new elements of the job that was updated.
             mail.save();// will send the mail
         }
+
         if(elems.length == 0 && job.terms)//treat updates without applicants as new jobs, terms defined.
         {
+            console.log(job.terms)
             Users.find({emailForTags: {$in: job.terms}}, function(err, users){
+                console.log(users);
                 for (var i = 0; i < users.length; i++) {//for each person with interest in this type of job
                     var mail = new Mail();
                     mail.ownerId = users[i].ownerId

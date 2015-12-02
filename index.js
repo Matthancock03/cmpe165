@@ -186,10 +186,10 @@ app.post("/payments", stormpath.loginRequired, function(req, res, next) {
             var amount;
             if (!job.wagesMax)
               amount = job.wages / 2 * 100
-            else if(req.body.bid != application.bid)//shenanegans prevention
+            else if(req.body.bid != application.bid)//shananegans prevention
               return;
             else
-              amount = application.bid;
+              amount = application.bid / 2 * 100;
             stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
               amount: amount,//hm. an array of booleans? maybe define signatureIds?
               currency: "usd",
@@ -202,7 +202,29 @@ app.post("/payments", stormpath.loginRequired, function(req, res, next) {
                 console.log(err);
               }
               job.applicantSignatureData[index].paymentNum++;
-              if (job.applicantSignatureData[index] >= 2) {
+              if(job.applicantSignatureData[index].paymentNum == 1) {
+                var mpayment1 = new dbmodels.Mail()
+                mpayment1.senderId = job.ownerId
+                mpayment1.ownerId = job.applicantSignatureData[index].ownerId
+                mpayment1.title="The first payment's been made."
+                mpayment1.body= "You've gotten your money for the job '"+job.title+"'. it's time to do the deed."
+                mpayment1.links=["/jobdisplay?_id="+job._id]
+                mpayment1.save();
+              }else if(job.applicantSignatureData[index].paymentNum == 2)
+              {
+                var msecondpayment = new dbmodels.Mail()
+                msecondpayment.senderId = job.ownerId
+                msecondpayment.ownerId = job.applicantSignatureData[index].ownerId
+                msecondpayment.title="The final payment's been made."
+                msecondpayment.body= "The deed is done. Leave a review at the employers profile, state your experience."
+                msecondpayment.links=["/profile?email="+job.ownerId]
+                msecondpayment.save();
+              }
+              else//???
+              {
+                console.log("HOW DID YOU GET HERE??")
+              }
+              if (job.applicantSignatureData[index] >= 2){
                 job.paidTwice++;
                 if (job.paidTwice >= job.totalParticipantNum)
                   job.done = true;
