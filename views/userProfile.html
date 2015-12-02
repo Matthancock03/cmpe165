@@ -15,8 +15,8 @@
 
     <div class="container-fluid mainDiv" style="background-color: white;">
 
-      <div class="col-xs-1"></div>
-      <div class="col-xs-10">
+      <div class="col-xs-2"></div>
+      <div class="col-xs-8">
         <div class="alert alert-success" ng-show="showSuccessAlert">
           <button class="close" data-ng-click="switchBool('showSuccessAlert')" type="button">×</button>
           <strong>Done!</strong>
@@ -27,18 +27,24 @@
           <img alt="Profile Image" class="profileImage center-block" ng-src="{{user.img}}" ng-switch-when="true"/>
           <img alt="Profile Image" class="profileImage center-block" ng-src="images/star.png" ng-switch-default/>
         </div>
-        <div id="buttonDiv" class="center-block">
-          <button class="btn btn-success btn-md" data-target=".AAAAAA" data-toggle="modal" id="reviewButton" ng-click="loadReview(blank)" ng-show="loaded && !isUser" type="button">
+
+        <div class="text-center">
+          <div ng-show="isUser">
+            <a class="btn btn-success"  id="reviewButton" ng-click="editProfile()" >
+              Edit Profile
+            </a>
+          </div>
+          <a class="btn btn-success btn-md"  id="reviewButton" data-target=".AAAAAA" data-toggle="modal" ng-click="loadReview(blank)" ng-show="loaded && !isUser">
             Leave Review
-          </button>
+          </a>
           <div ng-hide="isUser">
-            <button class="btn btn-md" data-target=".BBBBBB" data-toggle="modal" id="reviewButton" type="button">
+            <ba class="btn btn-md" data-target=".BBBBBB" data-toggle="modal" >
               <span aria-hidden="true" class="glyphicon glyphicon-envelope"></span>
               Message
-            </button>
+            </a>
           </div>
         </div>
-        <h1 class='redText'>{{user.firstName + " " + user.lastName}}</h1>
+        <h1>{{user.firstName + " " + user.lastName}}</h1>
         <hr>
         <h3 class='redText'>About</h3>
         <hr>
@@ -66,9 +72,10 @@
         <h3 class='redText'>Reviews</h3>
         <hr>
         <h3 class='redText' ng-show="loaded && !noreviews">Average Rating:
-          {{total | number : 2}}/5</h2>
-        <h3 class='redText' ng-show="loaded && noreviews">No Reviews! A blank slate.</h2>
-        <div class="row panel panel-default" ng-repeat="r in ratings">
+          {{total | number : 2}}/5</h3>
+          <span ng-show="user.reviews.length < 0">I guess no news is good news, right?</span>
+          <br>
+          <br>        <div class="row panel panel-default" ng-repeat="r in ratings">
           <div class="col-md-5" style="align:center">
             <h4>
               <a href="/profile?email={{r.ownerId}}" target="_self">{{r.ownerId}}</a>:</h4>
@@ -77,18 +84,10 @@
             <h2>{{r.stars}}/5</h2>
           </div>
           <div class="col-md-5">
-            <h3>{{r.body}}
-            </h3>
+            <h3>{{r.body}}</h3>
           </div>
         </div>
-        <span ng-show="user.reviews.length < 0">I guess no news is good news, right?</span>
-        <br>
-        <br>
-        <div ng-show="isUser">
-          <button class="btn btn-success" ng-click="editProfile()" type="button">
-            Edit Profile
-          </button>
-        </div>
+
 
         <!-- Large modal -->
 
@@ -97,11 +96,11 @@
             <div class="modal-content">
               <div class="form-group" style="width: 50%; margin: 0 auto;">
                 <div style="width: 75%; margin: 0 auto;">
-                  <h2 class="form-signin-heading">Message</h2>
+                  <h3 class="form-signin-heading redText">Message</h3>
                   <input class="form-control input" name="messageTitle" ng-model="messageTitle" placeholder="Message Title" type="text" value=""/>
                   <input class="form-control input" name="messageBody" ng-model="messageBody" placeholder="Message" type="text" value=""/>
                   <input class="form-control input" name="id" ng-model="id" placeholder="User Id" style="display: none;" type="text" value=""/>
-                  <button class="btn btn-primary btn-lg btn-block" data-target=".BBBBBB" data-toggle="modal" ng-click="sendMessage()" style="width: 50%;" type="submit">Send Message</button>
+                  <button class="btn btn-primary btn-lg btn-block" style="margin-top: 15px; margin-bottom:25px;" id="reviewButton" data-target=".BBBBBB" data-toggle="modal" ng-click="sendMessage()" style="width: 50%;" type="submit">Send Message</button>
                 </div>
               </div>
             </div>
@@ -114,7 +113,7 @@
             <div class="modal-content">
               <div class="form-group" style="width: 50%; margin: 0 auto;">
                 <form class="form-login ng-pristine ng-valid job-form center-block" ng-Submit="submit()" role="form">
-                  <h2 class="form-signin-heading">Review them!</h2>
+                  <h3 class="form-signin-heading redText">Review them!</h3>
 
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -128,7 +127,7 @@
                     </div>
                     <textarea class="form-control input" ng-model="rev.body" placeholder="" required type="text"></textarea>
                   </div>
-                  <button class="btn btn-success btn-lg btn-block" ng-disabled="!rev || !rev.stars || rev.stars < 1 || rev.stars > 5" type="submit">Submit</button>
+                  <button class="btn btn-success btn-lg btn-block" style="margin-top: 15px; margin-bottom:25px; " id="reviewButton" ng-disabled="!rev || !rev.stars || rev.stars < 1 || rev.stars > 5" type="submit">Submit</button>
                 </form>
               </div>
             </div>
@@ -136,7 +135,7 @@
         </div>
         <!-- Review End modal -->
       </div>
-      <div class="col-xs-1"></div>
+      <div class="col-xs-2"></div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
