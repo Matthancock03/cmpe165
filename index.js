@@ -1,3 +1,4 @@
+
 var express = require('express');
 var stormpath = require('express-stormpath');
 var bodyParser = require('body-parser');
@@ -69,16 +70,32 @@ app.get("/currentUser", function(req,res, next){
     dbmodels.User.findOne({email : req.user.email}, function(err, user){
 
       if(err){return next(err);};
-      console.log("User: " + user);
+      //console.log("User: " + user);
       res.status(200).send(user);
     });
     //res.status(200).send(req.user);
   }
-  });
+});
 
 
 app.get("/", function(req,res){
   res.status(200).sendFile(__dirname + '/views/home.html');
+});
+app.get("/jobhistory", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/jobHistory.html');
+})
+
+app.get("/home", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/home.html');
+});
+
+app.get("/newhome", function(req,res){
+  res.status(200).sendFile(__dirname + '/views/newHome.html');
+});
+
+
+app.get("/about", function(req,res){//About page needs content
+  res.status(200).sendFile(__dirname + '/views/about.html');
 });
 
 app.get("/profile", stormpath.loginRequired, function(req,res){
@@ -168,30 +185,30 @@ app.post("/payments", stormpath.loginRequired, function(req, res, next) {
           {
             var amount;
             if (!job.wagesMax)
-                amount = job.wages / 2 * 100
+              amount = job.wages / 2 * 100
             else if(req.body.bid != application.bid)//shenanegans prevention
-                return;
+              return;
             else
-                amount = application.bid;
-              stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
-                amount: amount,//hm. an array of booleans? maybe define signatureIds?
-                currency: "usd",
-                customer: user.customerId,
-                description: job.description
-              }, {stripe_account: user.sellerId}, function (err, charge) {
-                // asynchronously called
-                if (err != null) {
-                  return next(err);
-                  console.log(err);
-                }
-                job.applicantSignatureData[index].paymentNum++;
-                if (job.applicantSignatureData[index] >= 2) {
-                  job.paidTwice++;
-                  if (job.paidTwice >= job.totalParticipantNum)
-                    job.done = true;
-                }
-                job.save();
-              });
+              amount = application.bid;
+            stripe.charges.create({//could handle on the application model, but application's editable by the user. bad idea.
+              amount: amount,//hm. an array of booleans? maybe define signatureIds?
+              currency: "usd",
+              customer: user.customerId,
+              description: job.description
+            }, {stripe_account: user.sellerId}, function (err, charge) {
+              // asynchronously called
+              if (err != null) {
+                return next(err);
+                console.log(err);
+              }
+              job.applicantSignatureData[index].paymentNum++;
+              if (job.applicantSignatureData[index] >= 2) {
+                job.paidTwice++;
+                if (job.paidTwice >= job.totalParticipantNum)
+                  job.done = true;
+              }
+              job.save();
+            });
           }
           //What should we do when payment is finished?
           //create mail.

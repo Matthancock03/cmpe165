@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="About">
+  <head>
+    <title>Stagehand</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container-fluid" style="height: 100%;">
+      <div class="row">
+        <div class="col-xs-12">
+          <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
+
+          <img alt="CurtainBanner" class="bannerImage" src="images/stage.jpg"/>
+
+          <p id="homeHeader">
+            About Stagehand
+          </p>
+          <p id='aboutText'>
+            Stagehand is a platform for connecting performers with productions!
+            <br>
+            Whether it be a Broadway production, an exciting flash mob, an elaborate engagement proposal,<br>
+            or just a simple prank, anywhere that there is a need for performers we will find them.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.0/angular-resource.js"></script>
+    <script src="myApp.js"></script>
+    <script src="about.js"></script>
+  </body>
+</html>

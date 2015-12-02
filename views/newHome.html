@@ -5,24 +5,24 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/home.css" rel="stylesheet">
+    <link href="css/newHome.css" rel="stylesheet">
   </head>
   <body>
     <ng-include autoscroll="" onload="" src="'templates/navBar.html'"></ng-include>
 
-    <img alt="CurtainBanner" class="bannerImage" src="images/stage.jpg"/>
+    <!-- <img alt="CurtainBanner" class="bannerImage" src="images/stage.jpg"/> -->
+    <video autoplay loop muted poster="images/dance.png" id="bgvid">
+        <source src="images/dance.mp4" type="video/mp4">
+    </video>
 
     <div class="container-fluid" style="height: 100%;">
       <div class="row">
         <div class="col-xs-12">
+          <div class="center-block" id="headerDiv" ng-show="loggedIn">
           <p id="homeHeader">
             Show them what you got!
          </p>
-         <p id='aboutText'>
-           Stagehand is a platform for connecting performers with productions! <br>
-           Whether it be a Broadway production, an exciting flash mob, an elaborate engagement proposal,<br>
-           or just a simple prank, anywhere that there is a need for performers we will find them.
-         </p>
+       </div>
           <div class="center-block" id="searchDiv">
             <p id="searchHeader">
               Search for a performance near you!
@@ -48,7 +48,7 @@
             </div>
           </div>
           <div>
-            <p id="homeHeader">
+            <p id="or">
               Or...
             </p>
             <div class="center-block" id="createDiv" ng-show="loggedIn">
