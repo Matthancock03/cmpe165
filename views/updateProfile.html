@@ -41,6 +41,10 @@
                 <input class="form-control input" ng-model="user.skills" placeholder="Skills separated by ','" required type="text">
               </div>
               <div class="input-group">
+                <h3 class='redText'>Job tags to send emails on:</h3>
+                <input class="form-control input" ng-model="user.emailForTags" placeholder="List tags here separated by commas" required type="text">
+              </div>
+              <div class="input-group">
                 <h3 class='redText'>Videos: </h3>
                 <input class="form-control input" ng-model="user.videoLinks" placeholder="Youtube Links Separated by ','" required type="text">
 
@@ -48,6 +52,7 @@
               <p style="margin-top: 15px;" class="redText">Upload Image</p>
               <input accept="image/*" name="file" ng-model="user.img" ngf-max-size="5MB" ngf-select type="file">
               <br><input type="checkbox" ng-model="user.receiveEmails"> Receive Notifications <br>
+
               <div class="btnDiv">
                 <button class="cancelButton" ng-click="cancel()">Cancel</button>
                 <button class="saveButton" ng-click="save(user.img)">Save</button>
@@ -66,7 +71,7 @@
       <!-- for no html5 browsers support -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/9.1.2/ng-file-upload.min.js"></script>
       <script src="updateProfile.js"></script>
-
+      </div>
     </body>
 
   </html>

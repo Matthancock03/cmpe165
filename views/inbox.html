@@ -81,7 +81,7 @@
                     <p>{{message.senderId}}</p>
                   </td>
                   <td>
-                    {{message.creationDate}}
+                    {{message.creationDate | date : 'MMMM d, h:mm a'}}
                   </td>
                   <td>
                     {{message.read}}

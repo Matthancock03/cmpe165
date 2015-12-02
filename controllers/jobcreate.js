@@ -18,9 +18,12 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
 
         $scope.master = Job.get({'_id' : $location.search()._id}, function(){
             $scope.master.time = new Date($scope.master.time);
+            $scope.master.terms = $scope.master.terms.join(",")
             $scope.reset();
         });
         $scope.submit = function() {
+            if($scope.userjob.terms)
+                $scope.userjob.terms = $scope.userjob.terms.split(" ").join("").toLowerCase().split(",")
             $scope.userjob.$update()
             console.log("In submit?")
             window.location.href = "/jobdisplay?_id=" + $scope.userjob._id;
@@ -47,6 +50,7 @@ angular.module('myApp').controller('jobcreate', function($scope, $location, Job)
         $scope.reset();
         $scope.submit = function()
         {
+            $scope.userjob.terms = $scope.userjob.terms.split(" ").join().toLowerCase().split(",")
             $scope.userjob = Job.save($scope.userjob, function() {
                     window.location.href = "/jobdisplay?_id="+$scope.userjob._id;
             })
