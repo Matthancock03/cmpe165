@@ -78,7 +78,7 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
             //app.sent=true;
             m.$save(
                 function(){
-                    //location.reload();
+                    location.reload();
                 }
             );
 
@@ -145,6 +145,10 @@ angular.module('myApp').controller('jobdisplay', function($scope, $location, $ht
             m.links = ["/jobDisplay?_id="+ $scope.userjob._id];
             //app.sent=true;
             m.$save();
+            $scope.userjob.$update();
+            //NECESSARY PRINT STATEMENT!!!
+            console.log($scope.userjob)
+            location.reload();
             //$scope.toFire.$update();//Don't need to update; information stating them hired was stored in job Object
             //couldn't update anyways; belongs to fired person
         }
