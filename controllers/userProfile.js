@@ -27,6 +27,11 @@ angular.module('myApp').controller('UserController', function($location, $http, 
       } else {
         $scope.imageExists = false;
       }
+      if(response.data.userName.length > 1){
+        $scope.userNameExists = true;
+      }else{
+        $scope.userNameExists = false;
+      }
     }
 
     $scope.currentUser = response.data;

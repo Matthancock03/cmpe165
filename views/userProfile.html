@@ -44,12 +44,18 @@
             </a>
           </div>
         </div>
-        <h1>{{user.firstName + " " + user.lastName}}</h1>
-        <hr>
-        <h3 class='redText'>Username:</h3>
-        <hr>
-        {{user.userName}}
-        <hr>
+        <div ng-switch on="userNameExists">
+          <div ng-switch-when="true">
+            <h3 class='redText'>Stage Name:</h3>
+              {{user.userName}}
+          </div>
+          <div ng-switch-default>
+            <h1 >{{user.firstName + " " + user.lastName}}</h1>
+            <h3 class='redText'>Username:</h3>
+            {{user.userName}}
+          </div>
+        </div>
+
         <h3 class='redText'>About</h3>
         <hr>
         {{user.about}}
