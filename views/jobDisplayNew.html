@@ -52,10 +52,10 @@
                 <button class="btn btn-success btn-lg" ng-show="!notOwner && app.sent && app.signed && app.payments == 0" ng-disabled="deposited" ng-click="partialDeposit(app)" type="submit">
                     Send First Payment
                 </button>
-                <button class="btn btn-success btn-lg" ng-show="!notOwner && app.sent && app.signed && app.payments > 0" ng-disabled="app.payments > 1" ng-click="partialDeposit(app)" type="submit">
+                <button class="btn btn-default btn-lg" ng-show="!notOwner && app.sent && app.signed && app.payments > 0" ng-disabled="app.payments > 1" ng-click="partialDeposit(app)" type="submit">
                     Send Second Payment
                 </button>
-                <button class="btn btn-success btn-lg" data-target=".fire-modal-lg" data-toggle="modal" type="button" ng-click="loadForFire(app)" ng-show="!notOwner">
+                <button class="btn btn-danger btn-lg" data-target=".fire-modal-lg" data-toggle="modal" type="button" ng-click="loadForFire(app)" ng-show="!notOwner">
                   Fire Employee
                 </button>
                     <!-- commented out because I don't have time to get this working.
