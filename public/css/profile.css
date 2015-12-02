@@ -51,14 +51,35 @@ h1{
   font-style: italic;
   color: #a31111;
 }
-
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+a:hover{
+  color: #a31111;
+}
 hr{
   margin-top: -10px !important;
   padding-top: 0px !important;
+}
+
+th{
+  color: #a31111;
 }
 .redText{
   font-size: 30px;
   font-family: Lato;
   font-style: italic;
   color: #a31111;
+}
+
+.smallRed{
+  font-size: 22px;
+  font-family: Lato;
+  font-style: italic;
+  color: #f7eb0c;
+  background-color: rgba(10, 10, 10, 0.72);
+  border-radius: 25px;
+  padding-left: 10px;
+  max-width: 30%;
 }

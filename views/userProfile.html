@@ -71,23 +71,41 @@
         </div>
         <h3 class='redText'>Reviews</h3>
         <hr>
-        <h3 class='redText' ng-show="loaded && !noreviews">Average Rating:
-          {{total | number : 2}}/5</h3>
-          <span ng-show="user.reviews.length < 0">I guess no news is good news, right?</span>
+        <h2 class='smallRed' ng-show="loaded && !noreviews">Average Rating:
+          {{total | number : 2}}/5</h2>
+          <span class="smallRed" ng-show="user.reviews.length < 0">I guess no news is good news, right?</span>
           <br>
-          <br>        <div class="row panel panel-default" ng-repeat="r in ratings">
-          <div class="col-md-5" style="align:center">
-            <h4>
-              <a href="/profile?email={{r.ownerId}}" target="_self">{{r.ownerId}}</a>:</h4>
-          </div>
-          <div class="col-md-2">
-            <h2>{{r.stars}}/5</h2>
-          </div>
-          <div class="col-md-5">
-            <h3>{{r.body}}</h3>
-          </div>
-        </div>
-
+          <br>
+          <table class="table table-condensed" style="background-color: #FFFFFF;">
+            <thead>
+              <tr>
+                <th class="col-md-4 text-center">
+                  User
+                </th>
+                <th class="col-md-2 text-center">
+                  Stars
+                </th>
+                <th class="col-md-6 text-center">
+                  Message
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="r in ratings">
+                  <td class="col-md-4 text-center">
+                    <a href="/profile?email={{r.ownerId}}" target="_self">
+                      {{r.ownerId}}
+                    </a>
+                  </td>
+                  <td class="col-md-2 text-center">
+                    {{r.stars}}/5
+                  </td>
+                  <td class="col-md-6 text-center">
+                    {{r.body}}
+                  </td>
+                </tr>
+            </tbody>
+          </table>
 
         <!-- Large modal -->
 

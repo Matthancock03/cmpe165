@@ -4,7 +4,7 @@ angular.module('myApp').controller('UserController', function($location, $http, 
     $scope.total = 0.0;
     $scope.ratings = elems
 
-    console.log($scope.ratings);
+  console.log($scope.ratings);
     if ($scope.ratings.length <= 0) {
       $scope.noreviews = true;
     }
@@ -89,6 +89,11 @@ Job.query({employee: "matthancock03@gmail.com"}, function(jobs){
 
     //load into review submitter?
   }
+
+$scope.editProfile = function() {
+  window.location.assign("update");
+};
+
   $scope.submit = function(){
     if(!$scope.rev.reviewee)
       $scope.rev.reviewee = $scope.user.email;
